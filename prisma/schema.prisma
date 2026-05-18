@@ -1,0 +1,306 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Definimos los roles: ADMIN (Junta), VOCAL (Responsables), USER (Socio) y GUEST (Invitado)
+enum Role {
+  GUEST
+  USER
+  ALUMNI
+  VOCAL
+  ADMIN
+}
+
+// Tabla de Usuarios
+model User {
+  id            String    @id @default(cuid()) // ID único (ej: clh123...)
+  name          String?
+  email         String    @unique
+  password      String?   // Contraseña encriptada (Opcional por Google Auth)
+  googleId      String?   @unique // ID de cuenta de Google
+  image         String?
+  role          Role      @default(GUEST)
+  vocalia       String?   // ID de la vocalía a la que pertenece si es VOCAL
+
+  phone         String?
+  address       String?
+  city          String?
+  province      String?
+  zipCode       String?
+  country       String?   @default("España")
+  latitude     Float?
+  longitude    Float?
+  university   String?
+  academicYear String?
+
+  // Preferencias para eventos (solo para socios)
+  dietary      String?
+  allergies    String?
+  alcohol      String?
+  tShirtSize   String?
+  hasCar       Boolean   @default(false)
+
+  emailVerified Boolean  @default(false)
+
+  
+  // Relaciones
+  events        Event[]      // Eventos creados por este admin
+  attendances   Attendance[] // A los eventos a los que asiste
+  projects      Project[]    // Proyectos en los que está implicado
+  
+  // Votaciones
+  pollAttendances PollAttendee[]
+  votes           Vote[]
+
+  // Gamificación (Sistema de puntos)
+  points          Int      @default(0)
+  pointTransactions PointTransaction[]
+
+  // IMW
+  imwPrice        Float?
+  imwPaymentStatus String? @default("PENDING")
+
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model VerificationToken {
+  id        String   @id @default(cuid())
+  token     String
+  email     String
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([token])
+}
+
+enum EventType {
+  ASSOCIATION // Reunion, meeting, fiesta (Morado/Naranja)
+  HOLIDAY     // Festivo (Rojo)
+  EXAM        // Examen (Azul)
+  WORKSHOP    // Semanas tematicas y talleres
+  OTHER       // Otros (Gris)
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  date        DateTime // Fecha de inicio o día completo
+  endDate     DateTime? // Opcional, si dura varios días o horas
+  location    String?  // Mapa/URL
+  fee         String?  // Ej: "Gratis", "5€"
+  price       Float?   // Precio numérico para pagos
+  type        EventType @default(ASSOCIATION)
+  color       String?  // Ej: "bg-red-500" para Tailwind
+  pointsReward Int     @default(20) // Puntos que otorga al asistir
+  isOpenEvent Boolean  @default(false) // Si es true, es un evento continuo/abierto (Workshop)
+
+  registrationDeadline DateTime? // Último día para apuntarse
+
+  authorId    String?   // Quien lo creó
+  author      User?     @relation(fields: [authorId], references: [id])
+
+  attendances Attendance[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ShopProduct {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Float
+  imageUrl    String?
+  category    String   // "hoodies", "merch", etc.
+  sizes       String?  // Formato CSV "S,M,L,XL"
+  active      Boolean  @default(true)
+  
+  variants    ShopVariant[]
+  orders      ShopOrder[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ShopVariant {
+  id          String   @id @default(cuid())
+  productId   String
+  product     ShopProduct @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  size        String?
+  color       String?
+  type        String?  // Ej: "Con capucha", "Sin capucha"
+  lining      String?  // Ej: "Con forro", "Sin forro"
+  stock       Int      @default(0)
+  
+  orders      ShopOrder[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([productId, size, color, type, lining])
+}
+
+model ShopOrder {
+  id                String      @id @default(cuid())
+  productId         String
+  product           ShopProduct @relation(fields: [productId], references: [id])
+  variantId         String?
+  variant           ShopVariant? @relation(fields: [variantId], references: [id])
+  size              String?
+  amount            Float
+  checkoutId        String?     // ID de SumUp
+  checkoutReference String?     // Ref interna
+  status            String      @default("PENDING") // PENDING, PAID, FAILED
+  buyerEmail        String?
+  createdAt         DateTime    @default(now())
+}
+
+model ShopSetting {
+  id    String @id @default(cuid())
+  key   String @unique // e.g. "hoodies_status"
+  value String // e.g. "open", "closed"
+}
+
+model Attendance {
+  id        String   @id @default(cuid())
+  eventId   String
+  userId    String
+  
+  event     Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  paymentMethod     String?  // "CASH", "CARD"
+  paymentStatus     String?  // "PENDING", "PAID"
+  checkoutReference String?  // Referencia de SumUp
+  
+  createdAt DateTime @default(now())
+
+  @@unique([eventId, userId]) // Un usuario solo puede asistir una vez al mismo evento
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String?   // Markdown u HTML para el contenido extendido si se desea
+  imageUrl    String?   // Portada del proyecto
+  vocaliaId   String    // ID de la vocalía (ej: 'it', 'electronica')
+
+  duration    String?   // Duración ("3 meses", "1 curso", etc.)
+  pdfUrl      String?   // Ruta de archivo subido del informe
+  members     User[]    // Socios implicados
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Document {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  fileUrl     String   // URL del archivo
+  category    String   // "transparencia", "protocolos", "cuentas", "personal", "otros"
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model JuntaMember {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  description String
+  imageUrl    String?   // Ruta a /public/uploads/junta/ o similar
+  order       Int       @default(0) // Para controlar el orden en el carousel
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum ScrutinyType {
+  SIMPLE       // Mayoría simple (más a favor que en contra)
+  ABSOLUTE     // Mayoría absoluta (más del 50% de los asistentes)
+  TWO_THIRDS   // Dos tercios (>= 66.6% de los asistentes)
+}
+
+enum VoteChoice {
+  FAVOR
+  CONTRA
+  ABSTENCION
+  BLANCO
+}
+
+model Poll {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  type        ScrutinyType @default(SIMPLE)
+  isActive    Boolean  @default(true)
+  
+  attendees   PollAttendee[]
+  votes       Vote[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PollAttendee {
+  id        String   @id @default(cuid())
+  pollId    String
+  userId    String
+  
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+
+  @@unique([pollId, userId])
+}
+
+model Vote {
+  id        String   @id @default(cuid())
+  pollId    String
+  userId    String
+  choice    VoteChoice
+  
+  poll      Poll     @relation(fields: [pollId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+
+  @@unique([pollId, userId])
+}
+
+model PointTransaction {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int      // Puede ser positivo o negativo
+  reason    String   // Razón de los puntos (ej: "Asistencia a evento", "Voto en asamblea")
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+}
+
+model PriorityList {
+  id          String   @id @default(cuid())
+  eventName   String
+  comments    String?
+  members     Json     // Store the ordered array of members (name, points, role)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

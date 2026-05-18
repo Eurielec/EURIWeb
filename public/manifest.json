@@ -1,0 +1,17 @@
+{
+  "name": "Eurielec - Asociación de Electrónica Industrial",
+  "short_name": "Eurielec",
+  "description": "Web oficial de Eurielec, comité local de EESTEC en la ETSI de Industriales (UPM).",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8161B",
+  "theme_color": "#E8161B",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

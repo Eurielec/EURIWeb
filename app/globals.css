@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* ============================================================
+   EURIELEC DESIGN SYSTEM — Helvetica, Red bg, Black/White text
+   ============================================================ */
+
+@font-face {
+  font-family: 'Chulapa';
+  src: url('/fonts/Chulapa.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+:root {
+  /* Brand Red */
+  --red:       #E8161B;
+  --red-dark:  #B51014;
+  --red-light: #FF3338;
+
+  /* Neutrals */
+  --black:  #0A0A0A;
+  --white:  #FFFFFF;
+  --grey-8: #1C1C1C;
+  --grey-7: #2E2E2E;
+  --grey-5: #6B6B6B;
+  --grey-3: #C8C8C8;
+
+  /* Semantic tokens — RED background theme */
+  --background:  var(--red);
+  --foreground:  var(--black);      /* default text = black on red */
+  --surface:     rgba(0,0,0,0.12);  /* subtle dark card on red */
+  --surface-inv: rgba(0,0,0,0.25);  /* stronger card */
+  --border:      rgba(0,0,0,0.18);
+  --border-inv:  rgba(255,255,255,0.18);
+  --muted:       rgba(0,0,0,0.5);
+}
+
+/* Tailwind v4 theme tokens */
+@theme {
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-mono: "Courier New", monospace;
+  
+  --color-background:  var(--background);
+  --color-foreground:  var(--foreground);
+  --color-brand:       var(--red);
+  --color-black:       var(--black);
+  --color-white:       var(--white);
+  --color-surface:     var(--surface);
+  --color-muted:       var(--muted);
+}
+
+/* ----------------------------------------------------------------
+   Base
+   ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--red);
+  color: var(--black);          /* black text by default on red bg */
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ----------------------------------------------------------------
+   Typography — tight Helvetica specimen feel
+   ---------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+
+/* Alternating colours for headings — REMOVED to allow local overrides */
+/* h1         { color: var(--black); }
+h2         { color: var(--white); }
+h3         { color: var(--black); }
+h4, h5, h6 { color: var(--white); } */
+
+h1 { font-size: clamp(2.8rem, 7vw, 6rem); }
+h2 { font-size: clamp(2rem,   4vw, 3.5rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2.2rem); }
+
+/* p, li {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+  color: rgba(0,0,0,0.72);
+} */
+
+/* White text variant helper */
+.text-on-dark       { color: var(--white) !important; }
+.text-on-dark p,
+.text-on-dark li    { color: rgba(255,255,255,0.75) !important; }
+.text-on-dark h1    { color: var(--white) !important; }
+.text-on-dark h2    { color: var(--black) !important; }
+
+/* ----------------------------------------------------------------
+   Utility classes
+   ---------------------------------------------------------------- */
+.label {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Surfaces */
+.glass-dark {
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.glass-light {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* ----------------------------------------------------------------
+   Buttons
+   ---------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.6rem; border-radius: 0.4rem;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8rem; font-weight: 900;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  transition: all 0.18s ease; cursor: pointer; border: none;
+}
+.btn-black  { background: var(--black); color: #fff; }
+.btn-black:hover { background: #222; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+.btn-white  { background: #fff; color: var(--black); }
+.btn-white:hover { background: #e8e8e8; transform: translateY(-1px); }
+.btn-outline-black { background: transparent; color: var(--black); border: 2px solid var(--black); }
+.btn-outline-black:hover { background: var(--black); color: #fff; }
+.btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.7); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+/* ----------------------------------------------------------------
+   Cards on red background
+   ---------------------------------------------------------------- */
+.card-dark {
+  background: rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 1rem; padding: 1.5rem;
+  transition: background 0.2s;
+}
+.card-dark:hover { background: rgba(0,0,0,0.28); }
+.card-light {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 1rem; padding: 1.5rem;
+  transition: background 0.2s;
+}
+.card-light:hover { background: rgba(255,255,255,0.22); }
+
+/* ----------------------------------------------------------------
+   Scrollbar
+   ---------------------------------------------------------------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--red-dark); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--black); }
+
+::selection { background: var(--black); color: var(--red); }
+
+/* ----------------------------------------------------------------
+   Chulapa Text Animation
+   ---------------------------------------------------------------- */
+@keyframes drawChulapaStroke {
+  0% {
+    stroke-dashoffset: 4000;
+    fill: transparent;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    fill: transparent;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill: var(--black);
+  }
+}
+
+.animated-chulapa-text {
+  font-family: 'Chulapa', sans-serif;
+  stroke: var(--black);
+  stroke-width: 2px;
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+  fill: transparent;
+  animation: drawChulapaStroke 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
