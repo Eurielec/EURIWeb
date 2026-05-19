@@ -89,6 +89,34 @@ export default async function ConocenosPage() {
             dangerouslySetInnerHTML={{ __html: t.about.eestecDesc }}
           />
 
+          {/* EESTEC History Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16 text-left">
+            {t.about.eestecHistory?.map((item, idx) => (
+              <div 
+                key={idx}
+                className="rounded-2xl p-6 relative overflow-hidden transition-all hover:scale-[1.02] duration-300 shadow-xl"
+                style={{ 
+                  background: 'rgba(0,0,0,0.22)', 
+                  border: '1px solid rgba(0,0,0,0.15)',
+                  backdropFilter: 'blur(8px)'
+                }}
+              >
+                {/* Year tag */}
+                <span className="absolute top-4 right-4 text-[10px] font-black uppercase px-2 py-0.5 rounded bg-black/40 text-white tracking-widest border border-white/5">
+                  {item.year}
+                </span>
+
+                <h3 className="text-white text-lg font-black uppercase tracking-tight mb-3 mt-2 pr-12">
+                  {item.title}
+                </h3>
+                
+                <p className="text-white/70 text-sm font-medium leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
           <EuropeMap />
         </section>
       </div>

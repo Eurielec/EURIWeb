@@ -31,23 +31,40 @@ export const dictionaries = {
         },
         {
           title: 'ETSIT UPM: Nuestro Hogar',
-          description: 'La Escuela Técnica Superior de Ingenieros de Telecomunicación. Aquí es donde nuestras ideas de software libre y hardware cobran vida. Av. Complutense 30.',
+          description: 'La Escuela Técnica Superior de Ingenieros de Telecomunicación. Donde organizamos, innovamos y desarrollamos todas las actividades de Eurielec. Av. Complutense 30',
         }
       ]
     },
     about: {
       title: 'Conócenos',
-      subtitle: 'Descubre desde dónde nos acompañan todos los miembros oficiales y la junta de la Asociación Eurielec.',
+      subtitle: 'Descubre desde dónde nos acompañan todos los miembros, qué ideas tenemos acerca del mundo y qué rol desempeñamos en el mismo.',
       mapTitle: 'Mapa de Socios en España',
       eestecTag: 'DIMENSIÓN INTERNACIONAL',
       eestecTitle: 'Presencia en',
-      eestecDesc: 'La Asociación Eurielec forma el <strong>Comité Local de EESTEC en Madrid</strong>. Formamos parte de una red de estudiantes de Ingeniería Eléctrica e Informática a lo largo de <strong>más de 40 universidades</strong> punteras en toda Europa y el mundo.',
+      eestecDesc: 'La Asociación Eurielec forma el <strong>Comité Local de EESTEC en Madrid</strong>. Formamos parte de una red de estudiantes de Ingeniería en Telecomunicaciones a lo largo de <strong>más de 40 universidades</strong> punteras en toda Europa y el mundo.',
+      eestecHistory: [
+        {
+          year: '1964',
+          title: 'El Legado de EURIELEC',
+          desc: 'Nacimos inspirados por la red europea de estudiantes EURIELEC fundada en 1964. Su disolución en 1972 impulsó a estudiantes de toda Europa a refundar la idea en 1986. ¡Conservamos orgullosamente ese nombre original!',
+        },
+        {
+          year: '1986',
+          title: 'Fundación de EESTEC',
+          desc: 'El 3 de mayo de 1986, estudiantes de 17 países se reunieron en Eindhoven para formalizar la creación de EESTEC, uniendo a futuros ingenieros eléctricos y de telecomunicaciones de toda Europa.',
+        },
+        {
+          year: 'Hitos',
+          title: 'Impacto y Hazañas',
+          desc: 'Lideramos la formación técnica con el EESTech Challenge (nuestro gran hackathon paneuropeo) y el desarrollo de habilidades blandas a través de workshops internacionales y la Soft Skills Academy.',
+        }
+      ],
       sections: [
         {
           id: 'quienes-somos',
           title: 'Quiénes Somos',
           subtitle: 'NUESTRO ADN',
-          description: 'Somos la Asociación de Estudiantes de Ingeniería Eléctrica e Informática con sede en la Universidad Politécnica de Madrid. Un punto de encuentro donde la pasión por la tecnología se transforma en proyectos reales, creando un ecosistema de aprendizaje colaborativo que va más allá de las aulas.',
+          description: 'Somos la Asociación de Estudiantes de Ingeniería en Telecomunicaciones, con sede en la Universidad Politécnica de Madrid. Un punto de encuentro donde la pasión por la tecnología se transforma en proyectos reales, creando un ecosistema de aprendizaje colaborativo que va más allá de las aulas.',
         },
         {
           id: 'mision',
@@ -203,6 +220,23 @@ export const dictionaries = {
       eestecTag: 'INTERNATIONAL DIMENSION',
       eestecTitle: 'Presence in',
       eestecDesc: 'The Eurielec Association forms the <strong>Local Committee of EESTEC in Madrid</strong>. We are part of a network of Electrical Engineering and Computer Science students across <strong>more than 40 leading universities</strong> throughout Europe and the world.',
+      eestecHistory: [
+        {
+          year: '1964',
+          title: 'The EURIELEC Legacy',
+          desc: 'We were born inspired by the EURIELEC European student network founded in 1964. Its dissolution in 1972 drove students across Europe to refound the idea in 1986. We proudly preserve that original name!',
+        },
+        {
+          year: '1986',
+          title: 'EESTEC Foundation',
+          desc: 'On May 3, 1986, students from 17 countries gathered in Eindhoven to formalize EESTEC, uniting future electrical and telecommunication engineers from all over Europe.',
+        },
+        {
+          year: 'Milestones',
+          title: 'Impact & Feats',
+          desc: 'We lead technical training with the EESTech Challenge (our major pan-European hackathon) and soft-skills development through international workshops and the Soft Skills Academy.',
+        }
+      ],
       sections: [
         {
           id: 'quienes-somos',
