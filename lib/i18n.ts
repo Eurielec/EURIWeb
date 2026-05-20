@@ -106,14 +106,14 @@ export const dictionaries = {
         },
         empresaGoal: {
           q: '¿Cuál es tu objetivo?',
-          colab: 'Colaborar (Charlas/Visitas)',
-          patro: 'Patrocinar (Eventos)',
+          colab: 'Colaborar (Eventos, productos, etc)',
+          patro: 'Patrocinar (Eventos, imagen, publicidad)',
         },
       },
       results: {
-        upm: 'Puedes encontrarnos en la sede (ETSIT A-103.1) o escribirnos por Telegram @eurielec.',
-        eestec: 'Para relaciones internacionales o intercambios, contacta con nuestra CP (Contact Person).',
-        colab: 'Estamos abiertos a organizar talleres técnicos y visitas a oficinas. Cuéntanos tu propuesta.',
+        upm: 'Puedes encontrarnos en la sede (ETSIT A-103.1) o escribirnos al correo electrónico eurielec.eestec@gmail.com.',
+        eestec: 'Para relaciones internacionales, intercambios y gente proveniente de otros comites locales de EESTEC contacta con nuestra CP (Contact Person).',
+        colab: 'Estamos abiertos a colaborar con talleres técnicos, demos, eventos, hackathons y visitas a oficinas. Cuéntanos tu propuesta.',
         patro: 'Consulta nuestro dossier de patrocinio para los eventos anuales y visibilidad de marca.',
       }
     },
@@ -136,12 +136,17 @@ export const dictionaries = {
         {
           id: 'eurichallenge',
           title: 'Eurichallenge (Hackathon)',
-          desc: 'Nuestra hackathon anual de software y hardware. Equipos de estudiantes compiten durante 24-48h para resolver retos reales planteados por empresas partner.'
+          desc: 'Nuestra hackathon anual de software y hardware. Equipos de estudiantes compiten durante 48-72h para resolver retos reales planteados por empresas partner.'
         },
         {
           id: 'motivational-days',
           title: 'Motivational Days',
           desc: 'Jornadas locales de team-building, soft skills e integración de nuevos socios. El punto de partida ideal para conocer Eurielec desde dentro.'
+        },
+        {
+          id: 'ssa',
+          title: 'SSA (Soft Skills Academy)',
+          desc: 'Jornadas centradas en el desarrollo de habilidades blandas (como liderazgo, comunicación, negociación o trabajo en equipo) a través de charlas y dinámicas impartidas por formadores certificados.'
         }
       ]
     },
@@ -154,11 +159,11 @@ export const dictionaries = {
       subtitle: 'Consigue el merchandising oficial de la asociación. Sudaderas, forros polares y mucho más.',
       categories: {
         hoodies: 'Sudaderas',
-        hoodiesDesc: 'Sudaderas con y sin capucha, forros polares. El outfit oficial de Eurielec.',
+        hoodiesDesc: 'Sudaderas con y sin capucha, forros polares. El outfit oficial de la ETSIT.',
         lollipops: 'Piruletas',
-        lollipopsDesc: 'Nuestras famosas piruletas personalizadas. ¡El dulce detalle de San Valentín!',
+        lollipopsDesc: 'Nuestras famosas piruletas con mensajes personalizadas. ¡El dulce detalle de San Valentín!',
         merch: 'Merchandising',
-        merchDesc: 'Tazas, pegatinas, llaveros y más. Lleva Eurielec contigo a todas partes.'
+        merchDesc: 'Tandas de merchandising con productos personalizados de la asociación. Lleva Eurielec contigo a todas partes.'
       },
       sizes: 'Tallas',
       order: 'Pedir',
@@ -320,6 +325,11 @@ export const dictionaries = {
           id: 'motivational-days',
           title: 'Motivational Days',
           desc: 'Local team-building, soft skills workshops, and new member integration. The perfect starting point to discover Eurielec from within.'
+        },
+        {
+          id: 'ssa',
+          title: 'SSA (Soft Skills Academy)',
+          desc: 'An intensive training program focused on developing soft skills (such as leadership, communication, public speaking, or teamwork) through workshops and lectures delivered by certified trainers.'
         }
       ]
     },

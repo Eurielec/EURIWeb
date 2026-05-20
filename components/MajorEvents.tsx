@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Sparkles, Trophy, GraduationCap, Users2, ArrowRight, Globe } from 'lucide-react';
+import { Sparkles, Trophy, GraduationCap, Users2, ArrowRight, Globe, Brain } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useState } from 'react';
 import MajorEventGallery from './MajorEventGallery';
@@ -85,6 +85,7 @@ export default function MajorEvents() {
                    {event.id === 'workshop' && <GraduationCap className="text-red-600" size={32} />}
                    {event.id === 'eurichallenge' && <Trophy className="text-red-600" size={32} />}
                    {event.id === 'motivational-days' && <Users2 className="text-red-600" size={32} />}
+                   {event.id === 'ssa' && <Brain className="text-red-600" size={32} />}
                  </div>
               </div>
 

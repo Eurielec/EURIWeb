@@ -15,27 +15,27 @@ export const vocalias: Vocalia[] = [
       en: 'Management of digital infrastructure, servers, web services, and development of internal association tools.'
     },
     vocalEmail: 'it@eurielec.etsit.upm.es',
-    image: '/vocalias/tech.png'
+    image: '/vocalias/it.jpg'
   },
   {
     id: 'electronica',
     name: { es: 'Electrónica', en: 'Electronics' },
     description: { 
-      es: 'Mantenimiento del laboratorio, proyectos de hardware, soldadura y formación técnica en sistemas electrónicos.',
+      es: 'Mantenimiento del banco de electrónica, gestión del material, proyectos y competiciones de hardware, soldadura y formación técnica en sistemas electrónicos.',
       en: 'Laboratory maintenance, hardware projects, soldering, and technical training in electronic systems.'
     },
     vocalEmail: 'electronica@eurielec.etsit.upm.es',
-    image: '/vocalias/tech.png'
+    image: '/vocalias/electronica.jpg'
   },
   {
     id: 'demos',
     name: { es: 'Demos', en: 'Demos' },
     description: { 
-      es: 'Creación y mantenimiento de demostraciones técnicas impactantes para ferias, eventos y captación de nuevos socios.',
+      es: 'Creación y mantenimiento de demostraciones técnicas impactantes para visitas a la asociación y a la universidad, eventos y captación de nuevos alumnos.',
       en: 'Creation and maintenance of impactful technical demonstrations for fairs, events, and recruitment of new members.'
     },
     vocalEmail: 'demos@eurielec.etsit.upm.es',
-    image: '/vocalias/tech.png'
+    image: '/vocalias/demos.png'
   },
   {
     id: 'sudaderas',
@@ -45,37 +45,37 @@ export const vocalias: Vocalia[] = [
       en: 'Design, stock management, and ordering of official Eurielec and school clothing and merchandising.'
     },
     vocalEmail: 'merch@eurielec.etsit.upm.es',
-    image: '/vocalias/lifestyle.png'
+    image: '/vocalias/sudaderas.jpg'
   },
   {
     id: 'piruletas',
     name: { es: 'Piruletas', en: 'Lollipops' },
     description: { 
-      es: 'Gestión del stock de bienvenida y detalles para la sede, asegurando que siempre haya algo dulce para recibir a los socios.',
-      en: 'Management of welcome stock and details for the headquarters, ensuring there is always something sweet to welcome members.'
+      es: 'Gestión del stock, diseño, planificación y venta de piruletas con forma de corazón y otros detalles para el evento de San Valentín',
+      en: 'Management of stock, design, planning and sale of heart-shaped lollipops and other details for the Valentine\'s Day event'
     },
     vocalEmail: 'bienvenida@eurielec.etsit.upm.es',
-    image: '/vocalias/lifestyle.png'
+    image: '/vocalias/piruletas.jpg'
   },
   {
     id: 'cena-navidad',
     name: { es: 'Cena de Navidad', en: 'Christmas Dinner' },
     description: { 
-      es: 'Organización integral del evento social más importante del año, coordinando logística y reservas para la comunidad.',
+      es: 'Organización integral del evento social más acogedor del año, coordinando logística y reservas para la comunidad.',
       en: 'Comprehensive organization of the most important social event of the year, coordinating logistics and reservations for the community.'
     },
     vocalEmail: 'eventos@eurielec.etsit.upm.es',
-    image: '/vocalias/social.png'
+    image: '/vocalias/cena-navidad.jpg'
   },
   {
     id: 'pr',
     name: { es: 'PR (Public Relations)', en: 'PR (Public Relations)' },
     description: { 
-      es: 'Gestión de la imagen externa, redes sociales corporativas y comunicación oficial de la asociación.',
+      es: 'Gestión de la imagen externa, redes sociales corporativas y comunicación oficial de la asociación, aunando diseño y comunicación, para asegurar una imagen cuidada y profesional',
       en: 'Management of the external image, corporate social networks, and official association communication.'
     },
     vocalEmail: 'pr@eurielec.etsit.upm.es',
-    image: '/vocalias/social.png'
+    image: '/vocalias/pr.jpg'
   },
   {
     id: 'cr',
@@ -85,27 +85,26 @@ export const vocalias: Vocalia[] = [
       en: 'Direct relationship with companies, searching for sponsors, and managing corporate agreements.'
     },
     vocalEmail: 'cr@eurielec.etsit.upm.es',
-    image: '/vocalias/social.png'
+    image: '/vocalias/cr.jpg'
   },
   {
     id: 'hr',
     name: { es: 'HR (Human Resources)', en: 'HR (Human Resources)' },
     description: { 
-      es: 'Atención al socio, gestión de altas y bajas, y fomento de la cohesión interna del equipo.',
+      es: 'Atención al socio, gestión de altas y bajas, fomento de la cohesión interna del equipo y del correcto funcionamiento social y cultural de los miembros que conforman la asociación',
       en: 'Member support, management of registrations and cancellations, and fostering internal team cohesion.'
     },
     vocalEmail: 'hr@eurielec.etsit.upm.es',
-    image: '/vocalias/social.png'
+    image: '/vocalias/hr.jpg'
   },
   {
     id: 'nevera',
     name: { es: 'Nevera', en: 'Fridge' },
     description: { 
-      es: 'Logística de suministros de comida y bebida en la sede, garantizando el avituallamiento de los socios.',
+      es: 'Logística de suministros de comida y bebida en la sede, garantizando el avituallamiento de los socios y fomentando la vida en el local.',
       en: 'Logistics of food and drink supplies at the headquarters, guaranteeing the replenishment for members.'
     },
     vocalEmail: 'nevera@eurielec.etsit.upm.es',
-    image: '/vocalias/lifestyle.png'
+    image: '/vocalias/nevera.jpg'
   }
-
 ];

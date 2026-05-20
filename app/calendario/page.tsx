@@ -7,12 +7,13 @@ import { Calendar as CalendarIcon, CheckCircle2 } from 'lucide-react';
 import MajorEvents from '@/components/MajorEvents';
 import { verifyEventPayment } from '@/app/actions/checkout';
 
-export default async function CalendarioPage(props: { searchParams: { [key: string]: string | undefined } }) {
+export default async function CalendarioPage(props: { searchParams: Promise<{ [key: string]: string | undefined }> }) {
+  const searchParams = await props.searchParams;
   const t = await getDictionaryServer();
   const session = await getUserSession();
   
-  const paymentSuccess = props.searchParams?.payment === 'success';
-  const orderRef = props.searchParams?.ref;
+  const paymentSuccess = searchParams?.payment === 'success';
+  const orderRef = searchParams?.ref;
 
   if (paymentSuccess && orderRef) {
     await verifyEventPayment(orderRef);
