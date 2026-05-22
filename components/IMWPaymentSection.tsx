@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { CreditCard, Check, AlertCircle, Loader2, Banknote } from 'lucide-react';
 import { createIMWCheckoutAction, confirmIMWPaymentAction, declareCashPaymentIMWAction } from '@/app/actions/imw';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function IMWPaymentSection({ 
   imwPrice, 
@@ -11,6 +12,7 @@ export default function IMWPaymentSection({
   imwPrice: number | null; 
   imwPaymentStatus: string | null; 
 }) {
+  const { t } = useLanguage();
   const [paymentState, setPaymentState] = useState<'idle' | 'loading' | 'widget' | 'success' | 'error' | 'cash_loading'>('idle');
   const [paymentError, setPaymentError] = useState('');
   const widgetRef = useRef<HTMLDivElement>(null);
@@ -38,7 +40,7 @@ export default function IMWPaymentSection({
       const res = await createIMWCheckoutAction();
       if (!res.success || !res.checkoutId) {
         setPaymentState('error');
-        setPaymentError(res.error || 'Error al iniciar pago');
+        setPaymentError(res.error || t.imwPayment.errorInit);
         return;
       }
 
@@ -57,23 +59,23 @@ export default function IMWPaymentSection({
                   setPaymentState('success');
                 } else {
                   setPaymentState('error');
-                  setPaymentError('Pago realizado, pero hubo un error al actualizar tu estado.');
+                  setPaymentError(t.imwPayment.errorUpdate);
                 }
               } else {
                 setPaymentState('error');
-                setPaymentError('El pago ha sido cancelado o rechazado.');
+                setPaymentError(t.imwPayment.errorCancel);
               }
             },
           });
         } else {
           setPaymentState('error');
-          setPaymentError('Error al cargar la pasarela de pago');
+          setPaymentError(t.imwPayment.errorLoad);
         }
       }, 500);
 
     } catch (err) {
       setPaymentState('error');
-      setPaymentError('Error de red');
+      setPaymentError(t.imwPayment.errorNet);
     }
   };
 
@@ -84,13 +86,13 @@ export default function IMWPaymentSection({
       const res = await declareCashPaymentIMWAction();
       if (!res.success) {
         setPaymentState('error');
-        setPaymentError(res.error || 'Error de red');
+        setPaymentError(res.error || t.imwPayment.errorNet);
       } else {
         setPaymentState('idle');
       }
     } catch (err) {
       setPaymentState('error');
-      setPaymentError('Error de red');
+      setPaymentError(t.imwPayment.errorNet);
     }
   };
 
@@ -99,7 +101,7 @@ export default function IMWPaymentSection({
 
   return (
     <div className="flex flex-col items-center justify-center min-w-[200px] p-6 bg-black/40 rounded-2xl border border-white/5">
-      <h2 className="text-[10px] font-black mb-2 text-gray-500 uppercase tracking-[0.2em]">Pago IMW</h2>
+      <h2 className="text-[10px] font-black mb-2 text-gray-500 uppercase tracking-[0.2em]">{t.imwPayment.title}</h2>
       
       <div className={`text-4xl font-black mb-2 ${isPaid ? 'text-green-500' : 'text-white'}`}>
         {imwPrice.toFixed(2)}€
@@ -107,13 +109,13 @@ export default function IMWPaymentSection({
 
       {isPaid ? (
         <div className="flex items-center gap-2 text-green-500 text-xs font-black uppercase tracking-widest bg-green-500/10 px-4 py-2 rounded-xl border border-green-500/20">
-          <Check className="w-4 h-4" /> Pagado
+          <Check className="w-4 h-4" /> {t.imwPayment.paid}
         </div>
       ) : (
         <div className="w-full">
           {isPendingCash && paymentState === 'idle' && (
             <div className="bg-yellow-500/10 border border-yellow-500/30 p-3 rounded-xl mb-4 text-yellow-500 text-[10px] font-bold uppercase tracking-widest text-center leading-relaxed">
-              Has indicado que pagarás en efectivo. Acércate a la asociación para abonarlo.
+              {t.imwPayment.pendingCash}
             </div>
           )}
 
@@ -139,7 +141,7 @@ export default function IMWPaymentSection({
                 {paymentState === 'loading' ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
-                  <><CreditCard className="w-4 h-4" /> Pagar con Tarjeta</>
+                  <><CreditCard className="w-4 h-4" /> {t.imwPayment.payCard}</>
                 )}
               </button>
 
@@ -152,7 +154,7 @@ export default function IMWPaymentSection({
                   {paymentState === 'cash_loading' ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
                   ) : (
-                    <><Banknote className="w-4 h-4" /> Pagar en Efectivo</>
+                    <><Banknote className="w-4 h-4" /> {t.imwPayment.payCash}</>
                   )}
                 </button>
               )}

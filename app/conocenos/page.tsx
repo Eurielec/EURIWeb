@@ -24,13 +24,13 @@ export default async function ConocenosPage() {
         <header className="text-center space-y-4">
           <span
             className="inline-block label px-4 py-1.5 rounded-full mb-2"
-            style={{ background: 'rgba(0,0,0,0.2)', color: '#fff', border: '1px solid rgba(0,0,0,0.15)' }}
+            style={{ background: 'var(--surface-inv)', color: '#fff', border: '1px solid var(--border)' }}
           >
             {t.about.title}
           </span>
 
           {/* h1 → BLACK (per alternating rule) */}
-          <h1 style={{ color: '#000', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', fontWeight: 900 }}>
+          <h1 style={{ color: 'var(--foreground)', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', letterSpacing: '-0.03em', fontWeight: 900 }}>
             {t.about.subtitle}
           </h1>
 
@@ -47,7 +47,7 @@ export default async function ConocenosPage() {
 
           <div
             className="rounded-2xl p-6 sm:p-8"
-            style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(0,0,0,0.15)' }}
+            style={{ background: 'var(--surface-inv)', border: '1px solid var(--border)' }}
           >
             {/* h2 → WHITE (alternating) */}
             <h2
@@ -63,7 +63,7 @@ export default async function ConocenosPage() {
         {/* EESTEC */}
         <section
           className="text-center pt-16 pb-8 relative"
-          style={{ borderTop: '1px solid rgba(0,0,0,0.18)' }}
+          style={{ borderTop: '1px solid var(--border)' }}
         >
           {/* EESTEC logo — white, centered */}
           <div className="flex justify-center mb-8">
@@ -80,12 +80,12 @@ export default async function ConocenosPage() {
             style={{ color: '#fff', fontSize: 'clamp(2rem, 4vw, 3.5rem)', letterSpacing: '-0.02em' }}
           >
             {t.about.eestecTitle}{' '}
-            <span style={{ color: '#000' }}>EESTEC</span>
+            <span style={{ color: 'var(--foreground)' }}>EESTEC</span>
           </h2>
 
           <p
-            className="max-w-2xl mx-auto text-lg mb-12"
-            style={{ color: 'rgba(0,0,0,0.7)', lineHeight: 1.8 }}
+            className="max-w-2xl mx-auto text-lg mb-12 opacity-70"
+            style={{ color: 'var(--foreground)', lineHeight: 1.8 }}
             dangerouslySetInnerHTML={{ __html: t.about.eestecDesc }}
           />
 
@@ -96,8 +96,8 @@ export default async function ConocenosPage() {
                 key={idx}
                 className="rounded-2xl p-6 relative overflow-hidden transition-all hover:scale-[1.02] duration-300 shadow-xl"
                 style={{ 
-                  background: 'rgba(0,0,0,0.22)', 
-                  border: '1px solid rgba(0,0,0,0.15)',
+                  background: 'var(--surface-inv)', 
+                  border: '1px solid var(--border)',
                   backdropFilter: 'blur(8px)'
                 }}
               >

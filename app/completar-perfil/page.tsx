@@ -3,9 +3,11 @@
 import { useActionState } from 'react';
 import { completeProfileAction, logoutAction } from '@/app/actions/auth';
 import { LogOut } from 'lucide-react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function CompletarPerfilPage() {
   const [state, formAction, pending] = useActionState(completeProfileAction, null);
+  const { t } = useLanguage();
 
   return (
     <main className="min-h-screen flex items-start justify-center bg-brand overflow-y-auto relative pt-24 pb-12 px-4 font-sans">
@@ -14,31 +16,31 @@ export default function CompletarPerfilPage() {
       <div className="relative z-10 w-full max-w-2xl p-8 sm:p-10 card-light m-4 my-12 shadow-2xl backdrop-blur-2xl">
         <div className="text-center mb-8 relative">
           <form action={logoutAction} className="absolute top-0 right-0">
-             <button type="submit" title="Cerrar Sesión" className="p-2 text-black/60 hover:text-black bg-white/40 hover:bg-white/60 rounded-xl transition-all shadow-sm">
+             <button type="submit" title={t.auth.completeProfile.logoutTitle} className="p-2 text-black/60 hover:text-black bg-white/40 hover:bg-white/60 rounded-xl transition-all shadow-sm">
                 <LogOut className="w-5 h-5" />
              </button>
           </form>
-          <h1 className="text-3xl font-black text-black uppercase tracking-tighter italic mb-2">Completa tu <span className="text-white">Perfil</span></h1>
-          <p className="text-black/60 text-xs font-bold tracking-widest uppercase mt-2">Necesitamos unos datos extra para finalizar tu registro en Eurielec.</p>
+          <h1 className="text-3xl font-black text-black uppercase tracking-tighter italic mb-2">{t.auth.completeProfile.titlePart1} <span className="text-white">{t.auth.completeProfile.titlePart2}</span></h1>
+          <p className="text-black/60 text-xs font-bold tracking-widest uppercase mt-2">{t.auth.completeProfile.subtitle}</p>
         </div>
 
         <form action={formAction} className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Teléfono</label>
-              <input type="tel" name="phone" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder="+34 600..." />
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.phone}</label>
+              <input type="tel" name="phone" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder={t.auth.register.phonePlaceholder} />
             </div>
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Código Postal</label>
-              <input type="text" name="zipCode" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder="28001" />
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.zipCode}</label>
+              <input type="text" name="zipCode" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder={t.auth.register.zipCodePlaceholder} />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Escuela (UPM)</label>
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.university}</label>
               <select name="university" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all font-bold backdrop-blur-sm">
-                <option value="">Selecciona tu escuela...</option>
+                <option value="">{t.auth.register.universityPlaceholder}</option>
                 <option value="ETSI Telecomunicación (ETSIT)">ETSI Telecomunicación (ETSIT)</option>
                 <option value="ETSI Sistemas de Telecomunicación (ETSIST)">ETSI Sistemas de Telecomunicación (ETSIST)</option>
                 <option value="ETSI Informáticos (ETSIINF)">ETSI Informáticos (ETSIINF)</option>
@@ -60,9 +62,9 @@ export default function CompletarPerfilPage() {
               </select>
             </div>
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Curso</label>
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.year}</label>
               <select name="academicYear" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all font-bold backdrop-blur-sm">
-                <option value="">Selecciona tu curso...</option>
+                <option value="">{t.auth.register.yearPlaceholder}</option>
                 <option value="1º">1º</option>
                 <option value="2º">2º</option>
                 <option value="3º">3º</option>
@@ -75,19 +77,19 @@ export default function CompletarPerfilPage() {
           </div>
 
           <div>
-             <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Dirección Completa (Calle, Piso, Puerta)</label>
-             <input type="text" name="address" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder="C/ Falsa 123, 4º Derecha" />
+             <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.address}</label>
+             <input type="text" name="address" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder={t.auth.register.addressPlaceholder} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Ciudad</label>
-              <input type="text" name="city" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder="Madrid" />
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.city}</label>
+              <input type="text" name="city" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all placeholder:text-black/40 font-bold backdrop-blur-sm" placeholder={t.auth.register.cityPlaceholder} />
             </div>
             <div>
-              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">Provincia</label>
+              <label className="block text-[10px] font-black text-black/70 uppercase tracking-widest mb-1.5 ml-1">{t.auth.register.province}</label>
               <select name="province" required className="w-full px-5 py-4 bg-white/40 border border-white/30 rounded-2xl text-black focus:outline-none focus:ring-2 focus:ring-black transition-all font-bold backdrop-blur-sm">
-                <option value="">Selecciona tu provincia...</option>
+                <option value="">{t.auth.register.provincePlaceholder}</option>
                 <option value="A Coruña">A Coruña</option>
                 <option value="Álava">Álava</option>
                 <option value="Albacete">Albacete</option>
@@ -155,7 +157,7 @@ export default function CompletarPerfilPage() {
             disabled={pending}
             className="w-full py-5 mt-4 bg-black hover:bg-neutral-800 text-white font-black text-[10px] uppercase tracking-[0.3em] rounded-2xl shadow-xl shadow-black/20 transition-all active:scale-[0.98] disabled:opacity-50"
           >
-            {pending ? 'Guardando...' : 'Finalizar Registro'}
+            {pending ? t.auth.completeProfile.submitPending : t.auth.completeProfile.submit}
           </button>
         </form>
       </div>

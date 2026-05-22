@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronRight, ExternalLink } from 'lucide-react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface ClientProjectsProps {
   vocalias: Array<{
@@ -29,12 +30,13 @@ interface ClientProjectsProps {
 export default function ClientProjects({ vocalias, locale }: ClientProjectsProps) {
   const [activeVocaliaId, setActiveVocaliaId] = useState<string>('all');
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   if (vocalias.length === 0) {
     return (
       <div className="py-24 text-center border-t border-white/10 mt-12">
-        <h3 className="text-2xl font-bold text-red-500! opacity-80 uppercase tracking-widest font-sans">Aún no hay proyectos públicos</h3>
-        <p className="text-red-400! opacity-80 mt-4">Nuestros socios están cocinando ideas impresionantes.</p>
+        <h3 className="text-2xl font-bold opacity-80 uppercase tracking-widest font-sans" style={{ color: 'var(--text-brand)' }}>{t.projects.emptyTitle}</h3>
+        <p className="opacity-80 mt-4" style={{ color: 'var(--text-brand)' }}>{t.projects.emptyDesc}</p>
       </div>
     );
   }
@@ -45,8 +47,8 @@ export default function ClientProjects({ vocalias, locale }: ClientProjectsProps
         <section key={vocalia.id} className="space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-700">
           
           <div className="flex items-center gap-6 border-b border-white/10 pb-4">
-            <h2 className="text-4xl font-black text-red-500! uppercase tracking-tighter shadow-sm font-sans flex items-center gap-3">
-              <span className="text-red-600">/</span> {locale === 'es' ? vocalia.name.es : vocalia.name.en}
+            <h2 className="text-4xl font-black uppercase tracking-tighter shadow-sm font-sans flex items-center gap-3" style={{ color: 'var(--text-brand)' }}>
+              <span style={{ color: 'var(--text-brand)', opacity: 0.8 }}>/</span> {locale === 'es' ? vocalia.name.es : vocalia.name.en}
             </h2>
             <div className="h-px flex-1 bg-gradient-to-r from-red-500/50 to-transparent" />
           </div>
@@ -81,10 +83,10 @@ export default function ClientProjects({ vocalias, locale }: ClientProjectsProps
 
                     <div className="p-8 flex flex-col justify-between flex-1">
                       <div className="space-y-4 relative z-10">
-                        <h3 className="text-2xl font-black text-red-500! uppercase tracking-tight leading-none group-hover:text-red-400! transition-colors duration-300">
+                        <h3 className="text-2xl font-black uppercase tracking-tight leading-none transition-colors duration-300" style={{ color: 'var(--text-brand)' }}>
                           {project.title}
                         </h3>
-                        <p className={`text-red-400! text-sm leading-relaxed font-sans font-medium ${!isExpanded ? 'line-clamp-3' : ''}`}>
+                        <p className={`text-sm leading-relaxed font-sans font-medium opacity-80 ${!isExpanded ? 'line-clamp-3' : ''}`} style={{ color: 'var(--text-brand)' }}>
                           {project.description || 'Sin descripción disponible.'}
                         </p>
                       </div>
@@ -92,7 +94,8 @@ export default function ClientProjects({ vocalias, locale }: ClientProjectsProps
                       <div className="mt-8 flex justify-between items-center relative z-10 w-full border-t border-white/5 pt-4">
                         <button 
                           onClick={() => setExpandedProject(isExpanded ? null : project.id)}
-                          className="flex items-center gap-2 text-sm font-bold text-red-500! tracking-widest uppercase hover:text-red-400! transition-colors focus:outline-none"
+                          className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase transition-colors focus:outline-none"
+                          style={{ color: 'var(--text-brand)' }}
                         >
                           {isExpanded ? 'Ocultar info' : 'Saber más'} 
                           <ChevronRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-90' : 'group-hover:translate-x-1'}`} />

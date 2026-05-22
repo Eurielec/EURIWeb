@@ -3,9 +3,11 @@
 import { useActionState } from 'react';
 import { registerAction } from '@/app/actions/auth';
 import Link from 'next/link';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function RegisterPage() {
   const [state, formAction, pending] = useActionState(registerAction, null);
+  const { t } = useLanguage();
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-black overflow-hidden relative">
@@ -15,62 +17,62 @@ export default function RegisterPage() {
       <div className="relative z-10 w-full max-w-2xl p-6 sm:p-8 bg-neutral-900/60 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl m-4 my-12">
         <div className="text-center mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent mb-2 leading-tight">
-            Crear Cuenta
+            {t.auth.register.title}
           </h1>
-          <p className="text-gray-400 text-sm">Únete a la asociación Eurielec</p>
+          <p className="text-gray-400 text-sm">{t.auth.register.subtitle}</p>
         </div>
 
         <form action={formAction} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Nombre Completo</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.name}</label>
             <input
               type="text"
               name="name"
               required
               className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-gray-600"
-              placeholder="Juan Pérez"
+              placeholder={t.auth.register.namePlaceholder}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.email}</label>
             <input
               type="email"
               name="email"
               required
               className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-gray-600"
-              placeholder="tu@email.com"
+              placeholder={t.auth.register.emailPlaceholder}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Contraseña</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.password}</label>
             <input
               type="password"
               name="password"
               required
               minLength={6}
               className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 transition-all placeholder:text-gray-600"
-              placeholder="••••••••"
+              placeholder={t.auth.register.passwordPlaceholder}
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Teléfono</label>
-              <input type="tel" name="phone" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder="+34 600..." />
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.phone}</label>
+              <input type="tel" name="phone" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder={t.auth.register.phonePlaceholder} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Código Postal</label>
-              <input type="text" name="zipCode" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder="28001" />
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.zipCode}</label>
+              <input type="text" name="zipCode" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder={t.auth.register.zipCodePlaceholder} />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Escuela (UPM)</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.university}</label>
               <select name="university" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all">
-                <option value="">Selecciona tu escuela...</option>
+                <option value="">{t.auth.register.universityPlaceholder}</option>
                 <option value="ETSI Telecomunicación (ETSIT)">ETSI Telecomunicación (ETSIT)</option>
                 <option value="ETSI Sistemas de Telecomunicación (ETSIST)">ETSI Sistemas de Telecomunicación (ETSIST)</option>
                 <option value="ETSI Informáticos (ETSIINF)">ETSI Informáticos (ETSIINF)</option>
@@ -92,9 +94,9 @@ export default function RegisterPage() {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Curso</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.year}</label>
               <select name="academicYear" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all">
-                <option value="">Selecciona tu curso...</option>
+                <option value="">{t.auth.register.yearPlaceholder}</option>
                 <option value="1º">1º</option>
                 <option value="2º">2º</option>
                 <option value="3º">3º</option>
@@ -107,19 +109,19 @@ export default function RegisterPage() {
           </div>
 
           <div>
-             <label className="block text-sm font-medium text-gray-300 mb-1.5">Dirección Completa (Calle, Piso, Puerta)</label>
-             <input type="text" name="address" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder="C/ Falsa 123, 4º Derecha" />
+             <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.address}</label>
+             <input type="text" name="address" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder={t.auth.register.addressPlaceholder} />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Ciudad</label>
-              <input type="text" name="city" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder="Madrid" />
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.city}</label>
+              <input type="text" name="city" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all placeholder:text-gray-600" placeholder={t.auth.register.cityPlaceholder} />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Provincia</label>
+              <label className="block text-sm font-medium text-gray-300 mb-1.5">{t.auth.register.province}</label>
               <select name="province" required className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all">
-                <option value="">Selecciona tu provincia...</option>
+                <option value="">{t.auth.register.provincePlaceholder}</option>
                 <option value="A Coruña">A Coruña</option>
                 <option value="Álava">Álava</option>
                 <option value="Albacete">Albacete</option>
@@ -187,7 +189,7 @@ export default function RegisterPage() {
             disabled={pending}
             className="w-full py-3 px-4 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/25 transition-all focus:ring-2 focus:ring-white/20 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
           >
-            {pending ? 'Creando cuenta...' : 'Registrarse'}
+            {pending ? t.auth.register.submitPending : t.auth.register.submit}
           </button>
         </form>
 
@@ -199,12 +201,12 @@ export default function RegisterPage() {
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
             </svg>
-            Continuar con Google
+            {t.auth.register.google}
           </Link>
           <div className="text-sm text-gray-400">
-            ¿Ya tienes cuenta?{' '}
+            {t.auth.register.hasAccount}{' '}
             <Link href="/login" className="text-purple-400 hover:text-purple-300 transition-colors font-medium">
-              Inicia sesión aquí
+              {t.auth.register.loginLink}
             </Link>
           </div>
         </div>

@@ -4,22 +4,24 @@ import { useScroll } from 'framer-motion';
 import { FileText, ChevronRight, Download, Search, Info, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import TerminalBackground from '@/components/TerminalBackground';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function ArchivoView({ documents }: { documents: any[] }) {
   const { scrollYProgress } = useScroll();
   const [scrollValue, setScrollValue] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     return scrollYProgress.onChange((v) => setScrollValue(v));
   }, [scrollYProgress]);
 
   const categories = [
-    { id: 'transparencia', name: 'Portal de Transparencia', icon: ShieldCheck, color: 'text-green-500' },
-    { id: 'actas', name: 'Actas de Junta', icon: FileText, color: 'text-red-500' },
-    { id: 'protocolos', name: 'Protocolos y Normativa', icon: FileText, color: 'text-blue-500' },
-    { id: 'cuentas', name: 'Cuentas y Presupuestos', icon: Search, color: 'text-orange-500' },
-    { id: 'personal', name: 'Personal y Equipo', icon: Search, color: 'text-purple-500' },
-    { id: 'otros', name: 'Otros Documentos', icon: Info, color: 'text-gray-500' },
+    { id: 'transparencia', name: t.archive.categories.transparencia, icon: ShieldCheck, color: 'text-green-500' },
+    { id: 'actas', name: t.archive.categories.actas, icon: FileText, color: 'text-red-500' },
+    { id: 'protocolos', name: t.archive.categories.protocolos, icon: FileText, color: 'text-blue-500' },
+    { id: 'cuentas', name: t.archive.categories.cuentas, icon: Search, color: 'text-orange-500' },
+    { id: 'personal', name: t.archive.categories.personal, icon: Search, color: 'text-purple-500' },
+    { id: 'otros', name: t.archive.categories.otros, icon: Info, color: 'text-gray-500' },
   ];
 
   return (
@@ -34,15 +36,14 @@ export default function ArchivoView({ documents }: { documents: any[] }) {
             <div className="space-y-6 max-w-3xl">
               <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="w-10 h-px bg-red-600" />
-                <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.4em] italic">Eurielec Repository</span>
+                <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.4em] italic">{t.archive.tag}</span>
               </div>
               <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-[0.9] animate-in fade-in slide-in-from-left-6 duration-1000">
-                Archivo <br />
-                <span className="text-red-600">& Transparencia</span>
+                {t.archive.titlePart1} <br />
+                <span className="text-red-600">{t.archive.titlePart2}</span>
               </h1>
               <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
-                Consulta los documentos oficiales, protocolos y el estado de cuentas de la asociación. 
-                Navega a través de las carpetas digitales de Eurielec.
+                {t.archive.desc}
               </p>
             </div>
           </div>
@@ -65,14 +66,14 @@ export default function ArchivoView({ documents }: { documents: any[] }) {
                       </div>
                       <div className="min-w-0">
                         <h2 className="text-xl md:text-2xl font-black uppercase tracking-tighter italic leading-tight">{category.name}</h2>
-                        <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2">{categoryDocs.length} Documentos</p>
+                        <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2">{categoryDocs.length} {t.archive.docsCount}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     {categoryDocs.length === 0 ? (
-                      <p className="text-gray-600 text-xs font-black uppercase tracking-widest italic py-4">No hay archivos en esta sección</p>
+                      <p className="text-gray-600 text-xs font-black uppercase tracking-widest italic py-4">{t.archive.empty}</p>
                     ) : (
                       categoryDocs.map((doc: any) => (
                         <a 
@@ -108,16 +109,15 @@ export default function ArchivoView({ documents }: { documents: any[] }) {
 
           <div className="mt-40 p-12 bg-neutral-900/40 border border-white/5 rounded-3xl relative overflow-hidden text-center max-w-4xl mx-auto backdrop-blur-md">
             <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-red-600 to-transparent opacity-50" />
-            <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic mb-6">¿Buscas algo específico?</h2>
+            <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic mb-6">{t.archive.searchTitle}</h2>
             <p className="text-gray-400 font-medium mb-10 max-w-2xl mx-auto">
-              Si necesitas un documento que no figura en esta lista o tienes alguna duda sobre la gestión de la asociación, 
-              no dudes en contactar directamente con la Junta Directiva.
+              {t.archive.searchDesc}
             </p>
             <a 
               href="/contacto"
               className="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black text-xs uppercase tracking-[0.3em] rounded-2xl hover:bg-neutral-200 transition-all transform hover:scale-105 active:scale-95"
             >
-              Contactar con Administración
+              {t.archive.contactBtn}
             </a>
           </div>
         </div>

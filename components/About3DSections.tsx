@@ -6,15 +6,19 @@ import { Stars } from '@react-three/drei';
 import { motion, useScroll } from 'framer-motion';
 import * as THREE from 'three';
 import { useLanguage } from './LanguageProvider';
+import { useTheme } from './ThemeProvider';
 
 // Componente Individual de un Par de Bases de ADN Cibernético
-function DNABasePair({ position, rotation, index }: { position: [number,number,number]; rotation: [number,number,number]; index: number }) {
+function DNABasePair({ position, rotation, index, isHC }: { position: [number,number,number]; rotation: [number,number,number]; index: number; isHC: boolean }) {
   const R = 1.4; // Radio de la hélice
 
-  // Todos los nodos: negro puro, sin reflejos
-  const nodeColor = "#000000";
-  // Puentes alternando gris oscuro / gris medio
-  const linkColor = index % 2 === 0 ? "#1a1a1a" : "#3a3a3a";
+  // Todos los nodos: negro puro en normal, blanco puro en alto contraste
+  const nodeColor = isHC ? "#ffffff" : "#000000";
+  // Puentes alternando
+  const linkColor = isHC 
+    ? (index % 2 === 0 ? "#e0e0e0" : "#ffffff")
+    : (index % 2 === 0 ? "#1a1a1a" : "#3a3a3a");
+  const coreColor = isHC ? "#ffffff" : "#000000";
 
   return (
     <group position={position} rotation={rotation}>
@@ -39,14 +43,14 @@ function DNABasePair({ position, rotation, index }: { position: [number,number,n
       {/* Núcleo central */}
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[0.12, 0.12, 0.12]} />
-        <meshBasicMaterial color="#000000" />
+        <meshBasicMaterial color={coreColor} />
       </mesh>
     </group>
   );
 }
 
 // Cadena de ADN Tecnológico Completa (Cyber DNA)
-function CyberDNA({ scrollYProgress }: { scrollYProgress: any }) {
+function CyberDNA({ scrollYProgress, isHC }: { scrollYProgress: any, isHC: boolean }) {
   const groupRef = useRef<THREE.Group>(null!);
 
   useFrame((state) => {
@@ -85,6 +89,7 @@ function CyberDNA({ scrollYProgress }: { scrollYProgress: any }) {
             index={i}
             position={[0, yPos, 0]}
             rotation={[0, twistY, 0]}
+            isHC={isHC}
           />
         );
       })}
@@ -106,6 +111,8 @@ const sectionStyles = [
 
 export default function About3DSections() {
   const { t } = useLanguage();
+  const { theme } = useTheme();
+  const isHC = theme === 'high-contrast';
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -126,7 +133,7 @@ export default function About3DSections() {
             <directionalLight position={[10, 10, 10]} intensity={1.5} />
             <pointLight position={[-10, 0, -10]} intensity={2} color="#999999" />
             
-            <CyberDNA scrollYProgress={scrollYProgress} />
+            <CyberDNA scrollYProgress={scrollYProgress} isHC={isHC} />
             
             {/* Partículas blancas en lugar de estrellas de colores */}
             <Stars radius={80} depth={40} count={1000} factor={2} saturation={0} fade speed={0.5} />
@@ -184,7 +191,7 @@ export default function About3DSections() {
                       style={{
                         background: isLeft ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.15)',
                         border: isLeft ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(0,0,0,0.2)',
-                        color: isLeft ? '#fff' : '#000',
+                        color: isLeft ? '#fff' : 'var(--foreground)',
                       }}
                     >
                       {section.subtitle}
@@ -194,7 +201,7 @@ export default function About3DSections() {
                     <h2
                       className="text-4xl sm:text-5xl font-black mb-6 leading-none"
                       style={{
-                        color: isLeft ? '#fff' : '#000',
+                        color: isLeft ? '#fff' : 'var(--foreground)',
                         letterSpacing: '-0.02em',
                       }}
                     >
@@ -208,8 +215,8 @@ export default function About3DSections() {
                     />
                     
                     <p
-                      className="text-lg leading-relaxed font-light"
-                      style={{ color: isLeft ? 'rgba(255,255,255,0.75)' : 'rgba(0,0,0,0.75)' }}
+                      className="text-lg leading-relaxed font-light opacity-75"
+                      style={{ color: isLeft ? '#fff' : 'var(--foreground)' }}
                     >
                       {section.description}
                     </p>

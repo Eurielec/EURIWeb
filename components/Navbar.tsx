@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLanguage } from './LanguageProvider';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 import { useState, useEffect } from 'react';
 import { getSessionAction } from '@/app/actions/auth';
 import Image from 'next/image';
@@ -26,7 +27,7 @@ export default function Navbar() {
     { name: t.nav.projects ?? 'Proyectos', path: '/proyectos' },
     { name: t.nav.events,  path: '/calendario' },
     { name: t.nav.shop ?? 'Tienda', path: '/tienda' },
-    { name: 'Archivo',     path: '/archivo' },
+    { name: t.nav.archive ?? 'Archivo', path: '/archivo' },
     { name: t.nav.contact, path: '/contacto' },
   ];
 
@@ -34,9 +35,9 @@ export default function Navbar() {
     <nav
       className="fixed top-0 w-full z-50 transition-colors duration-300 shadow-lg"
       style={{
-        background: 'rgba(232, 22, 27, 0.95)',
+        background: 'color-mix(in srgb, var(--background) 95%, transparent)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
+        borderBottom: '1px solid var(--border-inv)',
       }}
     >
       <div className="max-w-[1700px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
@@ -49,8 +50,13 @@ export default function Navbar() {
                 alt="Eurielec"
                 width={120}
                 height={40}
-                className="h-10 w-auto"
-                style={{ mixBlendMode: 'multiply' }}
+                className="h-10 w-auto rounded-sm transition-all"
+                style={{ 
+                  backgroundColor: 'var(--logo-bg)',
+                  padding: 'var(--logo-pad)',
+                  mixBlendMode: 'var(--logo-mix)' as any,
+                  filter: 'var(--logo-filter, none)'
+                }}
               />
               <div className="w-px h-6 bg-white/20" />
               <Image
@@ -74,7 +80,8 @@ export default function Navbar() {
                 href={item.path}
                 className="relative px-3 2xl:px-4 py-2 text-[14px] font-black uppercase transition-all hover:text-white"
                 style={{
-                  color: isActive ? '#fff' : 'rgba(0,0,0,0.7)',
+                  color: isActive ? '#fff' : 'var(--foreground)',
+                  opacity: isActive ? 1 : 0.7,
                   letterSpacing: '0.08em',
                 }}
               >
@@ -92,6 +99,7 @@ export default function Navbar() {
 
         {/* CONTROLS - RIGHT */}
         <div className="hidden lg:flex items-center gap-4">
+          <ThemeSwitcher />
           <LanguageSwitcher />
           <div className="h-6 w-px bg-white/20" />
           {session ? (
@@ -137,7 +145,7 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="xl:hidden px-4 pb-4 pt-2 overflow-y-auto max-h-[calc(100vh-64px)]" style={{ background: 'rgba(210,15,20,0.98)', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+        <div className="xl:hidden px-4 pb-4 pt-2 overflow-y-auto max-h-[calc(100vh-64px)]" style={{ background: 'color-mix(in srgb, var(--background) 98%, black 2%)', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -145,7 +153,8 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className="block py-4 text-[16px] font-black uppercase tracking-widest border-b"
               style={{
-                color: pathname === item.path ? '#fff' : 'rgba(0,0,0,0.7)',
+                color: pathname === item.path ? '#fff' : 'var(--foreground)',
+                opacity: pathname === item.path ? 1 : 0.7,
                 borderColor: 'rgba(0,0,0,0.1)',
               }}
             >
@@ -153,7 +162,10 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="mt-6 flex items-center justify-between gap-3 pb-4">
-            <LanguageSwitcher />
+            <div className="flex items-center gap-2">
+              <ThemeSwitcher />
+              <LanguageSwitcher />
+            </div>
             {session ? (
               <Link
                 href={session.role === 'ADMIN' || session.role === 'VOCAL' ? '/admin' : '/perfil'}

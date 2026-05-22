@@ -40,21 +40,21 @@ export default function MajorEvents() {
 
   return (
     <section className="space-y-16 py-10">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-black/10 pb-8">
-        <div className="space-y-2 text-black">
-          <div className="flex items-center gap-2 text-black/60 mb-2">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-foreground/10 pb-8">
+        <div className="space-y-2 text-foreground">
+          <div className="flex items-center gap-2 text-foreground/60 mb-2">
             <Sparkles size={16} />
             <span className="text-[0.65rem] font-bold tracking-[0.2em] uppercase">Excelencia Eurielec</span>
           </div>
-          <h2 className="text-black text-4xl md:text-5xl font-black uppercase tracking-tighter">
+          <h2 className="text-foreground text-4xl md:text-5xl font-black uppercase tracking-tighter">
             {t.calendar.majorTitle}
           </h2>
-          <p className="text-black/60 font-light text-lg italic uppercase tracking-tight">
+          <p className="text-foreground/60 font-light text-lg italic uppercase tracking-tight">
             {t.calendar.majorSubtitle}
           </p>
         </div>
         <div className="hidden md:block">
-           <span className="text-[0.6rem] font-bold tracking-[0.3em] text-black/40 uppercase">
+           <span className="text-[0.6rem] font-bold tracking-[0.3em] text-foreground/40 uppercase">
              Eventos Anuales &middot; Eurielec
            </span>
         </div>
@@ -94,14 +94,14 @@ export default function MajorEvents() {
                  <div className="flex items-center gap-3">
                    <h3 
                      className="text-xl md:text-2xl font-black uppercase tracking-tight transition-colors"
-                     style={{ color: '#E8161B' }}
+                     style={{ color: 'var(--text-brand)' }}
                    >
                      {event.title}
                    </h3>
                 </div>
                 <p 
-                  className="text-sm md:text-base font-light leading-relaxed max-w-4xl transition-colors"
-                  style={{ color: '#E8161B' }}
+                  className="text-sm md:text-base font-light leading-relaxed max-w-4xl transition-colors opacity-80"
+                  style={{ color: 'var(--text-brand)' }}
                 >
                   {event.desc}
                 </p>

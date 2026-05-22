@@ -34,7 +34,7 @@ export default function EuropeMap() {
           style={{ background: '#111', borderColor: 'rgba(255,255,255,0.12)' }}>
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-lg"
-              style={{ background: hoveredLC.type === 'Observer' ? '#333' : '#E8161B' }}>
+              style={{ background: hoveredLC.type === 'Observer' ? '#333' : 'var(--red)' }}>
               <MapPin className="text-white w-5 h-5" />
             </div>
             <div>

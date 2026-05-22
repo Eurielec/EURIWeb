@@ -46,17 +46,17 @@ export default async function VocaliasPage() {
           <div className="flex justify-center mb-4">
              <span
               className="inline-block label px-4 py-1.5 rounded-full"
-              style={{ background: 'rgba(0,0,0,1)', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}
+              style={{ background: 'var(--surface-inv)', color: '#fff', border: '1px solid var(--border)' }}
             >
               ESTRUCTURA
             </span>
           </div>
 
-          <h1 style={{ color: '#000', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', letterSpacing: '-0.04em', fontWeight: 900 }}>
+          <h1 style={{ color: 'var(--foreground)', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', letterSpacing: '-0.04em', fontWeight: 900 }}>
             {t.vocalias.title}
           </h1>
 
-          <p className="max-w-2xl mx-auto text-lg" style={{ color: 'rgba(0,0,0,0.7)', fontWeight: 500 }}>
+          <p className="max-w-2xl mx-auto text-lg opacity-70" style={{ color: 'var(--foreground)', fontWeight: 500 }}>
             {t.vocalias.subtitle}
           </p>
 
@@ -70,8 +70,8 @@ export default async function VocaliasPage() {
               key={item.id}
               className="group relative rounded-4xl overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:-translate-y-2 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.3)]"
               style={{ 
-                background: 'rgba(0,0,0,0.18)', 
-                border: '1px solid rgba(0,0,0,0.15)',
+                background: 'var(--surface-inv)', 
+                border: '1px solid var(--border)',
                 animationDelay: `${idx * 0.1}s`
               }}
             >
@@ -82,7 +82,7 @@ export default async function VocaliasPage() {
                   className="w-full h-full bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" 
                   style={{ 
                     backgroundImage: `url(${item.image})`,
-                    backgroundColor: 'rgba(0,0,0,0.5)'
+                    backgroundColor: 'var(--muted)'
                   }} 
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />

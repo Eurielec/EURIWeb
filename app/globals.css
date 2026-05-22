@@ -17,6 +17,7 @@
   --red:       #E8161B;
   --red-dark:  #B51014;
   --red-light: #FF3338;
+  --text-brand: var(--red);
 
   /* Neutrals */
   --black:  #0A0A0A;
@@ -34,6 +35,53 @@
   --border:      rgba(0,0,0,0.18);
   --border-inv:  rgba(255,255,255,0.18);
   --muted:       rgba(0,0,0,0.5);
+
+  --logo-bg: transparent;
+  --logo-mix: multiply;
+  --logo-pad: 0px;
+}
+
+:root[data-theme="high-contrast"] {
+  --red: #000000;
+  --red-dark: #000000;
+  --red-light: #1A1A1A;
+
+  /* In high contrast, background is black and default text must be white */
+  --background: var(--red);
+  --foreground: var(--white);
+  --text-brand: var(--white);
+
+  /* We soften black cards slightly so they are visible on black background */
+  --black: #111111;
+  --white: #FFFFFF;
+
+  --surface: rgba(255,255,255,0.08);
+  --surface-inv: rgba(255,255,255,0.15);
+  --border: rgba(255,255,255,0.2);
+  --border-inv: rgba(255,255,255,0.3);
+  --muted: rgba(255,255,255,0.5);
+
+  --logo-bg: white;
+  --logo-mix: normal;
+  --logo-pad: 4px;
+  --logo-filter: none;
+}
+
+:root[data-theme="high-contrast"] .text-black {
+  color: var(--white) !important;
+}
+:root[data-theme="high-contrast"] .bg-white.text-black,
+:root[data-theme="high-contrast"] .bg-white .text-black {
+  color: var(--black) !important;
+}
+:root[data-theme="high-contrast"] .text-black\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+:root[data-theme="high-contrast"] .text-black\/60 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+:root[data-theme="high-contrast"] .text-black\/40 {
+  color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Tailwind v4 theme tokens */
@@ -57,8 +105,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--red);
-  color: var(--black);          /* black text by default on red bg */
+  background-color: var(--background);
+  color: var(--foreground);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -146,11 +194,11 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2.2rem); }
    Cards on red background
    ---------------------------------------------------------------- */
 .card-dark {
-  background: rgba(0,0,0,0.18); border: 1px solid rgba(0,0,0,0.15);
+  background: var(--surface-inv); border: 1px solid var(--border);
   border-radius: 1rem; padding: 1.5rem;
   transition: background 0.2s;
 }
-.card-dark:hover { background: rgba(0,0,0,0.28); }
+.card-dark:hover { background: var(--surface); }
 .card-light {
   background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2);
   border-radius: 1rem; padding: 1.5rem;

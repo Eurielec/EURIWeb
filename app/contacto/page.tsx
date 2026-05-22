@@ -71,7 +71,7 @@ export default function ContactoPage() {
   const contactPerson = getContactPerson();
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[#E8161B] relative overflow-hidden">
+    <main className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--red)] relative overflow-hidden">
       {/* Decorative minimalism */}
       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none select-none overflow-hidden flex items-center justify-center">
          <span className="text-[30vw] font-black text-black leading-none uppercase tracking-tighter">CONTACT</span>
@@ -173,12 +173,12 @@ export default function ContactoPage() {
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.15 }}
                    className="flex items-center gap-5 p-5 rounded-2xl border border-white/15 backdrop-blur-sm"
-                   style={{ background: 'rgba(0,0,0,0.35)' }}
+                   style={{ background: 'var(--surface-inv)' }}
                  >
                    {/* Avatar */}
                    <div
                      className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border-2"
-                     style={{ borderColor: '#E8161B' }}
+                     style={{ borderColor: 'var(--red)' }}
                    >
                      <img
                        src={contactPerson.img || '/junta/member3.png'}
@@ -216,7 +216,7 @@ export default function ContactoPage() {
                      <a
                        href={`mailto:${contactPerson.email}`}
                        className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110"
-                       style={{ background: '#E8161B' }}
+                       style={{ background: 'var(--red)' }}
                        title={`Email ${contactPerson.name}`}
                      >
                        <Mail size={16} className="text-white" />
@@ -241,7 +241,7 @@ export default function ContactoPage() {
                  
                  <p 
                    className="text-xl md:text-2xl italic border-l-4 pl-6 uppercase tracking-tight font-black"
-                   style={{ color: '#E8161B', borderColor: '#E8161B' }}
+                   style={{ color: 'var(--text-brand)', borderColor: 'var(--text-brand)' }}
                  >
                    &quot;{currentResult.text}&quot;
                  </p>
@@ -249,10 +249,10 @@ export default function ContactoPage() {
                  <div className="flex flex-col md:flex-row gap-4 pt-4">
                     <div className="flex-1 px-6 py-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between group">
                        <div className="flex items-center gap-4">
-                         <Mail size={20} style={{ color: '#E8161B' }} />
+                         <Mail size={20} style={{ color: 'var(--text-brand)' }} />
                          <span 
                            className="text-sm font-black truncate max-w-[200px] uppercase tracking-wider"
-                           style={{ color: '#E8161B' }}
+                           style={{ color: 'var(--text-brand)' }}
                          >
                            {currentResult.email}
                          </span>
@@ -268,7 +268,7 @@ export default function ContactoPage() {
 
                     <a 
                       href={`mailto:${currentResult.email}`}
-                      className="px-8 py-4 rounded-2xl bg-white text-black font-black uppercase text-xs tracking-widest flex items-center justify-center gap-3 hover:bg-[#E8161B] hover:text-white transition-all shadow-lg"
+                      className="px-8 py-4 rounded-2xl bg-white text-black font-black uppercase text-xs tracking-widest flex items-center justify-center gap-3 hover:bg-[var(--red)] hover:text-white transition-all shadow-lg"
                     >
                       <Send size={16} className="shrink-0" />
                       ENVIAR EMAIL
@@ -300,12 +300,12 @@ export default function ContactoPage() {
 function OptionButton({ icon, label, onClick }: { icon: React.ReactNode, label: string, onClick: () => void }) {
   return (
     <motion.button
-      whileHover={{ y: -5, backgroundColor: 'rgba(0,0,0,1)' }}
+      whileHover={{ y: -5, backgroundColor: 'var(--surface-inv)' }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="p-10 rounded-4xl bg-black/10 border-2 border-white/10 flex flex-col items-center justify-center gap-6 text-white transition-all group"
+      className="p-10 rounded-4xl bg-[var(--surface-inv)] border-2 border-white/10 flex flex-col items-center justify-center gap-6 text-white transition-all group"
     >
-      <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-red-600 transition-colors">
+      <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:bg-[var(--red)] transition-colors">
         {icon}
       </div>
       <span className="text-sm font-black uppercase tracking-widest text-center group-hover:text-white transition-colors">

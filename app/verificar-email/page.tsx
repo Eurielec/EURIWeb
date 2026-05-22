@@ -4,11 +4,13 @@ import { useActionState, useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { verifyEmailAction, resendVerificationAction } from '@/app/actions/auth';
 import { Mail, RefreshCw } from 'lucide-react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function VerificarEmailPage() {
   const searchParams = useSearchParams();
   const email = searchParams.get('email') || '';
   const [state, formAction, pending] = useActionState(verifyEmailAction, null);
+  const { t } = useLanguage();
   const [digits, setDigits] = useState(['', '', '', '', '', '']);
   const [cooldown, setCooldown] = useState(0);
   const [resendMsg, setResendMsg] = useState('');
@@ -56,10 +58,10 @@ export default function VerificarEmailPage() {
     setResendMsg('');
     const result = await resendVerificationAction(email);
     if (result.success) {
-      setResendMsg('Código reenviado. Revisa tu bandeja de entrada.');
+      setResendMsg(t.auth.verify.resendSuccess);
       setCooldown(60);
     } else {
-      setResendMsg(result.error || 'Error al reenviar.');
+      setResendMsg(result.error || t.auth.verify.resendError);
     }
   };
 
@@ -75,10 +77,10 @@ export default function VerificarEmailPage() {
             <Mail className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
           </div>
           <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight leading-tight">
-            Verifica tu <span className="text-red-600">Email</span>
+            {t.auth.verify.titlePart1} <span className="text-red-600">{t.auth.verify.titlePart2}</span>
           </h1>
           <p className="text-gray-500 text-xs sm:text-sm mt-2">
-            Hemos enviado un código de 6 dígitos a
+            {t.auth.verify.subtitle}
           </p>
           <p className="text-red-600 font-bold text-xs sm:text-sm mt-1 break-all px-2">{email}</p>
         </div>
@@ -121,7 +123,7 @@ export default function VerificarEmailPage() {
             disabled={pending || code.length < 6}
             className="w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-black text-sm uppercase tracking-widest rounded-xl shadow-lg shadow-red-600/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
           >
-            {pending ? 'Verificando...' : 'Verificar Cuenta'}
+            {pending ? t.auth.verify.submitPending : t.auth.verify.submit}
           </button>
         </form>
 
@@ -132,12 +134,12 @@ export default function VerificarEmailPage() {
             className="text-sm text-gray-500 hover:text-red-600 transition-colors flex items-center justify-center gap-2 mx-auto disabled:opacity-40"
           >
             <RefreshCw className={`w-4 h-4 ${cooldown > 0 ? '' : 'hover:rotate-180 transition-transform duration-500'}`} />
-            {cooldown > 0 ? `Reenviar en ${cooldown}s` : 'Reenviar código'}
+            {cooldown > 0 ? `${t.auth.verify.resendWait} ${cooldown}s` : t.auth.verify.resend}
           </button>
         </div>
 
         <p className="text-gray-600 text-xs text-center mt-6">
-          El código expira en 15 minutos. Revisa también la carpeta de spam.
+          {t.auth.verify.footer}
         </p>
       </div>
     </main>

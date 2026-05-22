@@ -41,21 +41,22 @@ export default async function ProjectsPage() {
         <header className="text-center space-y-4">
           <div className="flex justify-center mb-4">
              <span
-              className="inline-block label px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-red-500 text-red-500!"
+              className="inline-block label px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border"
+              style={{ color: 'var(--text-brand)', borderColor: 'var(--text-brand)' }}
             >
               NUESTRO TRABAJO
             </span>
           </div>
 
-          <h1 className="text-red-500! font-sans" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', letterSpacing: '-0.04em', fontWeight: 900 }}>
+          <h1 className="font-sans" style={{ color: 'var(--text-brand)', fontSize: 'clamp(2.5rem, 6vw, 5rem)', letterSpacing: '-0.04em', fontWeight: 900 }}>
             {t.projects?.title || 'PROYECTOS'}
           </h1>
 
-          <p className="max-w-2xl mx-auto text-lg text-red-400! font-sans font-medium">
+          <p className="max-w-2xl mx-auto text-lg font-sans font-medium opacity-80" style={{ color: 'var(--text-brand)' }}>
             {t.projects?.subtitle || 'Descubre las iniciativas y desarrollos impulsados por cada una de las vocalías y socios.'}
           </p>
 
-          <div className="w-20 h-1.5 mx-auto rounded-full bg-red-600 mt-8" />
+          <div className="w-20 h-1.5 mx-auto rounded-full mt-8" style={{ background: 'var(--text-brand)' }} />
         </header>
 
         {/* Componente Cliente para interactividad 3D y filtrado o layout */}

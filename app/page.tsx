@@ -22,7 +22,7 @@ export default async function Home() {
         {/* Tag — white on dark pill */}
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-10 label"
-          style={{ background: 'rgba(0,0,0,0.22)', color: '#fff', border: '1px solid rgba(0,0,0,0.18)' }}
+          style={{ background: 'var(--surface-inv)', color: '#fff', border: '1px solid var(--border)' }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           {t.home.tag}
@@ -32,7 +32,7 @@ export default async function Home() {
         <div className="w-full mb-10 flex flex-col items-center justify-center px-2 sm:px-4">
           <h1
             className="font-black leading-none tracking-tighter w-full text-center"
-            style={{ color: '#000', fontSize: 'clamp(4rem, 15vw, 25rem)', letterSpacing: '-0.04em' }}
+            style={{ color: 'var(--foreground)', fontSize: 'clamp(4rem, 15vw, 25rem)', letterSpacing: '-0.04em' }}
           >
             EURIELEC
           </h1>
@@ -42,7 +42,7 @@ export default async function Home() {
           >
             <h2
               className="font-black leading-none tracking-tighter"
-              style={{ color: '#000', fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.035em' }}
+              style={{ color: 'var(--foreground)', fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.035em' }}
             >
               ETSIT
             </h2>
@@ -50,7 +50,7 @@ export default async function Home() {
               src="https://www.madrid.es/assets/images/logo-madrid.png" 
               alt="Madrid" 
               className="object-contain h-10 sm:h-14 lg:h-16"
-              style={{ filter: 'brightness(0)' }} 
+              style={{ filter: 'var(--logo-filter, brightness(0))' }} 
             />
           </div>
         </div>

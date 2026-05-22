@@ -68,7 +68,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
           <div className="flex justify-center mb-6">
             <span
               className="inline-flex items-center gap-2 label px-4 py-1.5 rounded-full"
-              style={{ background: 'rgba(232, 22, 27, 0.1)', color: '#E8161B', border: '1px solid rgba(232, 22, 27, 0.2)' }}
+              style={{ background: 'color-mix(in srgb, var(--text-brand) 10%, transparent)', color: 'var(--text-brand)', border: '1px solid color-mix(in srgb, var(--text-brand) 20%, transparent)' }}
             >
               <CalendarIcon size={14} />
               PLANIFICACIÓN
@@ -77,13 +77,13 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
 
           <h1 
             className="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none"
-            style={{ color: '#E8161B' }}
+            style={{ color: 'var(--text-brand)' }}
           >
             {t.calendar.title}
           </h1>
           <p 
             className="text-lg max-w-2xl mx-auto font-medium"
-            style={{ color: '#E8161B', opacity: 0.8 }}
+            style={{ color: 'var(--text-brand)', opacity: 0.8 }}
           >
             {t.calendar.subtitle}
           </p>
@@ -101,7 +101,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
       </div>
 
       {/* New Major Events Section with Red Background - Moved OUTSIDE max-w container */}
-      <section className="relative w-full bg-[#E8161B] overflow-hidden mt-24">
+      <section className="relative w-full bg-[var(--red)] overflow-hidden mt-24">
         {/* Decorative minimalist text behind hitos */}
         <div className="absolute top-0 right-0 opacity-10 pointer-events-none select-none overflow-hidden">
             <span className="text-[20vw] font-black text-black leading-none uppercase tracking-tighter">HITOS</span>

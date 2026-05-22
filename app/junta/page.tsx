@@ -1,8 +1,10 @@
 import JuntaCarousel from '@/components/JuntaCarousel';
 import { prisma } from '@/lib/prisma';
 import { juntaMembers as fallbackMembers } from '@/data/juntaMembers';
+import { getDictionaryServer } from '@/lib/i18n-server';
 
 export default async function Page() {
+  const t = await getDictionaryServer();
   const dbMembers = await prisma.juntaMember.findMany({
     orderBy: { order: 'asc' }
   });
@@ -30,15 +32,15 @@ export default async function Page() {
           <header className="text-center space-y-4">
             <span
               className="inline-block label px-4 py-1.5 rounded-full mb-2"
-              style={{ background: 'rgba(0,0,0,0.2)', color: '#fff', border: '1px solid rgba(0,0,0,0.15)' }}
+              style={{ background: 'var(--surface-inv)', color: '#fff', border: '1px solid var(--border)' }}
             >
-              NUESTRO EQUIPO
+              {t.board.team}
             </span>
             <h2
               className="font-black text-white uppercase"
               style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', letterSpacing: '-0.03em' }}
             >
-              Gobernanza y Visión
+              {t.board.title}
             </h2>
             <div className="w-16 h-1 mx-auto rounded-full" style={{ background: '#000' }} />
           </header>
@@ -46,18 +48,14 @@ export default async function Page() {
           {/* Description card */}
           <div
             className="max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl"
-            style={{ background: 'rgba(0,0,0,0.22)', border: '1px solid rgba(0,0,0,0.15)' }}
+            style={{ background: 'var(--surface-inv)', border: '1px solid var(--border)' }}
           >
             <p className="text-lg leading-relaxed text-white/80 font-light">
-              La Junta Directiva es el motor estratégico de Eurielec. Como órgano de gobierno,
-              coordinamos la visión a largo plazo, supervisamos la salud financiera y garantizamos
-              que cada socio tenga las herramientas necesarias para crecer. Nuestra gobernanza se
-              basa en la transparencia, el liderazgo distribuido y la pasión por la tecnología que
-              nos une a todos.
+              {t.board.description}
             </p>
 
             <div className="pt-4 flex justify-center gap-3 flex-wrap">
-              {['Transparencia', 'Estrategia', 'Comunidad'].map((tag) => (
+              {t.board.tags.map((tag: string) => (
                 <div
                   key={tag}
                   className="px-3 py-1 rounded-full border text-[0.6rem] font-bold uppercase tracking-widest"

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { cookies } from "next/headers";
 import { Locale } from "@/lib/i18n";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -56,14 +57,16 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body suppressHydrationWarning className="font-sans antialiased bg-red-600 text-black">
-        <LanguageProvider initialLocale={locale}>
-          {/* Aquí va el menú fijo para todas las páginas */}
-          <Navbar />
-          
-          {/* Aquí se carga el contenido de cada página */}
-          {children}
-        </LanguageProvider>
+      <body suppressHydrationWarning className="font-sans antialiased">
+        <ThemeProvider>
+          <LanguageProvider initialLocale={locale}>
+            {/* Aquí va el menú fijo para todas las páginas */}
+            <Navbar />
+            
+            {/* Aquí se carga el contenido de cada página */}
+            {children}
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

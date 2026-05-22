@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/components/LanguageProvider';
 
 interface Member {
   name: string;
@@ -13,6 +14,7 @@ interface Member {
 export default function JuntaCarousel({ members }: { members: Member[] }) {
   const [selected, setSelected] = useState<number | null>(null);
   const [hovered, setHovered] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const activeIdx = selected !== null ? selected : hovered;
 
@@ -161,13 +163,13 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                   <div className="px-2">
                     <p
                       className="font-black uppercase leading-none tracking-tight"
-                      style={{ fontSize: 'clamp(0.55rem, 1.1vw, 0.9rem)', letterSpacing: '-0.01em', color: '#E8161B' }}
+                      style={{ fontSize: 'clamp(0.55rem, 1.1vw, 0.9rem)', letterSpacing: '-0.01em', color: 'var(--text-brand)' }}
                     >
                       {member.name}
                     </p>
                     <p
-                      className="font-bold uppercase mt-0.5"
-                      style={{ fontSize: 'clamp(0.4rem, 0.7vw, 0.6rem)', letterSpacing: '0.12em', color: 'rgba(232,22,27,0.5)' }}
+                      className="font-bold uppercase mt-0.5 opacity-50"
+                      style={{ fontSize: 'clamp(0.4rem, 0.7vw, 0.6rem)', letterSpacing: '0.12em', color: 'var(--text-brand)' }}
                     >
                       {member.role}
                     </p>
@@ -177,7 +179,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                     <motion.div
                       layoutId="active-bar"
                       className="w-8 h-[2px] mx-auto mt-1 rounded-full"
-                      style={{ background: '#E8161B' }}
+                      style={{ background: 'var(--red)' }}
                     />
                   )}
                 </motion.div>
@@ -209,7 +211,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
               <div className="flex items-start gap-4">
 
                 {/* Divider red left */}
-                <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: '#E8161B' }} />
+                <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: 'var(--red)' }} />
 
                 <div className="flex-1 min-w-0">
                   <span
@@ -258,7 +260,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
               className="font-black uppercase text-center"
               style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'rgba(232,22,27,0.45)' }}
             >
-              — selecciona un miembro —
+              {t.board.selectMember}
             </p>
           </motion.div>
         )}
