@@ -88,7 +88,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
             {t.calendar.subtitle}
           </p>
 
-          <div className="w-16 h-1 mx-auto rounded-full bg-red-600/30" />
+          <div className="w-16 h-1 mx-auto rounded-full" style={{ background: 'color-mix(in srgb, var(--text-brand) 30%, transparent)' }} />
         </header>
 
         <section className="pb-10 border-b border-white/5">
@@ -101,7 +101,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
       </div>
 
       {/* New Major Events Section with Red Background - Moved OUTSIDE max-w container */}
-      <section className="relative w-full bg-[var(--red)] overflow-hidden mt-24">
+      <section className="relative w-full overflow-hidden mt-24" style={{ background: 'var(--text-brand)' }}>
         {/* Decorative minimalist text behind hitos */}
         <div className="absolute top-0 right-0 opacity-10 pointer-events-none select-none overflow-hidden">
             <span className="text-[20vw] font-black text-black leading-none uppercase tracking-tighter">HITOS</span>

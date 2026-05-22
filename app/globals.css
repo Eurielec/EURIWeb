@@ -18,6 +18,7 @@
   --red-dark:  #B51014;
   --red-light: #FF3338;
   --text-brand: var(--red);
+  --brand-rgb: 232, 22, 27;
 
   /* Neutrals */
   --black:  #0A0A0A;
@@ -60,7 +61,8 @@
   /* In high contrast, background is black and default text must be white */
   --background: var(--red);
   --foreground: var(--white);
-  --text-brand: var(--white);
+  --text-brand: #FFC107;
+  --brand-rgb: 255, 193, 7;
 
   /* We soften black cards slightly so they are visible on black background */
   --black: #111111;
@@ -106,26 +108,89 @@
   color: rgba(255, 255, 255, 0.4) !important;
 }
 
-/* Make red text in admin and profile panels white in high-contrast mode */
+/* Make all red colors in admin and profile panels gold in high-contrast mode */
 :root[data-theme="high-contrast"] .panel-wrapper .text-red-600,
 :root[data-theme="high-contrast"] .panel-wrapper .text-red-500,
 :root[data-theme="high-contrast"] .panel-wrapper .text-red-400,
 :root[data-theme="high-contrast"] .panel-wrapper .text-red-300,
 :root[data-theme="high-contrast"] .panel-wrapper .text-red-700 {
-  color: var(--white) !important;
+  color: var(--text-brand) !important;
 }
 
+:root[data-theme="high-contrast"] .panel-wrapper .group:hover .group-hover\:text-red-600,
+:root[data-theme="high-contrast"] .panel-wrapper .group:hover .group-hover\:text-red-500,
 :root[data-theme="high-contrast"] .panel-wrapper .hover\:text-red-600:hover,
 :root[data-theme="high-contrast"] .panel-wrapper .hover\:text-red-500:hover,
 :root[data-theme="high-contrast"] .panel-wrapper .hover\:text-red-400:hover,
 :root[data-theme="high-contrast"] .panel-wrapper .hover\:text-red-300:hover,
 :root[data-theme="high-contrast"] .panel-wrapper .hover\:text-red-700:hover {
-  color: var(--white) !important;
+  color: #FFC107 !important;
 }
 
-:root[data-theme="high-contrast"] .panel-wrapper .group-hover\:text-red-600:hover,
-:root[data-theme="high-contrast"] .panel-wrapper .group-hover\:text-red-500:hover {
-  color: var(--white) !important;
+/* Backgrounds solid */
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-700 {
+  background-color: var(--text-brand) !important;
+  color: #000 !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600.text-white,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500.text-white,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-700.text-white,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600 .text-white,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500 .text-white,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-700 .text-white {
+  color: #000 !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .hover\:bg-red-700:hover,
+:root[data-theme="high-contrast"] .panel-wrapper .hover\:bg-red-600:hover {
+  background-color: #eab308 !important;
+  color: #000 !important;
+}
+
+/* Backgrounds with opacity */
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600\/5,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500\/5,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-900\/5 {
+  background-color: rgba(var(--brand-rgb), 0.05) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600\/10,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500\/10 {
+  background-color: rgba(var(--brand-rgb), 0.1) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-600\/20,
+:root[data-theme="high-contrast"] .panel-wrapper .bg-red-500\/20 {
+  background-color: rgba(var(--brand-rgb), 0.2) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .hover\:bg-red-600\/20:hover {
+  background-color: rgba(var(--brand-rgb), 0.2) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .hover\:bg-red-600\/30:hover {
+  background-color: rgba(var(--brand-rgb), 0.3) !important;
+}
+
+/* Borders */
+:root[data-theme="high-contrast"] .panel-wrapper .border-red-600,
+:root[data-theme="high-contrast"] .panel-wrapper .border-red-500 {
+  border-color: var(--text-brand) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .border-t-red-600 {
+  border-top-color: var(--text-brand) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .border-red-600\/20 {
+  border-color: rgba(var(--brand-rgb), 0.2) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .border-red-600\/30,
+:root[data-theme="high-contrast"] .panel-wrapper .hover\:border-red-600\/30:hover {
+  border-color: rgba(var(--brand-rgb), 0.3) !important;
+}
+
+/* Shadows */
+:root[data-theme="high-contrast"] .panel-wrapper .shadow-red-600\/20 {
+  box-shadow: 0 10px 15px -3px rgba(var(--brand-rgb), 0.2), 0 4px 6px -4px rgba(var(--brand-rgb), 0.2) !important;
+}
+:root[data-theme="high-contrast"] .panel-wrapper .shadow-red-600\/50 {
+  box-shadow: 0 20px 25px -5px rgba(var(--brand-rgb), 0.5), 0 8px 10px -6px rgba(var(--brand-rgb), 0.5) !important;
 }
 /* Tailwind v4 theme tokens */
 @theme {

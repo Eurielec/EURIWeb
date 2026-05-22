@@ -63,7 +63,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
               transition={{ duration: 0.4 }}
               className="absolute inset-0"
               style={{
-                background: `radial-gradient(ellipse 60% 80% at ${15 + activeIdx * 18}% 100%, rgba(232,22,27,0.18) 0%, transparent 70%)`,
+                background: `radial-gradient(ellipse 60% 80% at ${15 + activeIdx * 18}% 100%, rgba(var(--brand-rgb),0.18) 0%, transparent 70%)`,
               }}
             />
           )}
@@ -109,7 +109,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                           className="w-full"
                           style={{
                             height: '500px',
-                            background: 'linear-gradient(to top, rgba(232,22,27,0.35) 0%, rgba(232,22,27,0.08) 40%, transparent 100%)',
+                            background: 'linear-gradient(to top, rgba(var(--brand-rgb),0.35) 0%, rgba(var(--brand-rgb),0.08) 40%, transparent 100%)',
                           }}
                         />
                       </motion.div>
@@ -122,7 +122,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                     alt={member.name}
                     animate={{
                       filter: isActive
-                        ? 'brightness(1.05) drop-shadow(0 0 30px rgba(232,22,27,0.5))'
+                        ? 'brightness(1.05) drop-shadow(0 0 30px rgba(var(--brand-rgb),0.5))'
                         : 'brightness(0.55) grayscale(0.3)',
                       scale: isActive ? 1.04 : 1,
                     }}
@@ -179,7 +179,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                     <motion.div
                       layoutId="active-bar"
                       className="w-8 h-[2px] mx-auto mt-1 rounded-full"
-                      style={{ background: 'var(--red)' }}
+                      style={{ background: 'var(--text-brand)' }}
                     />
                   )}
                 </motion.div>
@@ -204,14 +204,14 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
               className="rounded-2xl p-5 backdrop-blur-2xl shadow-2xl"
               style={{
                 background: 'rgba(10,10,10,0.85)',
-                border: '1px solid rgba(232,22,27,0.25)',
-                boxShadow: '0 -2px 40px rgba(232,22,27,0.12), 0 20px 60px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(var(--brand-rgb),0.25)',
+                boxShadow: '0 -2px 40px rgba(var(--brand-rgb),0.12), 0 20px 60px rgba(0,0,0,0.5)',
               }}
             >
               <div className="flex items-start gap-4">
 
-                {/* Divider red left */}
-                <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: 'var(--red)' }} />
+                {/* Divider left */}
+                <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: 'var(--text-brand)' }} />
 
                 <div className="flex-1 min-w-0">
                   <span
@@ -258,7 +258,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
           >
             <p
               className="font-black uppercase text-center"
-              style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'rgba(232,22,27,0.45)' }}
+              style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'rgba(var(--brand-rgb),0.45)' }}
             >
               {t.board.selectMember}
             </p>

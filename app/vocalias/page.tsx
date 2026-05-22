@@ -38,7 +38,7 @@ export default async function VocaliasPage() {
   });
 
   return (
-    <main className="min-h-screen py-28 px-6 sm:px-10 relative overflow-clip" style={{ background: 'var(--red)' }}>
+    <main className="panel-wrapper min-h-screen py-28 px-6 sm:px-10 relative overflow-clip" style={{ background: 'var(--red)' }}>
       <div className="max-w-7xl mx-auto relative z-10 space-y-16">
         
         {/* Header */}

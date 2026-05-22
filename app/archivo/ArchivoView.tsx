@@ -35,12 +35,12 @@ export default function ArchivoView({ documents }: { documents: any[] }) {
           <div className="relative mb-32 h-[40vh] flex flex-col justify-center">
             <div className="space-y-6 max-w-3xl">
               <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-700">
-                <div className="w-10 h-px bg-red-600" />
-                <span className="text-red-600 font-black text-[10px] uppercase tracking-[0.4em] italic">{t.archive.tag}</span>
+                <div className="w-10 h-px" style={{ background: 'var(--text-brand)' }} />
+                <span className="font-black text-[10px] uppercase tracking-[0.4em] italic" style={{ color: 'var(--text-brand)' }}>{t.archive.tag}</span>
               </div>
               <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic leading-[0.9] animate-in fade-in slide-in-from-left-6 duration-1000">
                 {t.archive.titlePart1} <br />
-                <span className="text-red-600">{t.archive.titlePart2}</span>
+                <span style={{ color: 'var(--text-brand)' }}>{t.archive.titlePart2}</span>
               </h1>
               <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
                 {t.archive.desc}

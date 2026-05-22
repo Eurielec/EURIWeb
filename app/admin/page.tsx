@@ -26,7 +26,7 @@ export default async function AdminDashboard() {
   return (
     <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 font-sans">
       <header>
-        <h1 className="text-5xl font-black text-red-600 uppercase tracking-tighter italic">
+        <h1 className="text-3xl md:text-5xl font-black text-red-600 uppercase tracking-tighter italic">
           {isAdmin ? t.admin.dashboard.adminTitle : t.admin.dashboard.vocalTitle}
         </h1>
         <p className="text-gray-400 mt-3 text-lg font-medium">
