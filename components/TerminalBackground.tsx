@@ -45,12 +45,14 @@ export default function TerminalBackground({ scroll = 0 }: { scroll: number }) {
 
       // Usamos el valor del ref para no reiniciar la animación
       const speedMultiplier = 0.4 + scrollRef.current * 3.5; 
+      
+      const isHC = document.documentElement.getAttribute('data-theme') === 'high-contrast';
+      const textColor = isHC ? 'rgba(255, 255, 255, 0.9)' : 'rgba(215, 0, 0, 0.9)';
 
       for (let i = 0; i < drops.length; i++) {
         const char = charset[Math.floor(Math.random() * charset.length)];
         
-        // Opacidad al 40% como solicitado
-        ctx.fillStyle = `rgba(215, 0, 0, 0.9)`; 
+        ctx.fillStyle = textColor; 
         ctx.font = `bold ${fontSize}px monospace`;
         
         ctx.fillText(char, (i * spacing), drops[i]);

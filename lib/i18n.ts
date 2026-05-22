@@ -362,6 +362,51 @@ export const dictionaries = {
       searchTitle: '¿Buscas algo específico?',
       searchDesc: 'Si necesitas un documento que no figura en esta lista o tienes alguna duda sobre la gestión de la asociación, no dudes en contactar directamente con la Junta Directiva.',
       contactBtn: 'Contactar con Administración'
+    },
+    footer: {
+      subtitle: 'Comité Local de EESTEC en la ETSI Telecomunicación',
+      desc: 'La asociación de estudiantes donde la tecnología cobra vida. Formamos a los ingenieros del futuro mediante práctica, comunidad y aprendizaje compartido.',
+      sections: 'Secciones',
+      legal: 'Aviso Legal',
+      privacy: 'Privacidad',
+      rights: 'Built for Future Engineers.'
+    },
+    admin: {
+      sidebar: {
+        dashboard: 'Dashboard',
+        profile: 'Mi Perfil',
+        users: 'Usuarios',
+        board: 'Junta',
+        events: 'Eventos',
+        ranking: 'Ranking, IMW y CP',
+        projects: 'Proyectos',
+        polls: 'Asambleas (Votaciones)',
+        archive: 'Archivo',
+        shop: 'Tienda',
+        logout: 'Cerrar Sesión',
+        controlPanel: 'Control Panel'
+      },
+      dashboard: {
+        adminTitle: 'Administración',
+        adminDesc: 'Panel de control global de la asociación. Gestión técnica y operativa.',
+        vocalTitle: 'Panel de Vocalía',
+        vocalDesc: 'Panel de gestión para vocalías y proyectos.',
+        totalUsers: 'Total Usuarios',
+        admins: 'Administradores',
+        activeProjects: 'Proyectos Activos',
+        create: 'Crear Nuevo',
+        manageEvents: 'Gestión de Eventos',
+        organize: 'Organizar Reunión',
+        systemStatus: 'Estado Sistemas',
+        operational: 'Operativo',
+        recentUsers: 'Últimos Socios Registrados',
+        tableEmail: 'Email del Usuario',
+        tableAccess: 'Nivel de Acceso',
+        tableDate: 'Fecha de Ingreso',
+        noUsers: 'Ningún usuario encontrado en la base de datos.',
+        vocalPanelActive: 'Panel de Vocalía Activo',
+        vocalPanelDesc: 'Como Vocal, tienes permisos para gestionar los proyectos de tecnología y coordinar eventos en el calendario. Las funciones de administración de usuarios están reservadas a la Junta Directiva.'
+      }
     }
   },
   en: {
@@ -725,6 +770,51 @@ export const dictionaries = {
       searchTitle: 'Looking for something specific?',
       searchDesc: 'If you need a document that is not on this list or have any questions about the association\'s management, feel free to contact the Board of Directors directly.',
       contactBtn: 'Contact Administration'
+    },
+    footer: {
+      subtitle: 'EESTEC Local Committee at ETSI Telecomunicación',
+      desc: 'The student association where technology comes to life. We train the engineers of the future through practice, community, and shared learning.',
+      sections: 'Sections',
+      legal: 'Legal Notice',
+      privacy: 'Privacy',
+      rights: 'Built for Future Engineers.'
+    },
+    admin: {
+      sidebar: {
+        dashboard: 'Dashboard',
+        profile: 'My Profile',
+        users: 'Users',
+        board: 'The Board',
+        events: 'Events',
+        ranking: 'Ranking, IMW & CP',
+        projects: 'Projects',
+        polls: 'Assemblies (Voting)',
+        archive: 'Archive',
+        shop: 'Shop',
+        logout: 'Log Out',
+        controlPanel: 'Control Panel'
+      },
+      dashboard: {
+        adminTitle: 'Administration',
+        adminDesc: 'Global control panel of the association. Technical and operational management.',
+        vocalTitle: 'Department Panel',
+        vocalDesc: 'Management panel for departments and projects.',
+        totalUsers: 'Total Users',
+        admins: 'Administrators',
+        activeProjects: 'Active Projects',
+        create: 'Create New',
+        manageEvents: 'Event Management',
+        organize: 'Organize Meeting',
+        systemStatus: 'System Status',
+        operational: 'Operational',
+        recentUsers: 'Recently Registered Members',
+        tableEmail: 'User Email',
+        tableAccess: 'Access Level',
+        tableDate: 'Join Date',
+        noUsers: 'No users found in the database.',
+        vocalPanelActive: 'Active Department Panel',
+        vocalPanelDesc: 'As a Department Head, you have permissions to manage tech projects and coordinate calendar events. User administration functions are reserved for the Board of Directors.'
+      }
     }
   }
 };

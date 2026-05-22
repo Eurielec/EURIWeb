@@ -49,7 +49,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
   }
 
   return (
-    <main className="min-h-screen bg-[#08090a] text-white py-12 relative overflow-hidden font-sans">
+    <main className="panel-wrapper min-h-screen bg-[#08090a] text-white py-12 relative overflow-hidden font-sans">
       {/* Decorative background with red/black brand colors */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/2 left-0 w-[600px] h-[600px] bg-red-900/5 blur-[180px] rounded-full pointer-events-none" />

@@ -11,7 +11,11 @@ export default function ThemeSwitcher() {
   return (
     <button
       onClick={() => setTheme(theme === 'default' ? 'high-contrast' : 'default')}
-      className="p-2 flex items-center justify-center rounded-full bg-black/10 hover:bg-black/20 text-white transition-all outline-none"
+      className="p-2 flex items-center justify-center rounded-full transition-all outline-none"
+      style={{
+        color: 'var(--navbar-text)',
+        background: 'var(--navbar-control-bg)',
+      }}
       title={locale === 'es' ? 'Alternar modo blanco y negro' : 'Toggle black and white mode'}
     >
       {theme === 'default' ? <Moon size={18} /> : <Sun size={18} />}

@@ -4,24 +4,26 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Users, UserCircle, LogOut, Calendar as CalendarIcon, Folder, ShoppingBag, Crown } from 'lucide-react';
 import { logoutAction } from '@/app/actions/auth';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Sidebar({ session }: { session: { userId: string; role: string; vocalia?: string | null } | null }) {
   const pathname = usePathname();
+  const { t } = useLanguage();
 
   const navLinks = [
-    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { name: 'Mi Perfil', href: '/perfil', icon: UserCircle },
-    { name: 'Usuarios', href: '/admin/users', icon: Users, adminOnly: true },
-    { name: 'Junta', href: '/admin/junta', icon: Crown, adminOnly: true },
-    { name: 'Eventos', href: '/admin/events', icon: CalendarIcon },
-    { name: 'Ranking, IMW y CP', href: '/admin/ranking', icon: Crown, adminOnly: true },
-    { name: 'Proyectos', href: '/admin/projects', icon: Folder },
-    { name: 'Asambleas (Votaciones)', href: '/admin/votaciones', icon: Folder, adminOnly: true },
-    { name: 'Archivo', href: '/admin/archivo', icon: Folder, adminOnly: true },
-    { name: 'Tienda', href: '/admin/tienda', icon: ShoppingBag, restricted: true },
+    { id: 'dashboard', name: t.admin.sidebar.dashboard, href: '/admin', icon: LayoutDashboard },
+    { id: 'profile', name: t.admin.sidebar.profile, href: '/perfil', icon: UserCircle },
+    { id: 'users', name: t.admin.sidebar.users, href: '/admin/users', icon: Users, adminOnly: true },
+    { id: 'board', name: t.admin.sidebar.board, href: '/admin/junta', icon: Crown, adminOnly: true },
+    { id: 'events', name: t.admin.sidebar.events, href: '/admin/events', icon: CalendarIcon },
+    { id: 'ranking', name: t.admin.sidebar.ranking, href: '/admin/ranking', icon: Crown, adminOnly: true },
+    { id: 'projects', name: t.admin.sidebar.projects, href: '/admin/projects', icon: Folder },
+    { id: 'polls', name: t.admin.sidebar.polls, href: '/admin/votaciones', icon: Folder, adminOnly: true },
+    { id: 'archive', name: t.admin.sidebar.archive, href: '/admin/archivo', icon: Folder, adminOnly: true },
+    { id: 'shop', name: t.admin.sidebar.shop, href: '/admin/tienda', icon: ShoppingBag, restricted: true },
   ].filter(link => {
     if (link.adminOnly) return session?.role === 'ADMIN';
-    if (link.name === 'Tienda') {
+    if (link.id === 'shop') {
       return session?.role === 'ADMIN' || (session?.role === 'VOCAL' && session?.vocalia === 'sudaderas');
     }
     return true;
@@ -33,7 +35,7 @@ export default function Sidebar({ session }: { session: { userId: string; role: 
         <div className="text-xl md:text-2xl font-black text-red-600 uppercase tracking-tighter italic truncate max-w-full">
           Eurielec
         </div>
-        <p className="hidden md:block text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mt-1">Control Panel</p>
+        <p className="hidden md:block text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mt-1">{t.admin.sidebar.controlPanel}</p>
       </div>
       
       <nav className="flex-1 flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none">
@@ -73,7 +75,7 @@ export default function Sidebar({ session }: { session: { userId: string; role: 
         <form action={logoutAction}>
           <button type="submit" className="flex items-center justify-center gap-2 p-2.5 md:w-full md:py-2.5 md:px-4 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all font-medium border border-red-500/20 text-xs">
             <LogOut className="w-4 h-4" />
-            <span className="hidden md:inline">Cerrar Sesión</span>
+            <span className="hidden md:inline">{t.admin.sidebar.logout}</span>
           </button>
         </form>
       </div>

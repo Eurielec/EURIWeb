@@ -35,9 +35,9 @@ export default function Navbar() {
     <nav
       className="fixed top-0 w-full z-50 transition-colors duration-300 shadow-lg"
       style={{
-        background: 'color-mix(in srgb, var(--background) 95%, transparent)',
+        background: 'var(--navbar-bg)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid var(--border-inv)',
+        borderBottom: '1px solid var(--navbar-border)',
       }}
     >
       <div className="max-w-[1700px] mx-auto px-6 h-16 flex items-center justify-between gap-4">
@@ -58,13 +58,14 @@ export default function Navbar() {
                   filter: 'var(--logo-filter, none)'
                 }}
               />
-              <div className="w-px h-6 bg-white/20" />
+              <div className="w-px h-6" style={{ background: 'var(--navbar-divider)' }} />
               <Image
                 src="/logo-eestec.png"
                 alt="EESTEC LC Madrid"
                 width={100}
                 height={28}
                 className="h-7 w-auto"
+                style={{ filter: 'var(--navbar-eestec-filter)' }}
               />
             </div>
           </Link>
@@ -78,9 +79,9 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.path}
-                className="relative px-3 2xl:px-4 py-2 text-[14px] font-black uppercase transition-all hover:text-white"
+                className="relative px-3 2xl:px-4 py-2 text-[14px] font-black uppercase transition-all hover:opacity-100"
                 style={{
-                  color: isActive ? '#fff' : 'var(--foreground)',
+                  color: isActive ? 'var(--navbar-active-text)' : 'var(--navbar-text)',
                   opacity: isActive ? 1 : 0.7,
                   letterSpacing: '0.08em',
                 }}
@@ -89,7 +90,7 @@ export default function Navbar() {
                 {isActive && (
                   <span
                     className="absolute bottom-0 left-3 2xl:left-4 right-3 2xl:right-4 h-[2.5px] rounded-full"
-                    style={{ background: '#fff' }}
+                    style={{ background: 'var(--navbar-active-bg)' }}
                   />
                 )}
               </Link>
@@ -101,11 +102,15 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-4">
           <ThemeSwitcher />
           <LanguageSwitcher />
-          <div className="h-6 w-px bg-white/20" />
+          <div className="h-6 w-px" style={{ background: 'var(--navbar-divider)' }} />
           {session ? (
             <Link
               href={session.role === 'ADMIN' || session.role === 'VOCAL' ? '/admin' : '/perfil'}
-              className="flex items-center gap-3 pl-1 pr-4 py-1 rounded-full bg-black/50 hover:bg-black border border-white/10 transition-all hover:scale-105 active:scale-95 shadow-md"
+              className="flex items-center gap-3 pl-1 pr-4 py-1 rounded-full border transition-all hover:scale-105 active:scale-95 shadow-md"
+              style={{
+                background: 'var(--navbar-control-bg)',
+                borderColor: 'var(--navbar-border)',
+              }}
             >
               <div className="w-7 h-7 rounded-full overflow-hidden bg-red-600 flex items-center justify-center shrink-0 shadow-inner shadow-red-600/50">
                 {session.image ? (
@@ -114,7 +119,7 @@ export default function Navbar() {
                   <span className="text-white font-black text-[10px]">{session.name ? session.name[0].toUpperCase() : 'E'}</span>
                 )}
               </div>
-              <span className="text-[11px] font-black uppercase tracking-widest text-white mt-0.5">
+              <span className="text-[11px] font-black uppercase tracking-widest mt-0.5" style={{ color: 'var(--navbar-text)' }}>
                 {session.role === 'ADMIN' || session.role === 'VOCAL' ? 'PANEL' : 'PERFIL'}
               </span>
             </Link>
@@ -122,7 +127,7 @@ export default function Navbar() {
             <Link
               href="/login"
               className="px-6 py-2 rounded-full text-[13px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-md"
-              style={{ background: '#000', color: '#fff' }}
+              style={{ background: 'var(--navbar-active-bg)', color: 'var(--navbar-active-text)' }}
             >
               {t.nav.login}
             </Link>
@@ -131,21 +136,21 @@ export default function Navbar() {
 
         {/* MOBILE TRIGGER */}
         <button
-          className="xl:hidden text-white p-2"
+          className="xl:hidden p-2"
           onClick={() => setOpen(!open)}
           aria-label="Menú"
         >
           <div className="flex flex-col gap-1.5 w-6">
-            <span className={`h-0.5 bg-white transition-all ${open ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`h-0.5 bg-white transition-all ${open ? 'opacity-0' : ''}`} />
-            <span className={`h-0.5 bg-white transition-all ${open ? '-rotate-45 -translate-y-2' : ''}`} />
+            <span className={`h-0.5 transition-all ${open ? 'rotate-45 translate-y-2' : ''}`} style={{ background: 'var(--navbar-text)' }} />
+            <span className={`h-0.5 transition-all ${open ? 'opacity-0' : ''}`} style={{ background: 'var(--navbar-text)' }} />
+            <span className={`h-0.5 transition-all ${open ? '-rotate-45 -translate-y-2' : ''}`} style={{ background: 'var(--navbar-text)' }} />
           </div>
         </button>
       </div>
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="xl:hidden px-4 pb-4 pt-2 overflow-y-auto max-h-[calc(100vh-64px)]" style={{ background: 'color-mix(in srgb, var(--background) 98%, black 2%)', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+        <div className="xl:hidden px-4 pb-4 pt-2 overflow-y-auto max-h-[calc(100vh-64px)]" style={{ background: 'var(--navbar-bg)', borderTop: '1px solid var(--navbar-border)' }}>
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -153,9 +158,9 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className="block py-4 text-[16px] font-black uppercase tracking-widest border-b"
               style={{
-                color: pathname === item.path ? '#fff' : 'var(--foreground)',
+                color: pathname === item.path ? 'var(--navbar-active-text)' : 'var(--navbar-text)',
                 opacity: pathname === item.path ? 1 : 0.7,
-                borderColor: 'rgba(0,0,0,0.1)',
+                borderColor: 'var(--navbar-border)',
               }}
             >
               {item.name}

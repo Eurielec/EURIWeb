@@ -21,7 +21,7 @@ export default async function AdminLayout({
   }
 
   return (
-    <div className="h-screen flex bg-black text-white font-sans overflow-hidden selection:bg-red-500/30 pt-16">
+    <div className="panel-wrapper h-screen flex bg-black text-white font-sans overflow-hidden selection:bg-red-500/30 pt-16">
       <Sidebar session={session} />
 
       <main className="flex-1 overflow-y-auto w-full bg-[#0a0a0a] relative">

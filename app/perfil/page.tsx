@@ -41,7 +41,7 @@ export default async function PerfilPage() {
   const userAttendances = events.map(e => e.id);
 
   return (
-    <main className="min-h-screen bg-black text-white p-8 pt-24 relative overflow-hidden font-sans">
+    <main className="panel-wrapper min-h-screen bg-black text-white p-8 pt-24 relative overflow-hidden font-sans">
       {/* Luces de fondo premium - Red Theme */}
       <div className="absolute top-1/4 left-1/4 -translate-1/2 w-[500px] h-[500px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-red-900/5 blur-[100px] rounded-full pointer-events-none" />

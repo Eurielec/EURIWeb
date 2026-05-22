@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Instagram, Globe, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/components/LanguageProvider';
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="w-full bg-[#050505] border-t border-white/5 pt-32 pb-20 px-6 font-sans relative overflow-hidden">
       {/* Glow Effects */}
@@ -18,11 +20,11 @@ export default function Footer() {
                 Eurielec
               </h2>
               <p className="text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px]">
-                Comité Local de EESTEC en la ETSI Telecomunicación
+                {t.footer.subtitle}
               </p>
             </div>
             <p className="max-w-md text-gray-400 text-lg font-medium leading-relaxed">
-              La asociación de estudiantes donde la tecnología cobra vida. Formamos a los ingenieros del futuro mediante práctica, comunidad y aprendizaje compartido.
+              {t.footer.desc}
             </p>
             <div className="flex gap-4">
                <a href="https://instagram.com/eesteclcmadrid" target="_blank" rel="noopener noreferrer" className="p-4 bg-white/5 hover:bg-red-600 text-white rounded-2xl transition-all border border-white/10 group">
@@ -36,18 +38,18 @@ export default function Footer() {
 
           {/* Links Column */}
           <div className="lg:col-span-2 space-y-10">
-            <h3 className="text-white font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-4">Secciones</h3>
+            <h3 className="text-white font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-4">{t.footer.sections}</h3>
             <div className="grid grid-cols-2 gap-x-12 gap-y-5">
               {[
-                { name: 'Inicio', href: '/' },
-                { name: 'Conócenos', href: '/conocenos' },
-                { name: 'La Junta', href: '/junta' },
-                { name: 'Vocalías', href: '/vocalias' },
-                { name: 'Proyectos', href: '/proyectos' },
-                { name: 'Eventos', href: '/calendario' },
-                { name: 'Tienda', href: '/tienda' },
-                { name: 'Archivo', href: '/archivo' },
-                { name: 'Contacto', href: '/contacto' }
+                { name: t.nav.home, href: '/' },
+                { name: t.nav.about, href: '/conocenos' },
+                { name: t.nav.board, href: '/junta' },
+                { name: t.nav.vocalias ?? 'Vocalías', href: '/vocalias' },
+                { name: t.nav.projects ?? 'Proyectos', href: '/proyectos' },
+                { name: t.nav.events, href: '/calendario' },
+                { name: t.nav.shop ?? 'Tienda', href: '/tienda' },
+                { name: t.nav.archive ?? 'Archivo', href: '/archivo' },
+                { name: t.nav.contact, href: '/contacto' }
               ].map(link => (
                 <Link 
                   key={link.name} 
@@ -74,12 +76,12 @@ export default function Footer() {
                <img src="/logo-eestec.png" alt="EESTEC" className="h-4 w-auto grayscale opacity-50" />
             </div>
             <div className="flex gap-6">
-              <Link href="/aviso-legal" className="text-gray-600 hover:text-white text-[10px] font-black uppercase tracking-widest transition-colors">Aviso Legal</Link>
-              <Link href="/privacidad" className="text-gray-600 hover:text-white text-[10px] font-black uppercase tracking-widest transition-colors">Privacidad</Link>
+              <Link href="/aviso-legal" className="text-gray-600 hover:text-white text-[10px] font-black uppercase tracking-widest transition-colors">{t.footer.legal}</Link>
+              <Link href="/privacidad" className="text-gray-600 hover:text-white text-[10px] font-black uppercase tracking-widest transition-colors">{t.footer.privacy}</Link>
             </div>
           </div>
           <p className="text-gray-600 text-[10px] font-black uppercase tracking-widest">
-            © {new Date().getFullYear()} Eurielec. Built for Future Engineers.
+            © {new Date().getFullYear()} Eurielec. {t.footer.rights}
           </p>
         </div>
       </div>
