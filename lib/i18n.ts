@@ -305,6 +305,18 @@ export const dictionaries = {
       calendarTitle: 'Tu Calendario',
       calendarDesc: 'Haz clic en los eventos de la Asociación (Rojos) para gestionar tu asistencia.'
     },
+    membershipPayment: {
+      title: 'Cuota de Socio',
+      paid: 'Pagado',
+      pendingCash: 'Has indicado que pagarás en efectivo. Acércate a la asociación para abonarlo.',
+      payCard: 'Pagar con Tarjeta',
+      payCash: 'Pagar en Efectivo',
+      errorInit: 'Error al iniciar pago',
+      errorUpdate: 'Pago realizado, pero hubo un error al actualizar tu estado.',
+      errorCancel: 'El pago ha sido cancelado o rechazado.',
+      errorLoad: 'Error al cargar la pasarela de pago',
+      errorNet: 'Error de red'
+    },
     imwPayment: {
       title: 'Pago IMW',
       paid: 'Pagado',
@@ -405,7 +417,11 @@ export const dictionaries = {
         tableDate: 'Fecha de Ingreso',
         noUsers: 'Ningún usuario encontrado en la base de datos.',
         vocalPanelActive: 'Panel de Vocalía Activo',
-        vocalPanelDesc: 'Como Vocal, tienes permisos para gestionar los proyectos de tecnología y coordinar eventos en el calendario. Las funciones de administración de usuarios están reservadas a la Junta Directiva.'
+        vocalPanelDesc: 'Como Vocal, tienes permisos para gestionar los proyectos de tecnología y coordinar eventos en el calendario. Las funciones de administración de usuarios están reservadas a la Junta Directiva.',
+        resetMembership: 'Resetear Cuotas (Nuevo Curso)',
+        resetMembershipConfirm: '¿Estás seguro de que quieres resetear todas las cuotas de socios? Esto marcará a todos los miembros actuales (veteranos) con una cuota pendiente de 10€.',
+        resetMembershipSuccess: 'Cuotas reseteadas con éxito.',
+        resetMembershipError: 'Error al resetear las cuotas.'
       }
     }
   },
@@ -713,6 +729,18 @@ export const dictionaries = {
       calendarTitle: 'Your Calendar',
       calendarDesc: 'Click on Association events (Red) to manage your attendance.'
     },
+    membershipPayment: {
+      title: 'Membership Fee',
+      paid: 'Paid',
+      pendingCash: 'You have indicated that you will pay in cash. Please visit the association to pay.',
+      payCard: 'Pay with Card',
+      payCash: 'Pay in Cash',
+      errorInit: 'Error initiating payment',
+      errorUpdate: 'Payment successful, but there was an error updating your status.',
+      errorCancel: 'The payment was canceled or declined.',
+      errorLoad: 'Error loading the payment gateway',
+      errorNet: 'Network error'
+    },
     imwPayment: {
       title: 'IMW Payment',
       paid: 'Paid',
@@ -813,7 +841,11 @@ export const dictionaries = {
         tableDate: 'Join Date',
         noUsers: 'No users found in the database.',
         vocalPanelActive: 'Active Department Panel',
-        vocalPanelDesc: 'As a Department Head, you have permissions to manage tech projects and coordinate calendar events. User administration functions are reserved for the Board of Directors.'
+        vocalPanelDesc: 'As a Department Head, you have permissions to manage tech projects and coordinate calendar events. User administration functions are reserved for the Board of Directors.',
+        resetMembership: 'Reset Memberships (New Year)',
+        resetMembershipConfirm: 'Are you sure you want to reset all membership fees? This will mark all current members (veterans) with a pending 10€ fee.',
+        resetMembershipSuccess: 'Memberships reset successfully.',
+        resetMembershipError: 'Error resetting memberships.'
       }
     }
   }

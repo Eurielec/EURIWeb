@@ -1,7 +1,8 @@
 'use client';
 
 import { toggleRoleAction, deleteUserAction } from '@/app/actions/users';
-import { Shield, ShieldAlert, Trash2, UserCheck, Edit3, Award } from 'lucide-react';
+import { confirmCashMembershipByAdminAction } from '@/app/actions/membership';
+import { Shield, ShieldAlert, Trash2, UserCheck, Edit3, Award, Banknote } from 'lucide-react';
 import { useTransition, useState } from 'react';
 import EditUserModal from './EditUserModal';
 import AdjustPointsModal from './AdjustPointsModal';
@@ -29,6 +30,14 @@ export default function UserActions({ user, isSelf }: { user: any, isSelf: boole
     }
   };
 
+  const handleConfirmCash = () => {
+    if (window.confirm(`¿Confirmas que ${user.name || user.email} ha pagado la cuota de socio en efectivo?`)) {
+      startTransition(async () => {
+        await confirmCashMembershipByAdminAction(user.id);
+      });
+    }
+  };
+
   return (
     <>
       <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -39,6 +48,17 @@ export default function UserActions({ user, isSelf }: { user: any, isSelf: boole
         >
           <Award className="w-5 h-5" />
         </button>
+
+        {user.membershipPaymentStatus === 'PENDING_CASH' && (
+          <button
+            onClick={handleConfirmCash}
+            disabled={isPending}
+            className="p-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/40 text-amber-400 transition-colors animate-pulse"
+            title="Confirmar pago en efectivo de cuota"
+          >
+            <Banknote className="w-5 h-5" />
+          </button>
+        )}
 
         <button 
           onClick={() => setIsEditing(true)}

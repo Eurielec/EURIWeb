@@ -3,6 +3,7 @@ import { Search, Shield, User } from 'lucide-react';
 import { getUserSession } from '@/lib/auth';
 import UserActions from '@/components/UserActions';
 import CreateUserButton from '@/components/CreateUserButton';
+import ResetMembershipButton from '@/components/ResetMembershipButton';
 import { redirect } from 'next/navigation';
 
 export default async function UsersManagement() {
@@ -28,7 +29,10 @@ export default async function UsersManagement() {
         </div>
         
         {session?.role === 'ADMIN' && (
-          <CreateUserButton />
+          <div className="flex flex-col sm:flex-row gap-3">
+            <ResetMembershipButton />
+            <CreateUserButton />
+          </div>
         )}
       </div>
 
@@ -56,6 +60,7 @@ export default async function UsersManagement() {
               <tr>
                 <th className="px-8 py-5 font-semibold">Miembro</th>
                 <th className="px-8 py-5 font-semibold">Rol</th>
+                <th className="px-8 py-5 font-semibold">Cuota Socio</th>
                 <th className="px-8 py-5 font-semibold">Fecha de Ingreso</th>
                 <th className="px-8 py-5 font-semibold text-right">Acciones</th>
               </tr>
@@ -106,6 +111,21 @@ export default async function UsersManagement() {
                       )}
                     </div>
                   </td>
+                  <td className="px-8 py-5">
+                    {user.membershipPaymentStatus === 'PAID' || user.membershipPaymentStatus === 'PAID_CARD' || user.membershipPaymentStatus === 'PAID_CASH' ? (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        PAGADA
+                      </span>
+                    ) : user.membershipPaymentStatus === 'PENDING_CASH' ? (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        Efectivo Pdte
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-red-500/10 text-red-400 border border-red-500/20">
+                        NO PAGADA
+                      </span>
+                    )}
+                  </td>
                   <td className="px-8 py-5 text-gray-400 tabular-nums">
                     {new Date(user.createdAt).toLocaleDateString('es-ES', { 
                       year: 'numeric', month: 'long', day: 'numeric' 
@@ -121,7 +141,7 @@ export default async function UsersManagement() {
               ))}
               {users.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-8 py-12 text-center text-gray-500">
+                  <td colSpan={5} className="px-8 py-12 text-center text-gray-500">
                     No hay usuarios registrados en el sistema.
                   </td>
                 </tr>

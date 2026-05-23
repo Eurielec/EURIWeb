@@ -5,6 +5,7 @@ import Link from 'next/link';
 import InteractiveCalendar from '@/components/Calendar';
 import EditProfileSection from '@/components/EditProfileSection';
 import IMWPaymentSection from '@/components/IMWPaymentSection';
+import MembershipPaymentSection from '@/components/MembershipPaymentSection';
 import { prisma } from '@/lib/prisma';
 import { getDictionaryServer } from '@/lib/i18n-server';
 
@@ -117,6 +118,11 @@ export default async function PerfilPage() {
               <p className="text-[10px] font-black uppercase tracking-widest text-emerald-500/70 mt-2">{t.profile.totalPoints}</p>
             </div>
             
+            <MembershipPaymentSection
+              membershipPrice={user?.membershipPrice ?? null}
+              membershipPaymentStatus={user?.membershipPaymentStatus ?? null}
+            />
+
             <IMWPaymentSection 
               imwPrice={user?.imwPrice ?? null} 
               imwPaymentStatus={user?.imwPaymentStatus ?? null} 
