@@ -7,7 +7,7 @@ import { useLanguage } from '@/components/LanguageProvider';
 export default function Footer() {
   const { t } = useLanguage();
   return (
-    <footer className="w-full bg-[#050505] border-t border-white/5 pt-32 pb-20 px-6 font-sans relative overflow-hidden">
+    <footer className="site-footer w-full bg-[#050505] border-t border-white/5 pt-32 pb-20 px-6 font-sans relative overflow-hidden">
       {/* Glow Effects */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
       

@@ -127,7 +127,7 @@ export default function Navbar() {
             <Link
               href="/login"
               className="px-6 py-2 rounded-full text-[13px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-md"
-              style={{ background: 'var(--navbar-active-bg)', color: 'var(--navbar-active-text)' }}
+              style={{ background: '#111111', color: '#FFFFFF' }}
             >
               {t.nav.login}
             </Link>

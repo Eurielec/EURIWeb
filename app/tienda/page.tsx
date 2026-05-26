@@ -191,7 +191,7 @@ export default function TiendaPage() {
   const filteredProducts = products.filter(p => p.category === openCategory);
 
   return (
-    <main className="min-h-screen pt-28 pb-20 px-6 sm:px-10 relative overflow-hidden" style={{ background: 'var(--red)' }}>
+      <main className="tienda-page min-h-screen pt-28 pb-20 px-6 sm:px-10 relative overflow-hidden" style={{ background: 'var(--red)' }}>
       {/* Dec BG */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-[0.04]">
         <span className="text-[25vw] font-black text-black leading-none uppercase tracking-tighter whitespace-nowrap">SHOP</span>

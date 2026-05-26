@@ -84,8 +84,8 @@
   --navbar-text: #000000;
   --navbar-border: rgba(0, 0, 0, 0.1);
   --navbar-divider: rgba(0, 0, 0, 0.2);
-  --navbar-active-bg: #000000;
-  --navbar-active-text: #000000;
+  --navbar-active-bg: #FFC107;
+  --navbar-active-text: #FFC107;
   --navbar-eestec-filter: invert(1);
   --navbar-control-bg: rgba(0, 0, 0, 0.05);
   --navbar-control-hover: rgba(0, 0, 0, 0.1);
@@ -192,6 +192,69 @@
 :root[data-theme="high-contrast"] .panel-wrapper .shadow-red-600\/50 {
   box-shadow: 0 20px 25px -5px rgba(var(--brand-rgb), 0.5), 0 8px 10px -6px rgba(var(--brand-rgb), 0.5) !important;
 }
+
+/* ----------------------------------------------------------------
+   TIENDA — High-Contrast overrides (red → gold)
+   Applies to all red accents in /tienda when dark mode is active
+   ---------------------------------------------------------------- */
+
+/* Text colors */
+:root[data-theme="high-contrast"] .tienda-page .text-red-500,
+:root[data-theme="high-contrast"] .tienda-page .text-red-600 {
+  color: #FFC107 !important;
+}
+
+/* Solid backgrounds (price badge, size/color selected, pay button, closed badge) */
+:root[data-theme="high-contrast"] .tienda-page .bg-red-600,
+:root[data-theme="high-contrast"] .tienda-page .bg-red-700 {
+  background-color: #FFC107 !important;
+  color: #000 !important;
+}
+:root[data-theme="high-contrast"] .tienda-page .hover\:bg-red-700:hover {
+  background-color: #eab308 !important;
+  color: #000 !important;
+}
+
+/* Size/Color selector active state */
+:root[data-theme="high-contrast"] .tienda-page .bg-red-600.text-white {
+  color: #000 !important;
+}
+
+/* Product card hover border */
+:root[data-theme="high-contrast"] .tienda-page .hover\:border-red-600\/30:hover {
+  border-color: rgba(255, 193, 7, 0.3) !important;
+}
+
+/* Pay button shadow */
+:root[data-theme="high-contrast"] .tienda-page .shadow-red-600\/20 {
+  box-shadow: 0 10px 15px -3px rgba(255, 193, 7, 0.2), 0 4px 6px -4px rgba(255, 193, 7, 0.2) !important;
+}
+
+/* ----------------------------------------------------------------
+   FOOTER — High-Contrast overrides (red → gold)
+   ---------------------------------------------------------------- */
+
+/* Título "Eurielec" */
+:root[data-theme="high-contrast"] .site-footer .text-red-600 {
+  color: #FFC107 !important;
+}
+
+/* Glow de fondo */
+:root[data-theme="high-contrast"] .site-footer .bg-red-600\/5 {
+  background-color: rgba(255, 193, 7, 0.05) !important;
+}
+
+/* Iconos sociales hover */
+:root[data-theme="high-contrast"] .site-footer .hover\:bg-red-600:hover {
+  background-color: #FFC107 !important;
+  color: #000 !important;
+}
+
+/* Links de navegación hover */
+:root[data-theme="high-contrast"] .site-footer .hover\:text-red-500:hover {
+  color: #FFC107 !important;
+}
+
 /* Tailwind v4 theme tokens */
 @theme {
   --font-sans: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
