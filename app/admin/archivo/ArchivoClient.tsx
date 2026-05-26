@@ -53,7 +53,7 @@ export default function ArchivoClient({ initialDocuments }: { initialDocuments: 
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Formulario de Subida */}
       <div className="lg:col-span-1">
-        <div className="bg-neutral-900 border border-white/5 rounded-3xl p-8 sticky top-24">
+        <div className="border border-white/10 p-8 sticky top-24 font-sans">
           <div className="flex items-center gap-3 mb-8">
             <Plus className="w-5 h-5 text-red-600" />
             <h2 className="text-xl font-black text-white uppercase tracking-tighter">Añadir Documento</h2>
@@ -143,7 +143,7 @@ export default function ArchivoClient({ initialDocuments }: { initialDocuments: 
 
       {/* Lista de Documentos */}
       <div className="lg:col-span-2">
-        <div className="bg-neutral-900 border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+        <div className="border border-white/10 overflow-hidden font-sans">
           <div className="p-8 border-b border-white/5 bg-black/20 flex justify-between items-center">
              <div className="flex items-center gap-3">
               <FileText className="w-5 h-5 text-red-600" />

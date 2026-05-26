@@ -20,118 +20,118 @@ export default async function UsersManagement() {
   });
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 font-sans">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <header className="border-b border-white/10 pb-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
         <div>
-          <h1 className="text-4xl font-bold font-sans text-white tracking-tight">Gestión de Usuarios</h1>
-          <p className="text-gray-400 mt-2 text-lg">Administra los miembros de la asociación Eurielec.</p>
+          <h1 className="text-5xl md:text-7xl font-black text-red-600 uppercase tracking-tighter italic leading-none">USUARIOS</h1>
+          <p className="text-gray-400 mt-4 text-sm font-black uppercase tracking-[0.2em]">Administra los miembros de Eurielec</p>
         </div>
         
         {session?.role === 'ADMIN' && (
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-4">
             <ResetMembershipButton />
             <CreateUserButton />
           </div>
         )}
-      </div>
+      </header>
 
       {/* Table Container */}
-      <div className="bg-neutral-900/40 backdrop-blur-xl rounded-3xl border border-white/5 shadow-2xl overflow-hidden flex flex-col">
+      <div className="border border-white/10 flex flex-col">
         {/* Table Toolbar */}
-        <div className="p-6 border-b border-white/5 bg-black/20 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="relative w-full sm:max-w-xs">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+        <div className="p-8 border-b border-white/10 bg-transparent flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="relative w-full sm:max-w-md">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input 
               type="text" 
-              placeholder="Buscar socios..." 
-              className="w-full bg-black/50 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white focus:outline-none focus:ring-2 focus:ring-orange-500/50 transition-all placeholder:text-gray-600"
+              placeholder="BUSCAR SOCIOS..." 
+              className="w-full bg-white/5 border border-white/10 rounded-none py-3 pl-12 pr-4 text-xs font-black uppercase tracking-widest text-white focus:outline-none focus:ring-1 focus:ring-red-600 transition-all placeholder:text-gray-600"
             />
           </div>
-          <div className="text-sm font-medium text-gray-400">
-            Total: <span className="text-white font-bold">{users.length}</span> miembros
+          <div className="text-xs font-black tracking-[0.2em] uppercase text-gray-500">
+            TOTAL: <span className="text-white text-lg">{users.length}</span>
           </div>
         </div>
 
         {/* The Table */}
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="bg-black/40 text-gray-400 uppercase text-xs tracking-wider">
+          <table className="w-full text-left whitespace-nowrap">
+            <thead className="bg-white/5 text-gray-500 uppercase text-[10px] font-black tracking-[0.2em] border-b border-white/10">
               <tr>
-                <th className="px-8 py-5 font-semibold">Miembro</th>
-                <th className="px-8 py-5 font-semibold">Rol</th>
-                <th className="px-8 py-5 font-semibold">Cuota Socio</th>
-                <th className="px-8 py-5 font-semibold">Fecha de Ingreso</th>
-                <th className="px-8 py-5 font-semibold text-right">Acciones</th>
+                <th className="px-8 py-6">Miembro</th>
+                <th className="px-8 py-6">Rol</th>
+                <th className="px-8 py-6">Cuota Socio</th>
+                <th className="px-8 py-6">Ingreso</th>
+                <th className="px-8 py-6 text-right">Acciones</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-white/5 bg-transparent text-sm">
               {users.map((user) => (
-                <tr key={user.id} className="hover:bg-white/[0.02] transition-colors group">
-                  <td className="px-8 py-5">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                <tr key={user.id} className="hover:bg-white/5 transition-colors group">
+                  <td className="px-8 py-6">
+                    <div className="flex items-center gap-6">
+                      <div className={`w-12 h-12 flex items-center justify-center shrink-0 border border-white/10 ${
                         user.role === 'ADMIN' 
-                          ? 'bg-gradient-to-tr from-purple-500 to-pink-500 shadow-purple-500/20' 
+                          ? 'bg-red-600/10 text-red-500' 
                           : user.role === 'VOCAL'
-                            ? 'bg-gradient-to-tr from-amber-500 to-orange-500 shadow-amber-500/20'
+                            ? 'bg-orange-500/10 text-orange-500'
                             : user.role === 'ALUMNI'
-                              ? 'bg-gradient-to-tr from-emerald-500 to-teal-500 shadow-emerald-500/20'
+                              ? 'bg-emerald-500/10 text-emerald-500'
                               : user.role === 'GUEST'
-                                ? 'bg-gradient-to-tr from-gray-500 to-slate-500 shadow-gray-500/20'
-                                : 'bg-gradient-to-tr from-blue-500 to-cyan-500 shadow-blue-500/20'
-                      } shadow-lg`}>
-                        {user.role === 'ADMIN' || user.role === 'VOCAL' ? <Shield className="w-5 h-5 text-white" /> : <User className="w-5 h-5 text-white" />}
+                                ? 'bg-gray-500/10 text-gray-400'
+                                : 'bg-blue-500/10 text-blue-500'
+                      }`}>
+                        {user.role === 'ADMIN' || user.role === 'VOCAL' ? <Shield className="w-6 h-6" strokeWidth={1.5} /> : <User className="w-6 h-6" strokeWidth={1.5} />}
                       </div>
                       <div>
-                        <div className="font-semibold text-white">{user.name || 'Sin Nombre'}</div>
-                        <div className="text-gray-500 text-xs mt-0.5">{user.email}</div>
+                        <div className="font-black text-white uppercase tracking-widest text-xs">{user.name || 'SIN NOMBRE'}</div>
+                        <div className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mt-1">{user.email}</div>
                       </div>
                     </div>
                   </td>
-                  <td className="px-8 py-5">
-                    <div className="flex flex-col gap-1 items-start">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide ${
+                  <td className="px-8 py-6">
+                    <div className="flex flex-col gap-2 items-start">
+                      <span className={`inline-flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] border ${
                         user.role === 'ADMIN' 
-                          ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' 
+                          ? 'bg-red-600/10 text-red-500 border-red-600/30' 
                           : user.role === 'VOCAL'
-                            ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                            ? 'bg-orange-500/10 text-orange-500 border-orange-500/30'
                             : user.role === 'ALUMNI'
-                              ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                              ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/30'
                               : user.role === 'GUEST'
-                                ? 'bg-gray-500/10 text-gray-400 border border-gray-500/20'
-                                : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                                ? 'bg-transparent text-gray-500 border-white/10'
+                                : 'bg-blue-500/10 text-blue-500 border-blue-500/30'
                       }`}>
                         {user.role === 'ADMIN' ? 'ADMINISTRADOR' : user.role === 'VOCAL' ? 'VOCAL' : user.role === 'ALUMNI' ? 'ALUMNI' : user.role === 'GUEST' ? 'INVITADO (PDTE)' : 'SOCIO'}
                       </span>
                       {user.role === 'VOCAL' && user.vocalia && (
-                        <span className="text-[10px] uppercase font-bold text-amber-500/70 tracking-widest pl-1">
-                          Vocalía: {user.vocalia}
+                        <span className="text-[10px] uppercase font-black text-orange-500/70 tracking-widest">
+                          VOCALÍA: {user.vocalia}
                         </span>
                       )}
                     </div>
                   </td>
-                  <td className="px-8 py-5">
+                  <td className="px-8 py-6">
                     {user.membershipPaymentStatus === 'PAID' || user.membershipPaymentStatus === 'PAID_CARD' || user.membershipPaymentStatus === 'PAID_CASH' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      <span className="inline-flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 border border-emerald-500/30 bg-emerald-500/5">
                         PAGADA
                       </span>
                     ) : user.membershipPaymentStatus === 'PENDING_CASH' ? (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                      <span className="inline-flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 border border-orange-500/30 bg-orange-500/5">
                         Efectivo Pdte
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-red-500/10 text-red-400 border border-red-500/20">
+                      <span className="inline-flex items-center px-4 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-red-500 border border-red-500/30 bg-red-500/5">
                         NO PAGADA
                       </span>
                     )}
                   </td>
-                  <td className="px-8 py-5 text-gray-400 tabular-nums">
+                  <td className="px-8 py-6 text-gray-400 font-bold text-[10px] uppercase tracking-widest">
                     {new Date(user.createdAt).toLocaleDateString('es-ES', { 
-                      year: 'numeric', month: 'long', day: 'numeric' 
+                      year: 'numeric', month: 'short', day: 'numeric' 
                     })}
                   </td>
-                  <td className="px-8 py-5 align-middle">
+                  <td className="px-8 py-6 align-middle text-right">
                     <UserActions 
                       user={user} 
                       isSelf={session?.userId === user.id} 
@@ -141,7 +141,7 @@ export default async function UsersManagement() {
               ))}
               {users.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="px-8 py-12 text-center text-gray-500">
+                  <td colSpan={5} className="px-8 py-16 text-center text-gray-500 font-black uppercase tracking-[0.2em] text-xs">
                     No hay usuarios registrados en el sistema.
                   </td>
                 </tr>

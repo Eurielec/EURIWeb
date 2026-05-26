@@ -428,7 +428,7 @@ export default function RankingClient({ initialUsers, initialPriorityLists = [] 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
         {/* Leaderboard */}
         <div className="xl:col-span-2">
-          <div className="bg-neutral-900 border border-white/5 rounded-3xl shadow-xl overflow-hidden">
+          <div className="border border-white/10 overflow-hidden font-sans">
             <div className="p-6 border-b border-white/5 bg-black/40 flex items-center gap-4">
               <Award className="w-6 h-6 text-emerald-500" />
               <h2 className="text-xl font-black text-white uppercase italic tracking-tighter">Ranking Global</h2>
@@ -498,7 +498,7 @@ export default function RankingClient({ initialUsers, initialPriorityLists = [] 
 
         {/* IMW Calculator Settings */}
         <div className="xl:col-span-1">
-          <div className="bg-neutral-900 border border-emerald-500/20 rounded-3xl p-8 sticky top-8 shadow-2xl shadow-emerald-500/5">
+          <div className="border border-emerald-500/20 p-8 sticky top-8 font-sans">
             <div className="flex items-start gap-3 mb-6">
               <Calculator className="w-6 h-6 text-emerald-500 shrink-0 mt-1" />
               <h2 className="text-xl font-black text-white uppercase italic tracking-tighter break-words min-w-0 w-full">Calculadora IMW</h2>
@@ -581,7 +581,7 @@ export default function RankingClient({ initialUsers, initialPriorityLists = [] 
       </div>
 
       {/* Generated Results */}
-      <div className="bg-neutral-900 border border-white/5 p-10 rounded-3xl">
+      <div className="border border-white/10 p-10 font-sans">
         <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-6">
           <div>
             <h2 className="text-3xl font-black uppercase tracking-tighter italic text-white">Resumen de Precios IMW</h2>
@@ -649,7 +649,7 @@ export default function RankingClient({ initialUsers, initialPriorityLists = [] 
         
         {/* CP Generator Form */}
         <div className="xl:col-span-2">
-          <div className="bg-neutral-900 border border-blue-500/20 rounded-3xl p-8 shadow-2xl shadow-blue-500/5">
+          <div className="border border-blue-500/20 p-8 font-sans">
             <div className="flex items-center gap-3 mb-8 border-b border-white/5 pb-6">
               <FileText className="w-8 h-8 text-blue-500" />
               <div>
@@ -746,7 +746,7 @@ export default function RankingClient({ initialUsers, initialPriorityLists = [] 
 
         {/* The Drawer (Cajón) */}
         <div className="xl:col-span-1">
-          <div className="bg-neutral-900 border border-white/5 rounded-3xl p-6 h-full shadow-xl">
+          <div className="border border-white/10 p-6 h-full font-sans">
             <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
               <h3 className="text-lg font-black text-white uppercase tracking-tighter italic">Cajón de Listas</h3>
               <span className="bg-white/10 text-gray-300 text-xs px-2 py-1 rounded-md font-bold">{priorityLists.length}</span>

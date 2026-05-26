@@ -22,7 +22,7 @@ export default async function AdminEventsPage() {
         
         {/* Formulario Crear Evento */}
         <div className="xl:col-span-1">
-          <div className="bg-neutral-900/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-2xl p-8 sticky top-8">
+          <div className="border border-white/10 p-8 sticky top-8 font-sans">
             <div className="flex items-center gap-4 mb-8">
               <div className="p-3 bg-red-600 rounded-xl shadow-lg shadow-red-600/20">
                 <Plus className="w-5 h-5 text-white" />
@@ -46,7 +46,7 @@ export default async function AdminEventsPage() {
           ) : (
             <div className="grid gap-6">
               {events.map(event => (
-                <div key={event.id} className="flex flex-col sm:flex-row items-center gap-8 p-8 bg-neutral-900/40 backdrop-blur-xl border border-white/5 rounded-[2.5rem] hover:bg-white/[0.02] transition-colors group shadow-lg">
+                <div key={event.id} className="border border-white/10 p-8 flex flex-col sm:flex-row items-center gap-8 hover:bg-white/5 transition-colors group font-sans">
                   <div className={`w-20 h-20 rounded-2xl flex flex-col items-center justify-center shrink-0 shadow-lg ${event.color || 'bg-red-600'} text-white`}>
                     <span className="text-[10px] uppercase font-black tracking-widest opacity-80">{event.date.toLocaleDateString('es-ES', { month: 'short' })}</span>
                     <span className="font-black text-3xl leading-none">{event.date.getDate()}</span>

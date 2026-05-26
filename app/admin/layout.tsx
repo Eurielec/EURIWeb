@@ -24,12 +24,11 @@ export default async function AdminLayout({
     <div className="panel-wrapper h-screen flex flex-col md:flex-row bg-black text-white font-sans overflow-hidden selection:bg-red-500/30 pt-16">
       <Sidebar session={session} />
 
-      <main className="flex-1 overflow-y-auto w-full bg-[#0a0a0a] relative">
+      <main className="flex-1 overflow-y-auto w-full bg-black relative">
         {/* Glow Effects - Red Theme */}
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-red-900/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/5 blur-[120px] pointer-events-none" />
         
-        <div className="p-8 md:p-12 max-w-7xl mx-auto relative z-10 min-h-full">
+        <div className="p-6 sm:p-10 md:p-16 w-full max-w-[1600px] mx-auto relative z-10 min-h-full">
           {children}
         </div>
       </main>

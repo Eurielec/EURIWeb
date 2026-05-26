@@ -84,7 +84,7 @@ export default function AdminPollsClient({ initialPolls }: { initialPolls: any[]
       <div className="flex justify-end">
         <button
           onClick={() => setShowCreateForm(true)}
-          className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-2xl transition-all font-black text-[10px] uppercase tracking-widest shadow-lg shadow-red-600/20"
+          className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white transition-all font-black text-[10px] uppercase tracking-widest"
         >
           <Plus className="w-4 h-4" />
           Nueva Votación
@@ -92,7 +92,7 @@ export default function AdminPollsClient({ initialPolls }: { initialPolls: any[]
       </div>
 
       {showCreateForm && (
-        <form onSubmit={handleCreate} className="bg-neutral-900 border border-white/5 p-6 rounded-3xl space-y-6">
+        <form onSubmit={handleCreate} className="border border-white/10 p-6 space-y-6 font-sans">
           <div className="flex justify-between items-center mb-4">
             <h3 className="text-xl font-black text-white italic uppercase">Crear Votación</h3>
             <button type="button" onClick={() => setShowCreateForm(false)} className="text-gray-500 hover:text-white">
@@ -131,7 +131,7 @@ export default function AdminPollsClient({ initialPolls }: { initialPolls: any[]
           const percent = (val: number) => stats.totalVotes > 0 ? Math.round((val / stats.totalVotes) * 100) : 0;
           
           return (
-            <div key={poll.id} className={`p-6 rounded-3xl border ${poll.isActive ? 'bg-red-600/5 border-red-600/20' : 'bg-neutral-900 border-white/5'}`}>
+            <div key={poll.id} className={`p-6 border ${poll.isActive ? 'bg-red-600/5 border-red-600/20' : 'border-white/10'}`}>
               <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
                 <div>
                   <div className="flex items-center gap-3 mb-1">

@@ -30,15 +30,15 @@ export default function Sidebar({ session }: { session: { userId: string; role: 
   });
 
   return (
-    <aside className="w-full md:w-64 bg-neutral-900 border-b md:border-b-0 md:border-r border-white/10 p-6 flex flex-row md:flex-col shrink-0 relative z-20 font-sans items-center md:items-start justify-between md:justify-start gap-4">
+    <aside className="w-full md:w-64 bg-black border-b md:border-b-0 md:border-r border-white/10 p-6 flex flex-row md:flex-col shrink-0 relative z-20 font-sans items-center md:items-start justify-between md:justify-start gap-4">
       <div className="md:mb-10 shrink-0">
-        <div className="text-xl md:text-2xl font-black text-red-600 uppercase tracking-tighter italic truncate max-w-full">
+        <div className="text-xl md:text-3xl font-black text-red-600 uppercase tracking-tighter italic truncate max-w-full">
           Eurielec
         </div>
-        <p className="hidden md:block text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mt-1">{t.admin.sidebar.controlPanel}</p>
+        <p className="hidden md:block text-[10px] text-gray-500 font-black uppercase tracking-[0.3em] mt-1">{t.admin.sidebar.controlPanel}</p>
       </div>
       
-      <nav className="flex-1 flex md:flex-col gap-2 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none">
+      <nav className="flex-1 flex md:flex-col gap-1 w-full overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-none">
         {navLinks.map((link) => {
           const isActive = pathname === link.href || (pathname.startsWith(link.href) && link.href !== '/admin');
           const Icon = link.icon;
@@ -47,13 +47,13 @@ export default function Sidebar({ session }: { session: { userId: string; role: 
             <Link 
               key={link.name} 
               href={link.href} 
-              className={`flex items-center gap-2 md:gap-3 px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all font-black text-[10px] md:text-xs uppercase tracking-widest shrink-0 ${
+              className={`flex items-center gap-2 md:gap-4 px-4 py-3 md:py-4 transition-colors font-black text-[10px] md:text-xs uppercase tracking-[0.2em] shrink-0 border-l-2 ${
                 isActive 
-                  ? 'bg-red-600/10 text-red-600 ring-1 ring-red-600/20' 
-                  : 'text-gray-400 hover:text-red-500 hover:bg-red-500/5'
+                  ? 'border-red-600 bg-red-600/5 text-red-600' 
+                  : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5 hover:border-white/20'
               }`}
             >
-              <Icon className={`w-3.5 h-3.5 md:w-4 md:h-4 ${isActive ? 'text-red-600' : 'text-gray-400'}`} />
+              <Icon className={`w-4 h-4 md:w-5 md:h-5 ${isActive ? 'text-red-600' : 'text-gray-500'}`} strokeWidth={1.5} />
               <span className="hidden sm:inline-block">{link.name}</span>
             </Link>
           );
@@ -61,20 +61,20 @@ export default function Sidebar({ session }: { session: { userId: string; role: 
       </nav>
       
       {/* Footer Profile - Hidden on very small screens to save space */}
-      <div className="hidden sm:flex md:flex-col md:mt-auto pt-4 md:pt-6 md:border-t border-white/10 items-center md:items-stretch gap-4">
-        <div className="hidden md:flex items-center gap-3 mb-6 px-2">
-          <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center shrink-0 shadow-lg shadow-red-600/20">
-            <UserCircle className="w-6 h-6 text-white" />
+      <div className="hidden sm:flex md:flex-col md:mt-auto pt-6 md:border-t border-white/10 w-full gap-4">
+        <div className="hidden md:flex items-center gap-4 mb-4 px-2">
+          <div className="w-12 h-12 bg-red-600 flex items-center justify-center shrink-0">
+            <UserCircle className="w-8 h-8 text-black" strokeWidth={1.5} />
           </div>
           <div className="overflow-hidden">
-            <p className="text-sm font-black text-white truncate uppercase tracking-tight">{session?.userId}</p>
-            <p className="text-[10px] text-red-600 font-black uppercase tracking-widest">{session?.role}</p>
+            <p className="text-sm font-black text-white truncate uppercase tracking-tighter">{session?.userId}</p>
+            <p className="text-[10px] text-gray-500 font-black uppercase tracking-widest mt-0.5">{session?.role}</p>
           </div>
         </div>
         
-        <form action={logoutAction}>
-          <button type="submit" className="flex items-center justify-center gap-2 p-2.5 md:w-full md:py-2.5 md:px-4 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all font-medium border border-red-500/20 text-xs">
-            <LogOut className="w-4 h-4" />
+        <form action={logoutAction} className="w-full">
+          <button type="submit" className="flex items-center justify-center gap-3 w-full py-4 border border-white/10 hover:bg-white/5 text-gray-400 hover:text-white transition-colors font-black uppercase tracking-[0.2em] text-[10px]">
+            <LogOut className="w-4 h-4" strokeWidth={1.5} />
             <span className="hidden md:inline">{t.admin.sidebar.logout}</span>
           </button>
         </form>

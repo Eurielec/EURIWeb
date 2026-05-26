@@ -96,7 +96,7 @@ export default function ProjectForm({ users, vocalias }: ProjectFormProps) {
     <form 
       ref={formRef}
       onSubmit={handleSubmit} 
-      className="bg-neutral-900 border border-white/10 rounded-2xl p-6 space-y-6 relative overflow-hidden"
+      className="border border-white/10 p-6 space-y-6 relative overflow-hidden font-sans"
     >
       {/* Banner de Éxito */}
       {showSuccess && (

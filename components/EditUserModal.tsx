@@ -34,56 +34,56 @@ export default function EditUserModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-6 font-sans">
+    <div className="fixed inset-0 md:left-64 z-[100] flex items-center justify-center p-3 md:p-4 font-sans">
       <div 
         className="absolute inset-0 bg-black/95 backdrop-blur-xl animate-in fade-in cursor-pointer"
         onClick={onClose}
       />
       
-      <div className="relative w-full h-full max-w-[98vw] max-h-[98dvh] bg-neutral-900 border border-white/5 rounded-[2.5rem] shadow-2xl animate-in fade-in zoom-in-95 duration-300 overflow-hidden flex flex-col">
+      <div className="relative w-full h-full max-w-[98vw] max-h-[96dvh] bg-neutral-900 border border-white/5 shadow-2xl animate-in fade-in zoom-in-95 duration-300 overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="flex justify-between items-center p-6 md:p-8 border-b border-white/5 bg-black/40">
-          <div className="flex items-center gap-6">
-            <div className="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center shadow-lg shadow-red-600/20">
-              <User className="text-white w-7 h-7" />
+        <div className="flex justify-between items-center px-6 py-4 border-b border-white/5 bg-black/40 shrink-0">
+          <div className="flex items-center gap-4">
+            <div className="w-9 h-9 bg-red-600 flex items-center justify-center">
+              <User className="text-white w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-2xl font-black text-white uppercase tracking-tighter italic">
+              <h2 className="text-base font-black text-white uppercase tracking-tighter italic">
                 {isAdmin ? 'Gestión de' : (mode === 'logistics' ? 'Logística de' : 'Mi Perfil')} <span className="text-red-600">Socio</span>
               </h2>
-              <p className="text-gray-600 text-[14px] font-black uppercase tracking-[0.2em] mt-1 opacity-60">
+              <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] opacity-60">
                 System Reference: {user.id.substring(0, 8)}
               </p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-3 bg-white/5 hover:bg-red-600 hover:text-white rounded-2xl text-gray-500 transition-all"
+            className="p-2 bg-white/5 hover:bg-red-600 hover:text-white text-gray-500 transition-all"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Form Body */}
-        <div className="p-6 md:p-10 overflow-y-auto custom-scrollbar flex-1 bg-neutral-900/40 backdrop-blur-3xl">
-          <form id="edit-user-form" onSubmit={handleSubmit} className="space-y-10">
+        <div className="px-6 py-4 overflow-y-auto custom-scrollbar flex-1 bg-neutral-900/40">
+          <form id="edit-user-form" onSubmit={handleSubmit} className="space-y-5">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Información Personal */}
-              <div className="space-y-8">
+              <div className="space-y-4">
                 {(isAdmin && mode === 'all') && (
-                  <div className="space-y-6">
-                    <h3 className="text-red-600 font-black text-[14px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-2">Privilegios</h3>
-                    <div className="space-y-4 bg-red-600/5 p-6 rounded-2xl border border-red-600/10">
+                  <div className="space-y-3">
+                    <h3 className="text-red-600 font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-1.5">Privilegios</h3>
+                    <div className="space-y-3 bg-red-600/5 p-4 border border-red-600/10">
                       <div className="relative">
-                        <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Rango del Miembro</label>
+                        <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Rango del Miembro</label>
                         <div className="relative">
-                          <ShieldAlert className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-red-600" />
+                          <ShieldAlert className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-red-600" />
                           <select 
                             name="role" 
                             value={selectedRole}
                             onChange={(e) => setSelectedRole(e.target.value)}
-                            className="w-full bg-black/60 border border-white/5 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 appearance-none font-bold text-lg"
+                            className="w-full bg-black/60 border border-white/5 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 appearance-none font-bold text-sm"
                           >
                             <option value="GUEST">Invitado</option>
                             <option value="USER">Socio</option>
@@ -96,12 +96,12 @@ export default function EditUserModal({
 
                       {selectedRole === 'VOCAL' && (
                         <div className="relative animate-in slide-in-from-top-2">
-                          <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Vocalía</label>
+                          <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Vocalía</label>
                           <select 
                             name="vocalia" 
                             defaultValue={user.vocalia || ''}
                             required
-                            className="w-full bg-black/60 border border-white/5 rounded-xl py-5 px-6 text-white focus:outline-none focus:ring-2 focus:ring-red-600 appearance-none font-bold text-lg"
+                            className="w-full bg-black/60 border border-white/5 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 appearance-none font-bold text-sm"
                           >
                             <option value="">Selecciona Vocalía...</option>
                             <option value="it">IT</option>
@@ -123,29 +123,29 @@ export default function EditUserModal({
 
                 {(mode === 'all' || mode === 'personal') && (
                   <>
-                    <h3 className="text-red-600 font-black text-[14px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-2 text-right">Ficha Personal</h3>
+                    <h3 className="text-red-600 font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-1.5 text-right">Ficha Personal</h3>
                     
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Nombre Completo</label>
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Nombre Completo</label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                        <input type="text" name="name" defaultValue={user.name || ''} required className="w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                        <input type="text" name="name" defaultValue={user.name || ''} required className="w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                       </div>
                     </div>
 
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Correo Eurielec</label>
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Correo Eurielec</label>
                       <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                        <input type="email" name="email" defaultValue={user.email} required readOnly={!isAdmin} className={`w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg ${!isAdmin && 'opacity-50 grayscale cursor-not-allowed'}`} />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                        <input type="email" name="email" defaultValue={user.email} required readOnly={!isAdmin} className={`w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm ${!isAdmin && 'opacity-50 grayscale cursor-not-allowed'}`} />
                       </div>
                     </div>
 
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Terminal de Contacto</label>
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Terminal de Contacto</label>
                       <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                        <input type="tel" name="phone" defaultValue={user.phone || ''} required className="w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                        <input type="tel" name="phone" defaultValue={user.phone || ''} required className="w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                       </div>
                     </div>
                   </>
@@ -153,37 +153,37 @@ export default function EditUserModal({
               </div>
 
               {/* Localización y/o Logística */}
-              <div className="space-y-8">
+              <div className="space-y-4">
                 {(mode === 'all' || mode === 'personal') && (
                   <>
                 
                 <div className="relative">
-                  <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Dirección Residencial</label>
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Dirección Residencial</label>
                   <div className="relative">
-                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                    <input type="text" name="address" defaultValue={user.address || ''} required className="w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                    <input type="text" name="address" defaultValue={user.address || ''} required className="w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                   </div>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="flex gap-3">
                   <div className="relative flex-1">
-                    <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Núcleo Urbano</label>
+                    <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Núcleo Urbano</label>
                     <div className="relative">
-                      <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                      <input type="text" name="city" defaultValue={user.city || ''} required className="w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-3 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                      <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
+                      <input type="text" name="city" defaultValue={user.city || ''} required className="w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-3 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                     </div>
                   </div>
                   <div className="relative w-1/3">
-                    <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">C.P.</label>
-                    <input type="text" name="zipCode" defaultValue={user.zipCode || ''} required className="w-full bg-black/40 border border-white/10 rounded-xl py-5 px-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-center text-lg" />
+                    <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">C.P.</label>
+                    <input type="text" name="zipCode" defaultValue={user.zipCode || ''} required className="w-full bg-black/40 border border-white/10 py-2.5 px-3 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-center text-sm" />
                   </div>
                 </div>
 
                 <div className="relative">
-                  <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-3 ml-1">Provincia</label>
-                  <div className="space-y-4">
+                  <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Provincia</label>
+                  <div className="space-y-2">
                     <div className="relative">
-                      <Map className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                      <Map className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/20" />
                       <select 
                         name="province_select" 
                         required 
@@ -193,7 +193,7 @@ export default function EditUserModal({
                           const customInput = document.getElementById('edit-custom-province-container');
                           if (customInput) customInput.style.display = val === 'Otro' ? 'block' : 'none';
                         }}
-                        className="w-full bg-black/40 border border-white/10 rounded-xl py-5 pl-14 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-red-600 appearance-none font-black text-lg"
+                        className="w-full bg-black/40 border border-white/10 py-2.5 pl-10 pr-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 appearance-none font-bold text-sm"
                       >
                         <option value="">Selecciona...</option>
                         <option value="Álava">Álava</option>
@@ -262,7 +262,7 @@ export default function EditUserModal({
                         name="province_custom" 
                         defaultValue={user.province}
                         placeholder="Escribe tu provincia..." 
-                        className="w-full bg-black/40 border border-white/10 rounded-xl py-5 px-6 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" 
+                        className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" 
                       />
                     </div>
                   </div>
@@ -271,27 +271,28 @@ export default function EditUserModal({
                 )}
 
                 {(mode === 'all' || mode === 'logistics') && (
-                  <div className="space-y-6 pt-4">
-                    <h3 className="text-red-600 font-black text-[14px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-2">Vectores Logísticos</h3>
+                  <div className="space-y-3 pt-2">
+                    <h3 className="text-red-600 font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-1.5">Vectores Logísticos</h3>
                     
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Preferencias Alimentarias</label>
-                      <input type="text" name="dietary" defaultValue={user.dietary || ''} placeholder="Ej: Vegano, Vegetariano, Omnívoro..." className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Preferencias Alimentarias</label>
+                      <input type="text" name="dietary" defaultValue={user.dietary || ''} placeholder="Ej: Vegano, Vegetariano, Omnívoro..." className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                     </div>
 
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Alergias e Intolerancias</label>
-                      <input type="text" name="allergies" defaultValue={user.allergies || ''} placeholder="Ej: Gluten, Lactosa, Ninguna..." className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Alergias e Intolerancias</label>
+                      <input type="text" name="allergies" defaultValue={user.allergies || ''} placeholder="Ej: Gluten, Lactosa, Ninguna..." className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                     </div>
 
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Bebida Frecuente (Eventos)</label>
-                      <input type="text" name="alcohol" defaultValue={user.alcohol || ''} placeholder="Ej: Cerveza, Refresco, Agua..." className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Bebida Frecuente (Eventos)</label>
+                      <input type="text" name="alcohol" defaultValue={user.alcohol || ''} placeholder="Ej: Cerveza, Refresco, Agua..." className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                     </div>
-                  <div className="grid grid-cols-2 gap-4">
+
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Talla</label>
-                      <select name="tShirtSize" defaultValue={user.tShirtSize || ''} className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg">
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Talla</label>
+                      <select name="tShirtSize" defaultValue={user.tShirtSize || ''} className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm">
                         <option value="">N/A</option>
                         <option value="S">S</option>
                         <option value="M">M</option>
@@ -300,8 +301,8 @@ export default function EditUserModal({
                       </select>
                     </div>
                     <div className="relative">
-                      <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Vehículo</label>
-                      <select name="hasCar" defaultValue={user.hasCar ? "true" : "false"} className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg">
+                      <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Vehículo</label>
+                      <select name="hasCar" defaultValue={user.hasCar ? "true" : "false"} className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm">
                         <option value="false">No</option>
                         <option value="true">Sí</option>
                       </select>
@@ -311,12 +312,12 @@ export default function EditUserModal({
                 )}
 
                 {(mode === 'all' || mode === 'personal') && (
-                  <div className="space-y-6">
-                    <h3 className="text-red-600 font-black text-[14px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-2">Vectores Académicos</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <h3 className="text-red-600 font-black text-[10px] uppercase tracking-[0.2em] italic border-b border-white/5 pb-1.5">Vectores Académicos</h3>
+                    <div className="grid grid-cols-2 gap-3">
                       <div className="relative">
-                        <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Año Académico</label>
-                        <select name="academicYear" defaultValue={user.academicYear || '1'} required className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg">
+                        <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Año Académico</label>
+                        <select name="academicYear" defaultValue={user.academicYear || '1'} required className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm">
                           <option value="1">1º Grado</option>
                           <option value="2">2º Grado</option>
                           <option value="3">3º Grado</option>
@@ -326,8 +327,8 @@ export default function EditUserModal({
                         </select>
                       </div>
                       <div className="relative">
-                        <label className="block text-[14px] font-black text-gray-500 uppercase tracking-widest mb-2 ml-1">Universidad</label>
-                        <input type="text" name="university" defaultValue={user.university || 'UPM'} required className="w-full bg-black/40 border border-white/10 rounded-xl py-4 px-5 text-white focus:outline-none focus:ring-2 focus:ring-red-600 font-black text-lg" />
+                        <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5 ml-1">Universidad</label>
+                        <input type="text" name="university" defaultValue={user.university || 'UPM'} required className="w-full bg-black/40 border border-white/10 py-2.5 px-4 text-white focus:outline-none focus:ring-1 focus:ring-red-600 font-bold text-sm" />
                       </div>
                     </div>
                   </div>
@@ -336,7 +337,7 @@ export default function EditUserModal({
             </div>
 
             {error && (
-              <div className="p-6 bg-red-600/10 border border-red-600/20 rounded-2xl text-red-600 text-xs font-black uppercase tracking-widest text-center animate-bounce">
+              <div className="p-4 bg-red-600/10 border border-red-600/20 text-red-600 text-xs font-black uppercase tracking-widest text-center">
                 ADVERTENCIA: {error}
               </div>
             )}
@@ -344,12 +345,12 @@ export default function EditUserModal({
         </div>
 
         {/* Footer */}
-        <div className="p-8 border-t border-white/5 bg-black/60 flex justify-end gap-6 shrink-0">
+        <div className="px-6 py-4 border-t border-white/5 bg-black/60 flex justify-end gap-4 shrink-0">
           <button
             type="button"
             onClick={onClose}
             disabled={isPending}
-            className="px-10 py-5 rounded-2xl text-[14px] font-black uppercase tracking-widest text-gray-600 hover:text-white transition-colors"
+            className="px-6 py-3 text-xs font-black uppercase tracking-widest text-gray-600 hover:text-white transition-colors"
           >
             Abortar
           </button>
@@ -357,7 +358,7 @@ export default function EditUserModal({
             type="submit"
             form="edit-user-form"
             disabled={isPending}
-            className="px-14 py-5 bg-red-600 hover:bg-red-700 text-white rounded-2xl text-[14px] font-black uppercase tracking-[0.2em] shadow-xl shadow-red-600/20 transition-all hover:-translate-y-1 active:translate-y-0 disabled:opacity-50"
+            className="px-10 py-3 bg-red-600 hover:bg-red-700 text-white text-xs font-black uppercase tracking-[0.2em] transition-all disabled:opacity-50"
           >
             {isPending ? 'Sincronizando...' : 'Publicar Cambios'}
           </button>

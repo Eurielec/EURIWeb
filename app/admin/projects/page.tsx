@@ -52,7 +52,7 @@ export default async function AdminProjectsPage() {
             <p className="text-white/40 col-span-2">No hay proyectos creados aún.</p>
           )}
           {projects.map(p => (
-             <div key={p.id} className="bg-black border border-white/10 rounded-2xl p-6">
+             <div key={p.id} className="border border-white/10 p-6 font-sans hover:bg-white/5 transition-colors">
                <h3 className="font-bold text-xl text-red-500 mb-1 leading-tight">{p.title}</h3>
                <p className="text-white/60 text-sm mb-4 line-clamp-2">{p.description}</p>
                

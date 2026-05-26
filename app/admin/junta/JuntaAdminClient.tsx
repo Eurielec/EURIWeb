@@ -166,7 +166,7 @@ export default function JuntaAdminClient({ initialMembers }: { initialMembers: J
         {members.sort((a,b) => a.order - b.order).map((member, index) => (
           <div 
             key={member.id}
-            className="bg-neutral-900/40 backdrop-blur-xl p-6 rounded-3xl border border-white/5 shadow-2xl group hover:border-red-600/30 transition-all duration-300"
+            className="p-6 border border-white/10 group hover:border-red-600/30 hover:bg-white/5 transition-all duration-300 font-sans"
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-16 h-16 rounded-2xl bg-red-600/10 border border-red-600/20 overflow-hidden flex items-center justify-center shrink-0">
@@ -226,7 +226,7 @@ export default function JuntaAdminClient({ initialMembers }: { initialMembers: J
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setIsModalOpen(false)} />
-          <div className="relative bg-neutral-900 border border-white/10 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+          <div className="relative bg-black border border-white/10 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-300 font-sans">
             <header className="p-6 border-b border-white/5 flex justify-between items-center">
               <h2 className="text-xl font-black text-white uppercase tracking-tighter italic">
                 {editingMember?.id ? 'Editar Miembro' : 'Nuevo Miembro'}
@@ -239,7 +239,7 @@ export default function JuntaAdminClient({ initialMembers }: { initialMembers: J
             <form onSubmit={handleSave} className="p-6 space-y-6">
               {/* Imagen */}
               <div className="flex flex-col items-center gap-4">
-                <div className="relative w-24 h-24 rounded-3xl bg-red-600/5 border-2 border-dashed border-red-600/20 overflow-hidden flex items-center justify-center group">
+                <div className="relative w-24 h-24 bg-red-600/5 border border-dashed border-red-600/20 overflow-hidden flex items-center justify-center group">
                   {editingMember?.imageUrl ? (
                     <img src={editingMember.imageUrl} className="w-full h-full object-cover" />
                   ) : (
