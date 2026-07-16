@@ -414,3 +414,167 @@ h3 { font-size: clamp(1.4rem, 2.5vw, 2.2rem); }
   fill: transparent;
   animation: drawChulapaStroke 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* ================================================================
+   PROJECTS PAGE — Theme-responsive styles
+   Default: dark (black bg, red/white text)
+   High-contrast: light (white bg, black/gold text)
+   ================================================================ */
+
+:root {
+  --projects-bg: #000;
+  --projects-text: #fff;
+  --projects-card-bg: rgba(0, 0, 0, 0.40);
+  --projects-card-border: rgba(255, 255, 255, 0.05);
+  --projects-card-hover-border: rgba(232, 22, 27, 0.30);
+  --projects-card-hover-glow: rgba(232, 22, 27, 0.10);
+  --projects-card-img-overlay: linear-gradient(to top, #000, rgba(0,0,0,0.2), transparent);
+  --projects-fade-bg: linear-gradient(to bottom,
+    rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.5) 8%, rgba(0,0,0,0.75) 20%,
+    rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.93) 65%, rgba(0,0,0,0.96) 100%);
+  --projects-hero-bg: rgba(0, 0, 0, 0.88);
+  --projects-hero-border: rgba(232, 22, 27, 0.3);
+  --projects-scroll-border: rgba(232, 22, 27, 0.5);
+  --projects-scroll-dot: #E8161B;
+  --projects-member-chip-bg: rgba(255, 255, 255, 0.05);
+  --projects-member-chip-border: rgba(255, 255, 255, 0.10);
+  --projects-member-avatar-bg: rgba(232, 22, 27, 0.20);
+  --projects-pdf-bg: #dc2626;
+  --projects-pdf-hover: #ef4444;
+  --projects-pdf-text: #fff;
+  --projects-pdf-shadow: rgba(220, 38, 38, 0.3);
+  --projects-pdf-shadow-hover: rgba(220, 38, 38, 0.5);
+  --projects-vocalia-line: linear-gradient(to right, rgba(232, 22, 27, 0.5), transparent);
+  --projects-expand-border: rgba(232, 22, 27, 0.20);
+  --projects-section-border: rgba(255, 255, 255, 0.10);
+}
+
+:root[data-theme="high-contrast"] {
+  --projects-bg: #000;
+  --projects-text: #fff;
+  --projects-card-bg: rgba(0, 0, 0, 0.50);
+  --projects-card-border: rgba(255, 255, 255, 0.08);
+  --projects-card-hover-border: rgba(255, 193, 7, 0.30);
+  --projects-card-hover-glow: rgba(255, 193, 7, 0.08);
+  --projects-card-img-overlay: linear-gradient(to top, #000, rgba(0,0,0,0.2), transparent);
+  --projects-fade-bg: linear-gradient(to bottom,
+    rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.5) 8%, rgba(0,0,0,0.75) 20%,
+    rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.93) 65%, rgba(0,0,0,0.96) 100%);
+  --projects-hero-bg: rgba(0, 0, 0, 0.88);
+  --projects-hero-border: rgba(255, 193, 7, 0.3);
+  --projects-scroll-border: rgba(255, 193, 7, 0.5);
+  --projects-scroll-dot: #FFC107;
+  --projects-member-chip-bg: rgba(255, 255, 255, 0.05);
+  --projects-member-chip-border: rgba(255, 255, 255, 0.10);
+  --projects-member-avatar-bg: rgba(255, 193, 7, 0.20);
+  --projects-pdf-bg: #FFC107;
+  --projects-pdf-hover: #eab308;
+  --projects-pdf-text: #000;
+  --projects-pdf-shadow: rgba(255, 193, 7, 0.3);
+  --projects-pdf-shadow-hover: rgba(255, 193, 7, 0.5);
+  --projects-vocalia-line: linear-gradient(to right, rgba(255, 193, 7, 0.5), transparent);
+  --projects-expand-border: rgba(255, 193, 7, 0.20);
+  --projects-section-border: rgba(255, 255, 255, 0.10);
+}
+
+/* --- Projects page base styles --- */
+.projects-page {
+  transition: background-color 0.5s ease;
+}
+
+/* Hero card */
+.projects-hero-card {
+  background: var(--projects-hero-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--projects-hero-border);
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+.projects-hero-label {
+  color: var(--text-brand);
+  border-color: var(--projects-scroll-border);
+}
+.projects-hero-title {
+  color: var(--text-brand);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  line-height: 1;
+}
+.projects-hero-subtitle {
+  color: var(--text-brand);
+  opacity: 0.8;
+}
+.projects-scroll-ring {
+  border-color: var(--projects-scroll-border);
+}
+.projects-scroll-dot {
+  background: var(--projects-scroll-dot);
+}
+
+/* Fade overlay */
+.projects-fade-overlay {
+  background: var(--projects-fade-bg);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: background 0.5s ease;
+}
+
+/* Project cards */
+.projects-card {
+  background: var(--projects-card-bg);
+  border: 1px solid var(--projects-card-border);
+  transition: all 0.5s ease;
+}
+.projects-card:hover {
+  border-color: var(--projects-card-hover-border);
+}
+.projects-card-hover-glow {
+  background: radial-gradient(ellipse at top left, var(--projects-card-hover-glow), transparent);
+}
+.projects-card-img-border {
+  border-bottom: 1px solid var(--projects-card-border);
+}
+.projects-card-img-overlay {
+  background: var(--projects-card-img-overlay);
+}
+
+/* Borders */
+.projects-card-border-top {
+  border-top: 1px solid var(--projects-section-border);
+}
+.projects-card-border-bottom {
+  border-bottom: 1px solid var(--projects-section-border);
+}
+
+/* Vocalia separator line */
+.projects-vocalia-line {
+  background: var(--projects-vocalia-line);
+}
+
+/* Expand section border */
+.projects-expand-border {
+  border-top: 1px solid var(--projects-expand-border);
+}
+
+/* Member chips */
+.projects-member-chip {
+  background: var(--projects-member-chip-bg);
+  border: 1px solid var(--projects-member-chip-border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.projects-member-avatar {
+  background: var(--projects-member-avatar-bg);
+}
+
+/* PDF download button */
+.projects-pdf-btn {
+  background: var(--projects-pdf-bg);
+  color: var(--projects-pdf-text);
+  box-shadow: 0 0 20px var(--projects-pdf-shadow);
+  transition: all 0.3s ease;
+}
+.projects-pdf-btn:hover {
+  background: var(--projects-pdf-hover);
+  box-shadow: 0 0 30px var(--projects-pdf-shadow-hover);
+}
