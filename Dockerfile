@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 # Copy prisma directory if it exists to generate the client
 COPY prisma ./prisma
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Rebuild the source code only when needed
 FROM base AS builder
