@@ -10,6 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // Definimos los roles: ADMIN (Junta), VOCAL (Responsables), USER (Socio) y GUEST (Invitado)
