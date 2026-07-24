@@ -39,6 +39,22 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  migrate:
+    build:
+      context: .
+      target: migrator
+    container_name: eurielec_migrate
+    environment:
+      - DATABASE_URL=postgresql://mi_usuario:mi_password_secreto@postgres:5432/asociacion_web?schema=public
+    env_file:
+      - .env
+    networks:
+      - internal
+    depends_on:
+      - postgres
+    profiles:
+      - migrate
+
 volumes:
   postgres_data:
 

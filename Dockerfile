@@ -45,10 +45,7 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-# Copy prisma folder and config so that we can run npx prisma db push in production
-COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=builder --chown=nextjs:nodejs /app/prisma.config.ts ./prisma.config.ts
-RUN npm install prisma@^7.5.0 dotenv --legacy-peer-deps
+# Copy prisma folder for runtime (Prisma client is embedded in standalone)
 
 USER nextjs
 
@@ -57,3 +54,9 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
+
+# ---- Migrator stage: runs prisma db push ----
+# Uses deps stage which has full node_modules (including prisma CLI)
+FROM deps AS migrator
+COPY prisma.config.ts ./
+CMD ["npx", "prisma", "db", "push"]
