@@ -40,7 +40,7 @@ export async function createSumUpCheckout(
   // Buscar la variante específica si hay talla/color
   let variantId: string | undefined;
   if (size || color) {
-    const v = product.variants.find(v => 
+    const v = product.variants.find((v: any) => 
       (size ? v.size === size : true) && 
       (color ? v.color === color : true)
     );
