@@ -1,16 +1,47 @@
 version: '3.8'
+
 services:
+  web:
+    build: .
+    container_name: eurielec_web
+    restart: unless-stopped
+    environment:
+      # Prisma expects DATABASE_URL. Adjust the URL based on your postgres configuration
+      - DATABASE_URL=postgresql://mi_usuario:mi_password_secreto@postgres:5432/asociacion_web?schema=public
+    networks:
+      - internal
+      - traefik
+    depends_on:
+      - postgres
+    labels:
+      - "traefik.enable=true"
+      # Router for HTTP (will be redirected to HTTPS by traefik globally based on your traefik config)
+      - "traefik.http.routers.eurielec-web.rule=Host(`eurielec.etsit.upm.es`)"
+      - "traefik.http.routers.eurielec-web.entrypoints=websecure"
+      - "traefik.http.routers.eurielec-web.tls=true"
+      # Tell Traefik to use the 'le' resolver defined in traefik's docker-compose.yml
+      - "traefik.http.routers.eurielec-web.tls.certresolver=le"
+      # Explicitly tell Traefik which port the container exposes internally
+      - "traefik.http.services.eurielec-web.loadbalancer.server.port=3000"
+
   postgres:
     image: postgres:15-alpine
     container_name: asociacion_db
+    restart: unless-stopped
     environment:
       POSTGRES_USER: mi_usuario
       POSTGRES_PASSWORD: mi_password_secreto
       POSTGRES_DB: asociacion_web
-    ports:
-      - '5432:5432'
+    networks:
+      - internal
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
+
+networks:
+  internal:
+    name: eurielec_internal
+  traefik:
+    external: true
