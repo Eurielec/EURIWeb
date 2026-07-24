@@ -8,6 +8,8 @@ services:
     environment:
       # Prisma expects DATABASE_URL. Adjust the URL based on your postgres configuration
       - DATABASE_URL=postgresql://mi_usuario:mi_password_secreto@postgres:5432/asociacion_web?schema=public
+    env_file:
+      - .env
     networks:
       - internal
       - traefik
