@@ -48,6 +48,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 # Copy prisma folder and config so that we can run npx prisma db push in production
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/prisma.config.ts ./prisma.config.ts
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/dotenv ./node_modules/dotenv
 
 USER nextjs
 
