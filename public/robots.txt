@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /api
 
-Sitemap: https://eurielec.etsii.upm.es/sitemap.xml
+Sitemap: https://eurielec.etsit.upm.es/sitemap.xml
