@@ -186,7 +186,7 @@ export async function completeProfileAction(prevState: unknown, formData: FormDa
     return { error: result.error.issues[0].message };
   }
 
-  const { phone, address, city, province, zipCode } = result.data;
+  const { phone, address, city, province, zipCode, university, academicYear } = result.data;
 
   const geo = await geocodeCity(city, province);
 
@@ -198,6 +198,8 @@ export async function completeProfileAction(prevState: unknown, formData: FormDa
       city,
       province,
       zipCode,
+      university,
+      academicYear,
       latitude: geo?.latitude,
       longitude: geo?.longitude,
     },
