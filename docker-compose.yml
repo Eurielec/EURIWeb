@@ -19,6 +19,8 @@ services:
       - postgres
     labels:
       - "traefik.enable=true"
+      # Tell Traefik which Docker network to use to reach this container (critical when using multiple networks)
+      - "traefik.docker.network=traefik"
       # Router for HTTP (will be redirected to HTTPS by traefik globally based on your traefik config)
       - "traefik.http.routers.eurielec-web.rule=Host(`eurielec.etsit.upm.es`)"
       - "traefik.http.routers.eurielec-web.entrypoints=websecure"
