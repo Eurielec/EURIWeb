@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://eurielec.etsii.upm.es';
+  const baseUrl = 'https://eurielec.etsit.upm.es';
 
   return [
     {

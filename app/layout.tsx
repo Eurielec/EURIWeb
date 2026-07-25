@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | Eurielec"
   },
   description: "Asociación de Electrónica Industrial. Comunidad, tecnología e ingeniería en la ETSIT UPM.",
-  metadataBase: new URL('https://eurielec.etsii.upm.es'),
+  metadataBase: new URL('https://eurielec.etsit.upm.es'),
   icons: {
     icon: [
       { url: '/icon.svg', type: 'image/svg+xml' }
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Eurielec - Asociación de Electrónica Industrial',
     description: 'Web oficial de Eurielec, comité local de EESTEC en Madrid. Únete a la mayor comunidad tecnológica de la ETSII UPM.',
-    url: 'https://eurielec.etsii.upm.es',
+    url: 'https://eurielec.etsit.upm.es',
     siteName: 'Eurielec',
     images: [
       {
