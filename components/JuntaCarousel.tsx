@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useAnimationFrame } from 'framer-motion';
 import { useLanguage } from '@/components/LanguageProvider';
 
 interface Member {
@@ -13,259 +13,245 @@ interface Member {
 
 export default function JuntaCarousel({ members }: { members: Member[] }) {
   const [selected, setSelected] = useState<number | null>(null);
-  const [hovered, setHovered] = useState<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { t } = useLanguage();
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Rotación global (en grados)
+  const rotation = useMotionValue(0);
+  const rotationVelocity = useRef(0);
+  const targetRotation = useRef(0);
+  const isDraggingOrScrolling = useRef(false);
+  
+  const total = members.length;
+  // Ángulo entre cada miembro
+  const angleStep = 360 / total;
+  // Radio del cilindro: se calcula para que las tarjetas encajen.
+  // Con 5 miembros, un radio de 450-500px da buena profundidad.
+  const radius = Math.max(400, (300 * total) / (2 * Math.PI));
 
-  const activeIdx = selected !== null ? selected : hovered;
+  // Animación continua (Auto-giro e inercia del scroll)
+  useAnimationFrame((time, delta) => {
+    if (selected !== null) return; // Parar totalmente si hay alguien seleccionado
+
+    if (isDraggingOrScrolling.current) {
+      // Movimiento manual (scroll)
+      const diff = targetRotation.current - rotation.get();
+      // Interpolación suave hacia el target
+      rotation.set(rotation.get() + diff * 0.1);
+      rotationVelocity.current = diff * 0.1;
+      
+      // Si ya está muy cerca del target, terminamos el "arrastre"
+      if (Math.abs(diff) < 0.1) {
+        isDraggingOrScrolling.current = false;
+        targetRotation.current = rotation.get();
+      }
+    } else {
+      // Auto-giro constante si no está en hover
+      if (!isHovered) {
+        rotation.set(rotation.get() - (0.015 * delta));
+        targetRotation.current = rotation.get();
+      }
+    }
+  });
+
+  // Manejo de la rueda del ratón (Scroll)
+  const handleWheel = (e: React.WheelEvent) => {
+    if (selected !== null) return;
+    
+    // Evitar scroll de la página si estamos haciendo scroll sobre el carrusel
+    e.preventDefault();
+    
+    isDraggingOrScrolling.current = true;
+    // Multiplicador de sensibilidad de scroll
+    targetRotation.current -= e.deltaY * 0.2;
+  };
+  
+  // Efecto para hacer preventDefault real en el wheel event ya que React onWheel es pasivo
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      isDraggingOrScrolling.current = true;
+      targetRotation.current -= e.deltaY * 0.2;
+    };
+    
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, []);
 
   return (
-    <div className="relative w-full" style={{ height: '55vh', minHeight: '380px' }}>
-
-      {/* ── DARK STAGE BACKGROUND ─────────────────────────────── */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Deep black base */}
-        <div className="absolute inset-0" style={{ background: '#08090a' }} />
-
-        {/* Grid scanlines — fighting-game feel */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-
-        {/* Horizontal scanlines overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 4px)',
-          }}
-        />
-
-        {/* Vignette */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(ellipse 120% 100% at 50% 100%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.9) 100%)',
-          }}
-        />
-
-        {/* Active member background glow */}
-        <AnimatePresence>
-          {activeIdx !== null && (
-            <motion.div
-              key={activeIdx}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-              className="absolute inset-0"
-              style={{
-                background: `radial-gradient(ellipse 60% 80% at ${15 + activeIdx * 18}% 100%, rgba(var(--brand-rgb),0.18) 0%, transparent 70%)`,
-              }}
-            />
-          )}
-        </AnimatePresence>
+    <div 
+      className="relative w-full overflow-hidden select-none" 
+      style={{ height: '75vh', minHeight: '600px', background: '#050505' }}
+    >
+      {/* ── TEXTOS VERTICALES (BACKGROUND) ── */}
+      <div className="absolute inset-0 pointer-events-none flex justify-between items-center px-4 md:px-12 z-0">
+        <h2 
+          className="font-black text-red-600 opacity-5"
+          style={{ writingMode: 'vertical-rl', transform: 'scale(-1, -1)', fontSize: 'clamp(8rem, 15vw, 16rem)', lineHeight: 0.8 }}
+        >
+          JUNTA
+        </h2>
+        <h2 
+          className="font-black text-red-600 opacity-5"
+          style={{ writingMode: 'vertical-rl', fontSize: 'clamp(8rem, 15vw, 16rem)', lineHeight: 0.8 }}
+        >
+          JUNTA
+        </h2>
       </div>
 
-      {/* ── CHARACTERS ROW ───────────────────────────────────── */}
-      <div className="absolute inset-0 flex items-end justify-center pb-8 px-2">
-        <div className="flex items-end justify-center w-full max-w-5xl">
-          {members.map((member, idx) => {
-            const isActive = activeIdx === idx;
-            const isSelected = selected === idx;
+      {/* ── VIÑETA Y DEGRADADOS FONDOS ── */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div style={{ background: 'radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.03) 0%, transparent 60%)', height: '100%' }} />
+        <div style={{ background: 'linear-gradient(to bottom, #050505 0%, transparent 20%, transparent 80%, #050505 100%)', height: '100%', position: 'absolute', inset: 0 }} />
+      </div>
 
+      {/* ── ESCENARIO 3D ── */}
+      <div 
+        ref={containerRef}
+        className="absolute inset-0 flex items-center justify-center z-10"
+        style={{ perspective: '1200px' }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <motion.div 
+          className="relative w-full h-full flex items-center justify-center"
+          style={{ rotateY: rotation, transformStyle: 'preserve-3d' }}
+        >
+          {members.map((member, idx) => {
+            const angle = idx * angleStep;
+            const isSelected = selected === idx;
+            
             return (
               <motion.div
                 key={idx}
-                onMouseEnter={() => setHovered(idx)}
-                onMouseLeave={() => setHovered(null)}
                 onClick={() => setSelected(isSelected ? null : idx)}
-                className="relative flex flex-col items-center cursor-pointer select-none"
-                style={{ flex: 1, minWidth: '100px', maxWidth: '240px', margin: '0 -10px' }}
-                initial={{ opacity: 0, y: 60 }}
-                animate={{
-                  opacity: 1,
-                  y: isActive ? -12 : 0,
+                className="absolute flex flex-col items-center cursor-pointer transition-all duration-300 group"
+                style={{
+                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
+                  backfaceVisibility: 'hidden',
                 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 20, delay: idx * 0.08 }}
               >
-                {/* ── CHARACTER IMAGE ── */}
-                <div className="relative w-full flex justify-center">
-                  {/* Active highlight beam from below */}
-                  <AnimatePresence>
-                    {isActive && (
-                      <motion.div
-                        key="beam"
-                        initial={{ scaleY: 0, opacity: 0 }}
-                        animate={{ scaleY: 1, opacity: 1 }}
-                        exit={{ scaleY: 0, opacity: 0 }}
-                        style={{ transformOrigin: 'bottom' }}
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full"
-                      >
-                        <div
-                          className="w-full"
-                          style={{
-                            height: '500px',
-                            background: 'linear-gradient(to top, rgba(var(--brand-rgb),0.35) 0%, rgba(var(--brand-rgb),0.08) 40%, transparent 100%)',
-                          }}
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Character PNG — full height, bottom-aligned */}
+                {/* ── PERSONA ── */}
+                <div className="relative w-64 md:w-80 h-96 flex items-end justify-center">
                   <motion.img
                     src={member.img}
                     alt={member.name}
-                    animate={{
-                      filter: isActive
-                        ? 'brightness(1.05) drop-shadow(0 0 30px rgba(var(--brand-rgb),0.5))'
-                        : 'brightness(0.55) grayscale(0.3)',
-                      scale: isActive ? 1.04 : 1,
-                    }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="relative z-10 w-full object-contain object-bottom"
+                    className="absolute bottom-0 w-full object-contain pointer-events-none"
                     style={{
-                      height: 'clamp(260px, 50vh, 500px)',
-                      width: '120%',
-                      marginLeft: '-10%',
+                      height: '110%',
+                      maxWidth: '400px',
+                      filter: isSelected ? 'brightness(1.1) drop-shadow(0 0 40px rgba(220,38,38,0.5))' : 'brightness(0.7) drop-shadow(0 0 10px rgba(0,0,0,0.8))',
                     }}
-                    draggable={false}
+                    whileHover={!isSelected && selected === null ? { 
+                      filter: 'brightness(1.1) drop-shadow(0 0 20px rgba(220,38,38,0.3))',
+                      scale: 1.05
+                    } : {}}
+                    transition={{ duration: 0.3 }}
                   />
+                  
+                  {/* Luz debajo del miembro seleccionado */}
+                  <AnimatePresence>
+                    {isSelected && (
+                      <motion.div
+                        initial={{ opacity: 0, scaleY: 0 }}
+                        animate={{ opacity: 1, scaleY: 1 }}
+                        exit={{ opacity: 0, scaleY: 0 }}
+                        className="absolute bottom-0 w-full h-32 bg-red-600/20 blur-2xl origin-bottom"
+                        style={{ borderRadius: '50% 50% 0 0' }}
+                      />
+                    )}
+                  </AnimatePresence>
                 </div>
 
-                {/* ── SELECTION BRACKET ── */}
-                <AnimatePresence>
-                  {isSelected && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="absolute inset-0 pointer-events-none z-20"
-                    >
-                      {/* Corner brackets (top-left) */}
-                      <div className="absolute top-4 left-4 w-5 h-5 border-t-2 border-l-2 border-white" />
-                      <div className="absolute top-4 right-4 w-5 h-5 border-t-2 border-r-2 border-white" />
-                      <div className="absolute bottom-10 left-4 w-5 h-5 border-b-2 border-l-2 border-white" />
-                      <div className="absolute bottom-10 right-4 w-5 h-5 border-b-2 border-r-2 border-white" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* ── NAME PLATE ── */}
-                <motion.div
-                  className="relative z-20 w-full text-center pb-3"
-                  animate={{ opacity: isActive ? 1 : 0.3 }}
-                  transition={{ duration: 0.25 }}
+                {/* ── INFO TEXTO ── */}
+                <motion.div 
+                  className="mt-6 text-center"
+                  animate={{ opacity: (selected === null || isSelected) ? 1 : 0.2 }}
                 >
-                  <div className="px-2">
-                    <p
-                      className="font-black uppercase leading-none tracking-tight"
-                      style={{ fontSize: 'clamp(0.55rem, 1.1vw, 0.9rem)', letterSpacing: '-0.01em', color: 'var(--text-brand)' }}
-                    >
-                      {member.name}
-                    </p>
-                    <p
-                      className="font-bold uppercase mt-0.5 opacity-50"
-                      style={{ fontSize: 'clamp(0.4rem, 0.7vw, 0.6rem)', letterSpacing: '0.12em', color: 'var(--text-brand)' }}
-                    >
-                      {member.role}
-                    </p>
-                  </div>
-                  {/* Active bar */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-bar"
-                      className="w-8 h-[2px] mx-auto mt-1 rounded-full"
-                      style={{ background: 'var(--text-brand)' }}
-                    />
-                  )}
+                  <h3 className="font-black text-white text-xl md:text-2xl uppercase tracking-tighter drop-shadow-md">
+                    {member.name}
+                  </h3>
+                  <p className="font-black text-red-600 text-xs md:text-sm uppercase tracking-widest drop-shadow-md">
+                    {member.role}
+                  </p>
                 </motion.div>
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
 
-      {/* ── MEMBER DETAIL PANEL (bottom) ── */}
+      {/* ── PANEL DE DETALLES DEL MIEMBRO (BOTTOM) ── */}
       <AnimatePresence>
         {selected !== null && (
           <motion.div
-            key={selected}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-            className="absolute bottom-0 left-0 right-0 z-30 mx-auto px-6 pb-6 max-w-2xl"
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+            className="absolute bottom-0 left-0 right-0 z-50 mx-auto px-4 md:px-8 pb-8 max-w-3xl pointer-events-none"
           >
-            <div
-              className="rounded-2xl p-5 backdrop-blur-2xl shadow-2xl"
-              style={{
-                background: 'rgba(10,10,10,0.85)',
-                border: '1px solid rgba(var(--brand-rgb),0.25)',
-                boxShadow: '0 -2px 40px rgba(var(--brand-rgb),0.12), 0 20px 60px rgba(0,0,0,0.5)',
-              }}
-            >
-              <div className="flex items-start gap-4">
+            <div className="bg-black/90 backdrop-blur-xl border border-red-600/30 p-6 md:p-8 rounded-2xl shadow-[0_-10px_50px_rgba(220,38,38,0.15)] pointer-events-auto relative overflow-hidden">
+              
+              {/* Brillo en el fondo del panel */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
-                {/* Divider left */}
-                <div className="w-1 self-stretch rounded-full shrink-0" style={{ background: 'var(--text-brand)' }} />
-
-                <div className="flex-1 min-w-0">
-                  <span
-                    className="inline-block font-black uppercase mb-1"
-                    style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)' }}
-                  >
-                    {members[selected].role}
-                  </span>
-                  <h3
-                    className="font-black leading-none mb-3"
-                    style={{ fontSize: 'clamp(1.4rem, 3vw, 2rem)', letterSpacing: '-0.03em', color: '#fff' }}
-                  >
-                    {members[selected].name}
-                  </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.875rem', lineHeight: '1.6', fontWeight: 300 }}>
-                    {members[selected].description}
-                  </p>
-                </div>
-
-                {/* Close */}
-                <button
-                  onClick={() => setSelected(null)}
-                  className="text-white/30 hover:text-white transition-colors shrink-0 mt-1"
-                  aria-label="Cerrar"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M2 2l14 14M16 2L2 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
+              <div className="relative z-10">
+                <p className="text-red-500 font-black uppercase tracking-widest text-xs mb-2">
+                  {members[selected].role}
+                </p>
+                <h3 className="text-white font-black text-3xl md:text-4xl uppercase tracking-tighter mb-4">
+                  {members[selected].name}
+                </h3>
+                <p className="text-gray-300 font-light leading-relaxed text-sm md:text-base">
+                  {members[selected].description}
+                </p>
               </div>
+
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-4 right-4 text-white/40 hover:text-white bg-white/5 hover:bg-white/10 p-2 rounded-full transition-all"
+                title="Cerrar"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ── PRESS TO SELECT HINT ── */}
+      {/* ── HINT DE SCROLL ── */}
       <AnimatePresence>
         {selected === null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
           >
-            <p
-              className="font-black uppercase text-center"
-              style={{ fontSize: '0.6rem', letterSpacing: '0.3em', color: 'rgba(var(--brand-rgb),0.45)' }}
-            >
-              {t.board.selectMember}
-            </p>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-5 h-8 border-2 border-red-600/40 rounded-full flex justify-center pt-1.5">
+                <motion.div 
+                  className="w-1 h-2 bg-red-600 rounded-full"
+                  animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                />
+              </div>
+              <p className="font-black text-red-600/50 uppercase tracking-[0.3em] text-[10px]">
+                {t.board.selectMember || "Scroll / Gira"}
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+      
     </div>
   );
 }
