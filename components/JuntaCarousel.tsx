@@ -40,14 +40,14 @@ function FUTCard({
     scale = 0.9;
     x = offset > 0 ? '90%' : '-90%'; // Se solapan un 10%
     zIndex = 40;
-    opacity = 0.8;
-    brightness = 0.5;
+    opacity = 0.9;
+    brightness = 0.8;
   } else if (absOffset === 2) {
     scale = 0.75;
     x = offset > 0 ? '160%' : '-160%';
     zIndex = 30;
-    opacity = 0.4;
-    brightness = 0.3;
+    opacity = 0.7;
+    brightness = 0.5;
   } else {
     // Si hay más de 5 miembros, se esconden por los lados
     scale = 0.5;
@@ -121,10 +121,10 @@ function FUTCard({
 
         {/* Textos inferiores */}
         <div className="absolute bottom-[5%] inset-x-0 flex flex-col items-center justify-end pb-2">
-          <h3 className="font-black text-white text-xl uppercase tracking-tighter leading-none mb-1 text-center w-[90%] truncate">
+          <h3 className="font-black text-white text-lg uppercase tracking-tighter leading-none mb-1 text-center w-[90%] break-words line-clamp-2">
             {member.name}
           </h3>
-          <p className="font-bold text-red-500 text-[10px] uppercase tracking-[0.1em] text-center w-[90%] truncate">
+          <p className="font-bold text-red-500 text-[10px] uppercase tracking-[0.1em] text-center w-[90%] break-words line-clamp-2">
             {member.role}
           </p>
         </div>
@@ -149,6 +149,15 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
   const prev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
+
+  // Auto-giro automático
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      next();
+    }, 4500); // 4.5 segundos por carta
+    return () => clearInterval(interval);
+  }, [isHovered, next]);
 
   // Manejo pasivo de la rueda del ratón (Scroll manual)
   useEffect(() => {
