@@ -7,8 +7,10 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code');
   const error = searchParams.get('error');
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://${request.headers.get('host')}`;
+
   if (error || !code) {
-    return NextResponse.redirect(new URL('/login?error=Google_Auth_Failed', request.url));
+    return NextResponse.redirect(new URL('/login?error=Google_Auth_Failed', baseUrl));
   }
 
   const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -18,9 +20,7 @@ export async function GET(request: NextRequest) {
     return new NextResponse('Faltan credenciales de Google', { status: 500 });
   }
 
-  const host = request.headers.get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const redirectUri = `${protocol}://${host}/api/auth/google/callback`;
+  const redirectUri = `${baseUrl}/api/auth/google/callback`;
 
   try {
     // 1. Intercambiar code por token
@@ -85,10 +85,10 @@ export async function GET(request: NextRequest) {
     await createSession(dbUser.id, dbUser.role);
 
     const redirectPath = dbUser.role === 'ADMIN' ? '/admin' : '/perfil';
-    return NextResponse.redirect(new URL(redirectPath, request.url));
+    return NextResponse.redirect(new URL(redirectPath, baseUrl));
 
   } catch (err) {
     console.error(err);
-    return NextResponse.redirect(new URL('/login?error=Google_Error', request.url));
+    return NextResponse.redirect(new URL('/login?error=Google_Error', baseUrl));
   }
 }

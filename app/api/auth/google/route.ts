@@ -7,9 +7,8 @@ export async function GET(request: NextRequest) {
     return new NextResponse('Error: GOOGLE_CLIENT_ID no existe en .env', { status: 500 });
   }
 
-  const host = request.headers.get('host');
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const redirectUri = `${protocol}://${host}/api/auth/google/callback`;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || `${process.env.NODE_ENV === 'development' ? 'http' : 'https'}://${request.headers.get('host')}`;
+  const redirectUri = `${baseUrl}/api/auth/google/callback`;
 
   const authUrl = `https://accounts.google.com/o/oauth2/v2/auth` +
     `?client_id=${GOOGLE_CLIENT_ID}` +
