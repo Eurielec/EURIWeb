@@ -121,10 +121,10 @@ function FUTCard({
 
         {/* Textos inferiores */}
         <div className="absolute bottom-[5%] inset-x-0 flex flex-col items-center justify-end pb-2">
-          <h3 className="font-black text-white text-base uppercase tracking-tighter leading-tight mb-1 text-center w-[90%] break-words line-clamp-2">
+          <h3 className="font-black text-white text-[11px] md:text-[13px] uppercase tracking-tighter leading-tight mb-1 text-center w-[90%] break-words line-clamp-2">
             {member.name}
           </h3>
-          <p className="font-bold text-red-500 text-[10px] uppercase tracking-[0.1em] text-center w-[90%] break-words line-clamp-2">
+          <p className="font-bold text-red-500 text-[8px] md:text-[9px] uppercase tracking-[0.1em] text-center w-[90%] break-words line-clamp-2">
             {member.role}
           </p>
         </div>
