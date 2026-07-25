@@ -17,6 +17,8 @@ services:
       - traefik
     depends_on:
       - postgres
+    volumes:
+      - web_uploads:/app/public/uploads
     labels:
       - "traefik.enable=true"
       # Tell Traefik which Docker network to use to reach this container (critical when using multiple networks)
@@ -61,6 +63,7 @@ services:
 
 volumes:
   postgres_data:
+  web_uploads:
 
 networks:
   internal:
