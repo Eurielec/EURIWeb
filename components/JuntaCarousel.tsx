@@ -121,7 +121,7 @@ function FUTCard({
 
         {/* Textos inferiores */}
         <div className="absolute bottom-[5%] inset-x-0 flex flex-col items-center justify-end pb-2">
-          <h3 className="font-black text-white text-lg uppercase tracking-tighter leading-none mb-1 text-center w-[90%] break-words line-clamp-2">
+          <h3 className="font-black text-white text-base uppercase tracking-tighter leading-tight mb-1 text-center w-[90%] break-words line-clamp-2">
             {member.name}
           </h3>
           <p className="font-bold text-red-500 text-[10px] uppercase tracking-[0.1em] text-center w-[90%] break-words line-clamp-2">
@@ -136,7 +136,6 @@ function FUTCard({
 
 export default function JuntaCarousel({ members }: { members: Member[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const { t } = useLanguage();
   
   const total = members.length;
@@ -150,21 +149,19 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
     setActiveIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Auto-giro automático
+  // Auto-giro automático (se resetea si el usuario cambia de carta manualmente)
   useEffect(() => {
-    if (isHovered) return;
     const interval = setInterval(() => {
       next();
-    }, 4500); // 4.5 segundos por carta
+    }, 5000); // 5 segundos por carta
     return () => clearInterval(interval);
-  }, [isHovered, next]);
+  }, [next, activeIndex]);
 
   // Manejo pasivo de la rueda del ratón (Scroll manual)
   useEffect(() => {
     let lastWheelTime = 0;
     
     const handleWheel = (e: WheelEvent) => {
-      if (!isHovered) return;
       e.preventDefault(); // Bloquear scroll vertical de la página
       
       const now = Date.now();
@@ -179,17 +176,20 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
       }
     };
     
-    // Add event listener a nivel global pero solo actúa si isHovered es true
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
-  }, [isHovered, next, prev]);
+    // Solo actuamos si el ratón está sobre la ventana del carrusel, pero para evitar bugs de hover en iPad,
+    // simplemente interceptamos el wheel si están encima.
+    const el = document.getElementById('junta-carousel-container');
+    if (el) {
+      el.addEventListener('wheel', handleWheel, { passive: false });
+      return () => el.removeEventListener('wheel', handleWheel);
+    }
+  }, [next, prev]);
 
   return (
     <div 
+      id="junta-carousel-container"
       className="relative w-full overflow-hidden select-none flex flex-col items-center justify-center" 
       style={{ height: '70vh', minHeight: '600px', background: '#050505' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* ── TEXTOS VERTICALES (BACKGROUND) ── */}
       <div className="absolute inset-0 pointer-events-none flex justify-between items-center px-4 md:px-12 z-0">
