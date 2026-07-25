@@ -19,7 +19,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
   const activeIdx = selected !== null ? selected : hovered;
 
   return (
-    <div className="relative w-full" style={{ height: '70vh', minHeight: '400px' }}>
+    <div className="relative w-full" style={{ height: '55vh', minHeight: '380px' }}>
 
       {/* ── DARK STAGE BACKGROUND ─────────────────────────────── */}
       <div className="absolute inset-0 overflow-hidden">
@@ -71,8 +71,8 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
       </div>
 
       {/* ── CHARACTERS ROW ───────────────────────────────────── */}
-      <div className="absolute inset-0 flex items-end justify-center pb-10 px-4">
-        <div className="flex items-end justify-center w-full max-w-7xl gap-0">
+      <div className="absolute inset-0 flex items-end justify-center pb-8 px-2">
+        <div className="flex items-end justify-center w-full max-w-5xl">
           {members.map((member, idx) => {
             const isActive = activeIdx === idx;
             const isSelected = selected === idx;
@@ -84,7 +84,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => setSelected(isSelected ? null : idx)}
                 className="relative flex flex-col items-center cursor-pointer select-none"
-                style={{ flex: 1, minWidth: 0 }}
+                style={{ flex: 1, minWidth: '100px', maxWidth: '240px', margin: '0 -10px' }}
                 initial={{ opacity: 0, y: 60 }}
                 animate={{
                   opacity: 1,
@@ -129,8 +129,9 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                     transition={{ duration: 0.35, ease: 'easeOut' }}
                     className="relative z-10 w-full object-contain object-bottom"
                     style={{
-                      height: 'clamp(320px, 65vh, 650px)',
-                      maxWidth: '380px',
+                      height: 'clamp(260px, 50vh, 500px)',
+                      width: '120%',
+                      marginLeft: '-10%',
                     }}
                     draggable={false}
                   />
