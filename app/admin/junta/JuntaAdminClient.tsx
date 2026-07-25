@@ -135,12 +135,17 @@ export default function JuntaAdminClient({ initialMembers }: { initialMembers: J
 
   // Reordenar
   const handleMove = async (index: number, direction: 'up' | 'down') => {
-    const newMembers = [...members];
+    // members in state might not be sorted, but the visual index is based on sorted order.
+    const newMembers = [...members].sort((a, b) => a.order - b.order);
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     
-    if (targetIndex < 0 || targetIndex >= members.length) return;
+    if (targetIndex < 0 || targetIndex >= newMembers.length) return;
 
+    // Swap elements
     [newMembers[index], newMembers[targetIndex]] = [newMembers[targetIndex], newMembers[index]];
+    
+    // Explicitly update the 'order' property so the UI reflects the change
+    newMembers.forEach((m, idx) => m.order = idx);
     
     setMembers(newMembers);
     try {

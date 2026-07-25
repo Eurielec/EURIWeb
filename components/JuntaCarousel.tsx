@@ -19,7 +19,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
   const activeIdx = selected !== null ? selected : hovered;
 
   return (
-    <div className="relative w-full" style={{ height: '50vh', minHeight: '320px' }}>
+    <div className="relative w-full" style={{ height: '70vh', minHeight: '400px' }}>
 
       {/* ── DARK STAGE BACKGROUND ─────────────────────────────── */}
       <div className="absolute inset-0 overflow-hidden">
@@ -129,8 +129,8 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
                     transition={{ duration: 0.35, ease: 'easeOut' }}
                     className="relative z-10 w-full object-contain object-bottom"
                     style={{
-                      height: 'clamp(280px, 50vh, 520px)',
-                      maxWidth: '220px',
+                      height: 'clamp(320px, 65vh, 650px)',
+                      maxWidth: '380px',
                     }}
                     draggable={false}
                   />
