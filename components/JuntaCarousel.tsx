@@ -206,7 +206,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
             transform: 'rotate(180deg)', 
             fontSize: 'clamp(8rem, 15vw, 20rem)', 
             lineHeight: 0.85,
-            color: 'rgba(180, 20, 20, 0.10)',
+            color: 'rgba(180, 20, 20, 0.18)',
           }}
         >
           JUNTA
@@ -217,7 +217,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
             writingMode: 'vertical-rl', 
             fontSize: 'clamp(8rem, 15vw, 20rem)', 
             lineHeight: 0.85,
-            color: 'rgba(180, 20, 20, 0.10)',
+            color: 'rgba(180, 20, 20, 0.18)',
           }}
         >
           JUNTA
