@@ -123,13 +123,13 @@ function FUTCard({
         <div className="absolute bottom-[5%] inset-x-0 flex flex-col items-center justify-end pb-2">
           <h3 
             className="font-black text-white uppercase tracking-tighter leading-tight mb-1 text-center w-[90%] break-words line-clamp-2"
-            style={{ fontSize: '11px' }}
+            style={{ fontSize: '22px' }}
           >
             {member.name}
           </h3>
           <p 
             className="font-bold text-red-500 uppercase text-center w-[90%] break-words line-clamp-2"
-            style={{ fontSize: '8px', letterSpacing: '0.1em' }}
+            style={{ fontSize: '16px', letterSpacing: '0.1em' }}
           >
             {member.role}
           </p>
