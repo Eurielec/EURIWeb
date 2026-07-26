@@ -198,16 +198,27 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
       style={{ height: '70vh', minHeight: '600px', background: '#050505' }}
     >
       {/* ── TEXTOS VERTICALES (BACKGROUND) ── */}
-      <div className="absolute inset-0 pointer-events-none flex justify-between items-center px-4 md:px-12 z-0">
+      <div className="absolute inset-0 pointer-events-none flex justify-between items-center px-0 z-0 overflow-hidden">
         <h2 
-          className="font-black text-red-600 opacity-[0.03]"
-          style={{ writingMode: 'vertical-rl', transform: 'scale(-1, -1)', fontSize: 'clamp(8rem, 15vw, 18rem)', lineHeight: 0.8 }}
+          className="font-black uppercase tracking-tighter leading-none select-none"
+          style={{ 
+            writingMode: 'vertical-rl', 
+            transform: 'rotate(180deg)', 
+            fontSize: 'clamp(8rem, 15vw, 20rem)', 
+            lineHeight: 0.85,
+            color: 'rgba(180, 20, 20, 0.10)',
+          }}
         >
           JUNTA
         </h2>
         <h2 
-          className="font-black text-red-600 opacity-[0.03]"
-          style={{ writingMode: 'vertical-rl', fontSize: 'clamp(8rem, 15vw, 18rem)', lineHeight: 0.8 }}
+          className="font-black uppercase tracking-tighter leading-none select-none"
+          style={{ 
+            writingMode: 'vertical-rl', 
+            fontSize: 'clamp(8rem, 15vw, 20rem)', 
+            lineHeight: 0.85,
+            color: 'rgba(180, 20, 20, 0.10)',
+          }}
         >
           JUNTA
         </h2>
