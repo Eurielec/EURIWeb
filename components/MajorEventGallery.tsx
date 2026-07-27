@@ -14,9 +14,10 @@ interface GalleryProps {
 
 const galleryData: Record<string, string[]> = {
   'imw': [
-    'https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop',
+    '/eventos/imw/imw-grupo.jpg',
+    '/eventos/imw/imw-bus.jpg',
+    '/eventos/imw/imw-charla.jpg',
+    '/eventos/imw/imw-fiesta.jpg',
   ],
   'workshop': [
     'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
