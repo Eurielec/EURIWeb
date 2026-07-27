@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { getUserSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { getDictionaryServer } from '@/lib/i18n-server';
-import { Calendar as CalendarIcon, CheckCircle2 } from 'lucide-react';
+import { Calendar as CalendarIcon, CheckCircle2, ChevronDown, Image as ImageIcon } from 'lucide-react';
 import MajorEvents from '@/components/MajorEvents';
 import { verifyEventPayment } from '@/app/actions/checkout';
 
@@ -98,6 +98,14 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
             userAttendances={userAttendances} 
           />
         </section>
+
+        {/* Scroll indicator for Major Events Gallery */}
+        <div className="flex flex-col items-center justify-center mt-12 text-white/50 animate-bounce opacity-80 cursor-default select-none">
+          <span className="text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
+            <ImageIcon size={14} /> Galería de Eventos
+          </span>
+          <ChevronDown size={20} />
+        </div>
       </div>
 
       {/* New Major Events Section with Red Background - Moved OUTSIDE max-w container */}

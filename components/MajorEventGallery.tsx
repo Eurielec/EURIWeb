@@ -46,6 +46,9 @@ const galleryData: Record<string, string[]> = {
   ],
 };
 
+// Unified gallery containing all images
+galleryData['all'] = Object.values(galleryData).flat();
+
 function GalleryOverlay({
   onClose,
   eventTitle,

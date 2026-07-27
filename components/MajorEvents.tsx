@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { Sparkles, Trophy, GraduationCap, Users2, ArrowRight, Globe, Brain } from 'lucide-react';
+import { Sparkles, Trophy, GraduationCap, Users2, Camera, Globe, Brain } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageProvider';
 import { useState } from 'react';
 import MajorEventGallery from './MajorEventGallery';
@@ -106,9 +106,10 @@ export default function MajorEvents() {
                   {event.desc}
                 </p>
                 
-                {/* Arrow decor */}
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-700 hidden lg:block">
-                   <ArrowRight className="text-red-600" size={40} strokeWidth={3} />
+                {/* Gallery hint decor */}
+                <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-700 hidden lg:flex flex-col items-center gap-2">
+                   <Camera className="text-red-600" size={32} strokeWidth={2.5} />
+                   <span className="text-red-600 text-[0.6rem] font-bold tracking-widest uppercase">Ver Galería</span>
                 </div>
               </div>
             </div>

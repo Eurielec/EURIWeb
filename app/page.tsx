@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { getDictionaryServer } from '@/lib/i18n-server';
 import Home3DWrapper from '@/components/Home3DWrapper';
 import Footer from '@/components/Footer';
+import HomeGalleryButton from '@/components/HomeGalleryButton';
 
 export default async function Home() {
   const t = await getDictionaryServer();
@@ -78,6 +79,7 @@ export default async function Home() {
           >
             {t.nav.about}
           </Link>
+          <HomeGalleryButton label="Galería" />
         </div>
       </section>
 
