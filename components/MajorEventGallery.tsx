@@ -28,9 +28,10 @@ const galleryData: Record<string, string[]> = {
     '/eventos/workshop/workshop-calle.jpg',
   ],
   'eurichallenge': [
-    'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1522071823991-b5ae72647ac9?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop',
+    '/eventos/hackathon/hackathon-lab.jpg',
+    '/eventos/hackathon/hackathon-presentacion-lab.jpg',
+    '/eventos/hackathon/hackathon-ponencia.jpg',
+    '/eventos/hackathon/hackathon-grupo.jpg',
   ],
   'motivational-days': [
     'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop',
