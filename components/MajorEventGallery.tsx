@@ -21,6 +21,7 @@ const galleryData: Record<string, string[]> = {
   ],
   'workshop': [
     '/eventos/workshop/workshop-orgs.jpg',
+    '/eventos/workshop/workshop-retiro.jpg',
     '/eventos/workshop/workshop-grupo-etsit.jpg',
     '/eventos/workshop/workshop-panel.jpg',
     '/eventos/workshop/workshop-juego.jpg',
