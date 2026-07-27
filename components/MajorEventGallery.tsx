@@ -20,9 +20,11 @@ const galleryData: Record<string, string[]> = {
     '/eventos/imw/imw-fiesta.jpg',
   ],
   'workshop': [
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop',
+    '/eventos/workshop/workshop-orgs.jpg',
+    '/eventos/workshop/workshop-grupo-etsit.jpg',
+    '/eventos/workshop/workshop-panel.jpg',
+    '/eventos/workshop/workshop-juego.jpg',
+    '/eventos/workshop/workshop-calle.jpg',
   ],
   'eurichallenge': [
     'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop',
