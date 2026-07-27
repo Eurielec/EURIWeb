@@ -39,9 +39,10 @@ const galleryData: Record<string, string[]> = {
     'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop',
   ],
   'ssa': [
-    'https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=2070&auto=format&fit=crop',
+    '/eventos/ssa/ssa-grupo.jpg',
+    '/eventos/ssa/ssa-comida.jpg',
+    '/eventos/ssa/ssa-presentacion.jpg',
+    '/eventos/ssa/ssa-navidad.jpg',
   ],
 };
 
