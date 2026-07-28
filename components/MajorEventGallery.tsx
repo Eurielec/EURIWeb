@@ -150,7 +150,6 @@ function GalleryOverlay({
             alt={`${eventTitle} — foto ${i + 1}`}
             fill
             className="object-cover"
-            style={{ opacity: 0.7 }}
             unoptimized
             priority={i === 0}
           />
@@ -158,7 +157,7 @@ function GalleryOverlay({
       ))}
 
       {/* Dark gradient overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 pointer-events-none" />
 
       {/* Close button */}
       <button
