@@ -90,10 +90,24 @@ export default async function PerfilPage() {
           
           {/* Asamblea General Votaciones */}
           {['USER', 'VOCAL', 'ADMIN'].includes(session.role) && (
-            <section className="border-l-4 border-red-600 pl-6 py-2">
-              <h2 className="text-2xl font-black text-white uppercase tracking-tighter italic mb-2">{t.profile.assembly}</h2>
-              <p className="text-gray-400 text-sm font-medium mb-6 leading-relaxed">{t.profile.assemblyDesc}</p>
-              <Link href="/perfil/votaciones" className="inline-block px-8 py-4 bg-red-600 hover:bg-red-700 text-white transition-colors font-black text-xs uppercase tracking-[0.2em]">
+            <section className={`transition-all duration-300 ${session.role === 'ADMIN' ? 'border border-red-600 bg-red-600/10 p-6 shadow-[0_0_40px_rgba(220,38,38,0.15)] relative overflow-hidden' : 'border-l-4 border-red-600 pl-6 py-2'}`}>
+              {session.role === 'ADMIN' && (
+                <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/20 blur-3xl -z-10" />
+              )}
+              <div className="flex items-center justify-between mb-2">
+                <h2 className={`text-2xl font-black uppercase tracking-tighter italic ${session.role === 'ADMIN' ? 'text-red-500' : 'text-white'}`}>
+                  {t.profile.assembly}
+                </h2>
+                {session.role === 'ADMIN' && (
+                  <span className="text-[10px] bg-red-600 text-white px-2 py-1 font-black uppercase tracking-[0.2em]">
+                    Control Admin
+                  </span>
+                )}
+              </div>
+              <p className={`text-sm font-medium mb-6 leading-relaxed ${session.role === 'ADMIN' ? 'text-red-200/70' : 'text-gray-400'}`}>
+                {t.profile.assemblyDesc}
+              </p>
+              <Link href="/perfil/votaciones" className={`inline-block px-8 py-4 transition-all font-black text-xs uppercase tracking-[0.2em] ${session.role === 'ADMIN' ? 'bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30' : 'bg-red-600 hover:bg-red-700 text-white'}`}>
                 {t.profile.enterVoting}
               </Link>
             </section>
