@@ -17,7 +17,7 @@ export default async function Page() {
   })) : fallbackMembers;
 
   return (
-    <main className="min-h-screen" style={{ background: '#08090a' }}>
+    <main className="min-h-screen transition-colors duration-500" style={{ background: 'var(--background)' }}>
 
       {/* ── CHARACTER SELECT — ocupa toda la pantalla menos la navbar ── */}
       <div style={{ paddingTop: '64px' }}>
@@ -25,7 +25,7 @@ export default async function Page() {
       </div>
 
       {/* ── GOVERNANCE SECTION — debajo del character select ── */}
-      <section className="px-6 sm:px-10 py-20 relative" style={{ background: 'var(--red)' }}>
+      <section className="px-6 sm:px-10 py-20 relative transition-colors duration-500" style={{ background: 'var(--background)' }}>
         <div className="max-w-6xl mx-auto space-y-12">
 
           {/* Header */}
@@ -42,12 +42,12 @@ export default async function Page() {
             >
               {t.board.title}
             </h2>
-            <div className="w-16 h-1 mx-auto rounded-full" style={{ background: '#000' }} />
+            <div className="w-16 h-1 mx-auto rounded-full" style={{ background: 'var(--foreground)' }} />
           </header>
 
           {/* Description card */}
           <div
-            className="max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl"
+            className="max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl transition-colors duration-500"
             style={{ background: 'var(--surface-inv)', border: '1px solid var(--border)' }}
           >
             <p className="text-lg leading-relaxed text-white/80 font-light">
