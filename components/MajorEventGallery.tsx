@@ -161,7 +161,7 @@ function GalleryOverlay({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-10 flex items-center gap-2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:text-[color:var(--text-brand)] transition-all group"
+        className="absolute top-6 right-6 z-10 flex items-center gap-2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 hover:text-red-500 transition-all group"
         aria-label="Cerrar galería"
       >
         <span className="text-xs font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity pr-1">

@@ -90,7 +90,7 @@ export default async function PerfilPage() {
           
           {/* Asamblea General Votaciones */}
           {['USER', 'VOCAL', 'ADMIN'].includes(session.role) && (
-            <section className={`transition-all duration-300 ${session.role === 'ADMIN' ? 'border border-red-600 bg-red-600/10 p-6 shadow-2xl shadow-red-600/20 relative overflow-hidden' : 'border-l-4 border-red-600 pl-6 py-2'}`}>
+            <section className={`transition-all duration-300 ${session.role === 'ADMIN' ? 'border border-red-600 bg-red-600/10 p-6 shadow-[0_0_40px_rgba(220,38,38,0.15)] relative overflow-hidden' : 'border-l-4 border-red-600 pl-6 py-2'}`}>
               {session.role === 'ADMIN' && (
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/20 blur-3xl -z-10" />
               )}
@@ -104,7 +104,7 @@ export default async function PerfilPage() {
                   </span>
                 )}
               </div>
-              <p className={`text-sm font-medium mb-6 leading-relaxed ${session.role === 'ADMIN' ? 'text-red-300 opacity-80' : 'text-gray-400'}`}>
+              <p className={`text-sm font-medium mb-6 leading-relaxed ${session.role === 'ADMIN' ? 'text-red-200/70' : 'text-gray-400'}`}>
                 {t.profile.assemblyDesc}
               </p>
               <Link href="/perfil/votaciones" className={`inline-block px-8 py-4 transition-all font-black text-xs uppercase tracking-[0.2em] ${session.role === 'ADMIN' ? 'bg-red-600 hover:bg-red-500 text-white shadow-lg shadow-red-600/30' : 'bg-red-600 hover:bg-red-700 text-white'}`}>
