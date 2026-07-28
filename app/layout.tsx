@@ -12,7 +12,12 @@ export const metadata: Metadata = {
     template: "%s | Eurielec"
   },
   description: "Web oficial de Eurielec, Asociación de electrónica y software libre y comité local EESTEC LC Madrid. Comunidad, tecnología e ingeniería en la ETSIT UPM.",
-  keywords: ["Eurielec", "EESTEC", "EESTEC LC Madrid", "ETSIT", "UPM", "ETSII", "Ingeniería", "Electrónica", "Asociación de estudiantes", "Madrid", "Tecnología"],
+  keywords: [
+    "Eurielec", "EESTEC", "EESTEC LC Madrid", "eestec lc madrid", "ETSIT", "UPM", "ETSII", 
+    "Ingeniería", "ingenieros", "Electrónica", "electronica etsit", "software libre", "software etsit", 
+    "Asociación de estudiantes", "Madrid", "Tecnología", "clubes etsit", "clubes", "club", 
+    "patrocinio", "patrocinador", "euri"
+  ],
   metadataBase: new URL('https://eurielec.etsit.upm.es'),
   icons: {
     icon: [
