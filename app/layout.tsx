@@ -8,10 +8,10 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: {
-    default: "Eurielec - Asociación de Electrónica Industrial",
+    default: "EURIELEC - EESTEC LC MADRID - Asociación de electrónica y software libre",
     template: "%s | Eurielec"
   },
-  description: "Web oficial de Eurielec, asociación de Electrónica Industrial y comité local EESTEC LC Madrid. Comunidad, tecnología e ingeniería en la ETSIT UPM.",
+  description: "Web oficial de Eurielec, Asociación de electrónica y software libre y comité local EESTEC LC Madrid. Comunidad, tecnología e ingeniería en la ETSIT UPM.",
   keywords: ["Eurielec", "EESTEC", "EESTEC LC Madrid", "ETSIT", "UPM", "ETSII", "Ingeniería", "Electrónica", "Asociación de estudiantes", "Madrid", "Tecnología"],
   metadataBase: new URL('https://eurielec.etsit.upm.es'),
   icons: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Eurielec - Asociación de Electrónica Industrial | EESTEC LC Madrid',
+    title: 'EURIELEC - EESTEC LC MADRID - Asociación de electrónica y software libre',
     description: 'Web oficial de Eurielec, comité local de EESTEC en Madrid. Únete a la mayor comunidad tecnológica de la ETSIT UPM.',
     url: 'https://eurielec.etsit.upm.es',
     siteName: 'Eurielec',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1024,
         height: 1024,
-        alt: 'Eurielec - Asociación de Electrónica Industrial',
+        alt: 'EURIELEC - EESTEC LC MADRID',
       },
     ],
     locale: 'es_ES',
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eurielec - Asociación de Electrónica Industrial',
-    description: 'Innovación, tecnología y comunidad en la ETSII UPM.',
+    title: 'EURIELEC - EESTEC LC MADRID - Asociación de electrónica y software libre',
+    description: 'Innovación, tecnología y comunidad en la ETSIT UPM.',
     images: ['/og-image.png'],
   },
   manifest: '/manifest.json',
