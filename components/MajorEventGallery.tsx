@@ -34,9 +34,8 @@ const galleryData: Record<string, string[]> = {
     '/eventos/hackathon/hackathon-grupo.jpg',
   ],
   'motivational-days': [
-    'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1531545517296-16816f6ad239?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop',
+    '/eventos/motivational-days/md-grupo-1.jpg',
+    '/eventos/motivational-days/md-grupo-2.jpg',
   ],
   'ssa': [
     '/eventos/ssa/ssa-grupo.jpg',
