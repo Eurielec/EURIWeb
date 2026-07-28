@@ -55,6 +55,33 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
       <div className="absolute bottom-1/2 left-0 w-[600px] h-[600px] bg-red-900/5 blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-red-600/5 blur-[120px] rounded-full pointer-events-none" />
 
+      {/* ── TEXTOS VERTICALES (BACKGROUND) ── */}
+      <div className="absolute top-0 w-full h-[100vh] pointer-events-none flex justify-between items-center px-0 z-0 overflow-hidden">
+        <h2 
+          className="font-black uppercase tracking-tighter leading-none select-none"
+          style={{ 
+            writingMode: 'vertical-rl', 
+            transform: 'rotate(180deg)', 
+            fontSize: 'clamp(5rem, 10vw, 12rem)', 
+            lineHeight: 0.85,
+            color: 'rgba(220, 38, 38, 0.12)',
+          }}
+        >
+          GALERÍA
+        </h2>
+        <h2 
+          className="font-black uppercase tracking-tighter leading-none select-none"
+          style={{ 
+            writingMode: 'vertical-rl', 
+            fontSize: 'clamp(5rem, 10vw, 12rem)', 
+            lineHeight: 0.85,
+            color: 'rgba(220, 38, 38, 0.12)',
+          }}
+        >
+          GALERÍA
+        </h2>
+      </div>
+
       {paymentSuccess && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 bg-neutral-900 border border-green-500/30">
           <CheckCircle2 size={20} className="text-green-500" />
