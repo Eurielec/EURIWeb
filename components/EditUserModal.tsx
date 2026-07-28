@@ -166,18 +166,20 @@ export default function EditUserModal({
                     <div className="grid grid-cols-2 gap-4">
                       <div className="relative">
                         <label className={labelClass}>Año Académico</label>
-                        <select name="academicYear" defaultValue={user.academicYear || '1'} required className={selectClass}>
-                          <option value="1">1º Grado</option>
-                          <option value="2">2º Grado</option>
-                          <option value="3">3º Grado</option>
-                          <option value="4">4º Grado</option>
-                          <option value="5">Máster</option>
+                        <select name="academicYear" defaultValue={user.academicYear || ''} required className={selectClass}>
+                          <option value="" disabled>Selecciona tu curso</option>
+                          <option value="1º">1º Grado</option>
+                          <option value="2º">2º Grado</option>
+                          <option value="3º">3º Grado</option>
+                          <option value="4º">4º Grado</option>
+                          <option value="Máster">Máster</option>
                           <option value="Doctorado">Doctorado</option>
+                          <option value="Otro">Otro</option>
                         </select>
                       </div>
                       <div className="relative">
                         <label className={labelClass}>Universidad</label>
-                        <input type="text" name="university" defaultValue={user.university || 'UPM'} required className={inputClass} />
+                        <input type="text" name="university" defaultValue={user.university || ''} placeholder="Ej: ETSI Telecomunicación" required className={inputClass} />
                       </div>
                     </div>
                   </div>
