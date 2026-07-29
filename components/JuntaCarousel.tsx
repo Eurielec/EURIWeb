@@ -88,10 +88,11 @@ function FUTCard({
       >
         {/* Forma poligonal de la carta (Clip-path estilo escudo) */}
         <div 
-          className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-red-950"
+          className="absolute inset-0"
           style={{
             clipPath: 'polygon(10% 0, 90% 0, 100% 10%, 100% 85%, 50% 100%, 0 85%, 0 10%)',
             border: isCenter ? '2px solid rgba(var(--brand-rgb),0.8)' : '1px solid rgba(255,255,255,0.1)',
+            background: 'linear-gradient(to bottom, #111827 0%, #000000 50%, rgba(var(--brand-rgb), 0.25) 100%)',
           }}
         />
 
