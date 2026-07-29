@@ -64,7 +64,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
             transform: 'rotate(180deg)', 
             fontSize: 'clamp(5rem, 10vw, 12rem)', 
             lineHeight: 0.85,
-            color: 'rgba(220, 38, 38, 0.12)',
+            color: 'rgba(var(--brand-rgb), 0.12)',
           }}
         >
           GALERÍA
@@ -75,7 +75,7 @@ export default async function CalendarioPage(props: { searchParams: Promise<{ [k
             writingMode: 'vertical-rl', 
             fontSize: 'clamp(5rem, 10vw, 12rem)', 
             lineHeight: 0.85,
-            color: 'rgba(220, 38, 38, 0.12)',
+            color: 'rgba(var(--brand-rgb), 0.12)',
           }}
         >
           GALERÍA
