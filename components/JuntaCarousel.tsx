@@ -82,7 +82,7 @@ function FUTCard({
       {/* ── DISEÑO CARTA ESTILO FIFA FUT ── */}
       <div className={`relative w-full h-full rounded-b-2xl overflow-hidden transition-all duration-300
         ${isCenter 
-          ? 'drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]' 
+          ? 'drop-shadow-[0_0_30px_rgba(var(--brand-rgb),0.5)]' 
           : 'drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]'
         }`}
       >
@@ -91,7 +91,7 @@ function FUTCard({
           className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-red-950"
           style={{
             clipPath: 'polygon(10% 0, 90% 0, 100% 10%, 100% 85%, 50% 100%, 0 85%, 0 10%)',
-            border: isCenter ? '2px solid rgba(220,38,38,0.8)' : '1px solid rgba(255,255,255,0.1)',
+            border: isCenter ? '2px solid rgba(var(--brand-rgb),0.8)' : '1px solid rgba(255,255,255,0.1)',
           }}
         />
 
@@ -101,7 +101,7 @@ function FUTCard({
             className="absolute inset-[3px] pointer-events-none opacity-50"
             style={{
               clipPath: 'polygon(10% 0, 90% 0, 100% 10%, 100% 85%, 50% 100%, 0 85%, 0 10%)',
-              background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 40%, transparent 60%, rgba(220,38,38,0.4) 100%)',
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 40%, transparent 60%, rgba(var(--brand-rgb),0.4) 100%)',
             }}
           />
         )}
@@ -117,7 +117,8 @@ function FUTCard({
         </div>
 
         {/* Línea separadora brillante */}
-        <div className="absolute bottom-[23%] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-60" />
+        <div className="absolute bottom-[23%] left-[15%] right-[15%] h-[1px] opacity-60"
+             style={{ background: 'linear-gradient(to right, transparent, var(--text-brand), transparent)' }} />
 
         {/* Textos inferiores */}
         <div className="absolute bottom-[5%] inset-x-0 flex flex-col items-center justify-end pb-2">
@@ -128,8 +129,8 @@ function FUTCard({
             {member.name}
           </h3>
           <p 
-            className="font-bold text-red-500 uppercase text-center w-[90%] break-words line-clamp-2"
-            style={{ fontSize: '16px', letterSpacing: '0.1em' }}
+            className="font-bold uppercase text-center w-[90%] break-words line-clamp-2"
+            style={{ fontSize: '16px', letterSpacing: '0.1em', color: 'var(--text-brand)' }}
           >
             {member.role}
           </p>
@@ -206,7 +207,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
             transform: 'rotate(180deg)', 
             fontSize: 'clamp(8rem, 15vw, 20rem)', 
             lineHeight: 0.85,
-            color: 'rgba(180, 20, 20, 0.18)',
+            color: 'rgba(var(--brand-rgb), 0.18)',
           }}
         >
           JUNTA
@@ -217,7 +218,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
             writingMode: 'vertical-rl', 
             fontSize: 'clamp(8rem, 15vw, 20rem)', 
             lineHeight: 0.85,
-            color: 'rgba(180, 20, 20, 0.18)',
+            color: 'rgba(var(--brand-rgb), 0.18)',
           }}
         >
           JUNTA
@@ -226,7 +227,7 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
 
       {/* ── VIÑETA Y DEGRADADOS FONDOS ── */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 70%)', height: '100%' }} />
+        <div style={{ background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(var(--brand-rgb), 0.05) 0%, transparent 70%)', height: '100%' }} />
         <div style={{ background: 'linear-gradient(to bottom, #050505 0%, transparent 15%, transparent 85%, #050505 100%)', height: '100%', position: 'absolute', inset: 0 }} />
       </div>
 
@@ -271,13 +272,19 @@ export default function JuntaCarousel({ members }: { members: Member[] }) {
       <div className="absolute left-4 right-4 md:left-20 md:right-20 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-40">
         <button 
           onClick={prev}
-          className="pointer-events-auto p-4 bg-black/40 hover:bg-red-600/20 rounded-full border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-md"
+          className="pointer-events-auto p-4 bg-black/40 rounded-full border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-md"
+          style={{ '--tw-hover-bg': 'rgba(var(--brand-rgb), 0.2)' } as any}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(var(--brand-rgb), 0.2)'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = ''}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <button 
           onClick={next}
-          className="pointer-events-auto p-4 bg-black/40 hover:bg-red-600/20 rounded-full border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-md"
+          className="pointer-events-auto p-4 bg-black/40 rounded-full border border-white/10 text-white/50 hover:text-white transition-all backdrop-blur-md"
+          style={{ '--tw-hover-bg': 'rgba(var(--brand-rgb), 0.2)' } as any}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(var(--brand-rgb), 0.2)'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = ''}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
