@@ -105,6 +105,22 @@ export default function MajorEvents() {
                 >
                   {event.desc}
                 </p>
+
+                {event.id === 'eurichallenge' && (
+                  <div className="pt-2 flex items-center gap-3">
+                    <span
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.href = '/eurichallenge';
+                      }}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-orange-500 text-white text-xs font-black uppercase tracking-wider shadow-lg shadow-orange-500/30 hover:scale-105 active:scale-95 transition-all border border-white/20"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      <span>Abrir Pestaña EURIChallenge 2026</span>
+                      <Sparkles size={14} />
+                    </span>
+                  </div>
+                )}
                 
                 {/* Gallery hint decor */}
                 <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-700 hidden lg:flex flex-col items-center gap-2">

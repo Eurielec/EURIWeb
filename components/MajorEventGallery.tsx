@@ -1,8 +1,9 @@
 'use client';
 
-import { X, ChevronDown, ChevronUp } from 'lucide-react';
+import { X, ChevronDown, ChevronUp, ArrowUpRight, Sparkles } from 'lucide-react';
 import { useEffect, useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { createPortal } from 'react-dom';
 
 interface GalleryProps {
@@ -51,10 +52,12 @@ galleryData['all'] = Object.values(galleryData).flat();
 function GalleryOverlay({
   onClose,
   eventTitle,
+  eventId,
   images,
 }: {
   onClose: () => void;
   eventTitle: string;
+  eventId: string;
   images: string[];
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -170,12 +173,40 @@ function GalleryOverlay({
         <X size={24} strokeWidth={2.5} />
       </button>
 
-      {/* Centred title */}
-      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none text-center px-8">
+      {/* Centred title & Action link for EURIChallenge */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 pointer-events-none text-center px-8 flex flex-col items-center">
         <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-white uppercase tracking-tighter mix-blend-difference select-none">
           {eventTitle}
         </h2>
+        {eventId === 'eurichallenge' && (
+          <div className="mt-8 pointer-events-auto">
+            <Link
+              href="/eurichallenge"
+              onClick={onClose}
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 text-white font-black text-sm uppercase tracking-widest shadow-2xl shadow-orange-500/50 hover:scale-105 active:scale-95 transition-all border border-white/30 backdrop-blur-md"
+            >
+              <Sparkles size={18} className="animate-spin text-yellow-200" />
+              <span>Ver Pestaña Oficial EURIChallenge 2026</span>
+              <ArrowUpRight size={18} />
+            </Link>
+          </div>
+        )}
       </div>
+
+      {/* Top Banner when EURIChallenge is open */}
+      {eventId === 'eurichallenge' && (
+        <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 pointer-events-auto">
+          <Link
+            href="/eurichallenge"
+            onClick={onClose}
+            className="hidden sm:inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-red-600/90 hover:bg-red-600 text-white text-xs font-black uppercase tracking-widest border border-white/20 backdrop-blur-md shadow-lg shadow-red-600/40 hover:scale-105 transition-all"
+          >
+            <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+            <span>Hackathon 2026 · ¡Inscripciones Abiertas!</span>
+            <ArrowUpRight size={14} />
+          </Link>
+        </div>
+      )}
 
       {/* Image counter */}
       <div className="absolute top-6 left-6 z-10 text-white/60 text-xs font-bold tracking-widest uppercase select-none">
@@ -263,7 +294,7 @@ export default function MajorEventGallery({
   if (!mounted || !isOpen) return null;
 
   return createPortal(
-    <GalleryOverlay onClose={onClose} eventTitle={eventTitle} images={images} />,
+    <GalleryOverlay onClose={onClose} eventTitle={eventTitle} eventId={eventId} images={images} />,
     document.body
   );
 }

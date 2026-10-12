@@ -231,6 +231,23 @@
 }
 
 /* ----------------------------------------------------------------
+   EURICHALLENGE — High-Contrast overrides (red → gold)
+   ---------------------------------------------------------------- */
+:root[data-theme="high-contrast"] .eurichallenge-page .text-red-500,
+:root[data-theme="high-contrast"] .eurichallenge-page .text-red-600 {
+  color: #FFC107 !important;
+}
+:root[data-theme="high-contrast"] .eurichallenge-page .border-red-500,
+:root[data-theme="high-contrast"] .eurichallenge-page .border-red-600 {
+  border-color: #FFC107 !important;
+}
+:root[data-theme="high-contrast"] .eurichallenge-page .bg-red-500,
+:root[data-theme="high-contrast"] .eurichallenge-page .bg-red-600 {
+  background-color: #FFC107 !important;
+  color: #000 !important;
+}
+
+/* ----------------------------------------------------------------
    FOOTER — High-Contrast overrides (red → gold)
    ---------------------------------------------------------------- */
 

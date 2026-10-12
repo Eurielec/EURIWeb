@@ -47,6 +47,7 @@ export default function Footer() {
                 { name: t.nav.vocalias ?? 'Vocalías', href: '/vocalias' },
                 { name: t.nav.projects ?? 'Proyectos', href: '/proyectos' },
                 { name: t.nav.events, href: '/calendario' },
+                { name: t.nav.eurichallenge ?? 'EURIChallenge', href: '/eurichallenge' },
                 { name: t.nav.shop ?? 'Tienda', href: '/tienda' },
                 { name: t.nav.archive ?? 'Archivo', href: '/archivo' },
                 { name: t.nav.contact, href: '/contacto' }
