@@ -396,7 +396,7 @@ export default function EurichallengeClient() {
       
       {/* ── ANIMATED MATRIX BACKGROUND (Estilo Eurielec / Archivo) ── */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-15 overflow-hidden">
-        <TerminalBackground scroll={scrollProgress} />
+        <TerminalBackground scroll={0} fixedSpeed={true} />
       </div>
 
       {/* ── AMBIENT GLOW BACKGROUNDS ── */}
@@ -436,17 +436,13 @@ export default function EurichallengeClient() {
           {/* Accessible hidden H1 for SEO */}
           <h1 className="sr-only">EURI.CHALLENGE 2026 - Hackathon Oficial de Tecnología e Innovación ETSIT UPM</h1>
 
-          <div className="relative w-full aspect-[1208/588] max-h-[340px] sm:max-h-[420px] md:max-h-[480px] lg:max-h-[520px] flex items-center justify-center group">
+          <div className="relative w-full aspect-[939/345] max-h-[300px] sm:max-h-[380px] md:max-h-[440px] lg:max-h-[480px] flex items-center justify-center group">
             <Image
-              src={isHC ? "/eurichallenge/logo-eurichallenge-gold.png" : "/eurichallenge/logo-eurichallenge-dark.png"}
+              src="/eurichallenge/logo-eurichallenge-hq.png"
               alt="EURI.CHALLENGE Logo Hackathon 2026"
               fill
               priority
-              className={`object-contain transition-all duration-700 filter group-hover:scale-[1.02] ${
-                isHC
-                  ? 'drop-shadow-[0_0_55px_rgba(255,193,7,0.55)]'
-                  : 'drop-shadow-[0_0_55px_rgba(232,22,27,0.55)]'
-              }`}
+              className="object-contain transition-all duration-700 filter group-hover:scale-[1.02] drop-shadow-[0_0_55px_rgba(232,22,27,0.55)]"
             />
           </div>
 
@@ -1130,7 +1126,7 @@ export default function EurichallengeClient() {
               <div className="flex items-center gap-3">
                 <div className="relative w-8 h-8 shrink-0 hidden sm:block">
                   <Image
-                    src={isHC ? "/eurichallenge/logo-eurichallenge-gold.png" : "/eurichallenge/logo-eurichallenge-dark.png"}
+                    src="/eurichallenge/logo-eurichallenge-hq.png"
                     alt="EC Logo"
                     fill
                     className="object-contain"

@@ -2,7 +2,13 @@
 
 import React, { useEffect, useRef } from 'react';
 
-export default function TerminalBackground({ scroll = 0 }: { scroll: number }) {
+export default function TerminalBackground({
+  scroll = 0,
+  fixedSpeed = false
+}: {
+  scroll?: number;
+  fixedSpeed?: boolean;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scrollRef = useRef(scroll);
 
@@ -43,8 +49,8 @@ export default function TerminalBackground({ scroll = 0 }: { scroll: number }) {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
       ctx.fillRect(0, 0, width, height);
 
-      // Usamos el valor del ref para no reiniciar la animación
-      const speedMultiplier = 0.4 + scrollRef.current * 3.5; 
+      // Usamos velocidad fija si se especifica, o ligada al scroll
+      const speedMultiplier = fixedSpeed ? 0.6 : (0.4 + scrollRef.current * 3.5); 
       
       const isHC = document.documentElement.getAttribute('data-theme') === 'high-contrast';
       const textColor = isHC ? 'rgba(255, 255, 255, 0.9)' : 'rgba(215, 0, 0, 0.9)';
