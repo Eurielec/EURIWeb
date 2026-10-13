@@ -142,45 +142,57 @@ const scheduleCodeTokens: CodeToken[][] = [
     { text: '(EURI_Challenge);', color: 'text-white' }
   ],
   [{ text: '', color: 'text-white' }],
-  [{ text: '// VIERNES 13', color: 'text-white/40' }],
+  [{ text: '// VIERNES 13 NOVIEMBRE', color: 'text-white/40' }],
   [
-    { text: '16:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '16:00 - 17:00 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'charla_bienvenida();', color: 'text-yellow-400' }
   ],
   [
-    { text: '17:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '17:00 - 18:30 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'networking();', color: 'text-yellow-400' }
   ],
   [
-    { text: '19:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '19:00 - 21:00 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'inicio_reto();', color: 'text-yellow-400' }
   ],
-  [{ text: '', color: 'text-white' }],
-  [{ text: '// SÁBADO 14', color: 'text-white/40' }],
   [
-    { text: '09:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '21:00 -> ', color: 'text-white/50', bold: true },
+    { text: 'salida_cierre_sede(); // Cierre ETSIT', color: 'text-red-400' }
+  ],
+  [{ text: '', color: 'text-white' }],
+  [{ text: '// SÁBADO 14 NOVIEMBRE', color: 'text-white/40' }],
+  [
+    { text: '09:00 - 14:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: 'desarrollo_reto();', color: 'text-yellow-400' }
+  ],
+  [
+    { text: '14:00 - 15:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: 'comida();', color: 'text-yellow-400' }
+  ],
+  [
+    { text: '15:00 - 21:00 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'continuar_reto();', color: 'text-yellow-400' }
   ],
   [
-    { text: '14:00 -> ', color: 'text-[#FFA000]', bold: true },
-    { text: 'descanso_comida();', color: 'text-yellow-400' }
-  ],
-  [
-    { text: '15:00 -> ', color: 'text-[#FFA000]', bold: true },
-    { text: 'continuar_reto();', color: 'text-yellow-400' }
+    { text: '21:00 -> ', color: 'text-white/50', bold: true },
+    { text: 'salida_cierre_sede(); // Cierre ETSIT', color: 'text-red-400' }
   ],
   [{ text: '', color: 'text-white' }],
-  [{ text: '// DOMINGO 15', color: 'text-white/40' }],
+  [{ text: '// DOMINGO 15 NOVIEMBRE', color: 'text-white/40' }],
   [
-    { text: '09:00 -> ', color: 'text-[#FFA000]', bold: true },
-    { text: 'fin_reto();', color: 'text-yellow-400' }
+    { text: '09:00 - 14:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: 'sprint_final(); // Code Freeze 14:00', color: 'text-yellow-400' }
   ],
   [
-    { text: '15:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '14:00 - 15:00 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: 'comida();', color: 'text-yellow-400' }
+  ],
+  [
+    { text: '15:00 - 17:30 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'exposicion_soluciones();', color: 'text-yellow-400' }
   ],
   [
-    { text: '17:30 -> ', color: 'text-[#FFA000]', bold: true },
+    { text: '17:30 - 18:00 -> ', color: 'text-[#FFA000]', bold: true },
     { text: 'anuncio_ganadores();', color: 'text-yellow-400' }
   ]
 ];
@@ -316,11 +328,11 @@ const challengeRunOutput: RunOutputConfig = {
 const scheduleRunOutput: RunOutputConfig = {
   title: 'cargar(EURI_Challenge) -> Agenda',
   lines: [
-    '> Compilando cronograma de 48 horas...',
-    '✓ Viernes 13: 16:00 Bienvenida | 17:00 Networking | 19:00 Inicio Reto',
-    '✓ Sábado 14: 09:00 Hacking continuo | 14:00 Almuerzo | 15:00 Sprint nocturno',
-    '✓ Domingo 15: 09:00 Fin Reto (Code freeze) | 15:00 Demos en vivo | 17:30 Ganadores',
-    '> 48 horas de pura innovación tecnológica verificadas.'
+    '> Compilando cronograma del hackathon...',
+    '✓ Viernes 13: 16:00 Bienvenida | 17:00 Networking | 19:00 Inicio Reto | 21:00 Salida',
+    '✓ Sábado 14: 09:00-14:00 Reto | 14:00 Comida | 15:00-21:00 Reto | 21:00 Salida',
+    '✓ Domingo 15: 09:00-14:00 Reto (Code freeze) | 14:00 Comida | 15:00 Demos | 17:30 Ganadores',
+    '> Cronograma 100% verificado y sincronizado.'
   ],
   status: 'SCHEDULE_VERIFIED'
 };
@@ -375,19 +387,22 @@ export default function EurichallengeClient() {
 
   const scheduleData = {
     viernes: [
-      { time: '16:00', code: 'charla_bienvenida();', title: 'Charla de Bienvenida', desc: 'Apertura oficial, bienvenida de Eurielec y presentación detallada del reto y jurado.' },
-      { time: '17:00', code: 'networking();', title: 'Networking & Dinámica', desc: 'Encuentro entre participantes, empresas patrocinadoras y formación de equipos.' },
-      { time: '19:00', code: 'inicio_reto();', title: 'Inicio Oficial del Reto', desc: '¡Comienza el hackathon! Acceso a APIs, datos y arranque de desarrollo.' },
+      { time: '16:00 - 17:00', code: 'charla_bienvenida();', title: 'Charla de Bienvenida', desc: 'Apertura oficial, bienvenida de Eurielec y presentación detallada del reto y jurado.' },
+      { time: '17:00 - 18:30', code: 'networking();', title: 'Networking & Dinámica', desc: 'Encuentro entre participantes, empresas patrocinadoras y formación de equipos.' },
+      { time: '19:00 - 21:00', code: 'inicio_reto();', title: 'Inicio del Reto', desc: '¡Comienza el hackathon! Acceso a especificaciones técnicas, datos y arranque de desarrollo.' },
+      { time: '21:00', code: 'salida_cierre();', title: 'Cierre de Jornada (Salida)', desc: 'Cierre nocturno de instalaciones en la ETSIT UPM. Descanso hasta el sábado a las 09:00.' },
     ],
     sabado: [
-      { time: '09:00', code: 'continuar_reto();', title: 'Jornada Intensiva de Hacking', desc: 'Desarrollo técnico, prototipado de IA y sesiones de mentoría con expertos.' },
-      { time: '14:00', code: 'descanso_comida();', title: 'Descanso & Almuerzo', desc: 'Comida provista por la organización para recargar energías y debatir estrategias.' },
-      { time: '15:00', code: 'continuar_reto();', title: 'Sprint Vespertino y Nocturno', desc: 'Afinamiento de modelos de visión por computador, tests y pulido de producto.' },
+      { time: '09:00 - 14:00', code: 'desarrollo_reto();', title: 'Jornada de Reto (Mañana)', desc: 'Desarrollo técnico continuo, arquitectura del modelo de IA y mentorías con expertos.' },
+      { time: '14:00 - 15:00', code: 'comida();', title: 'Comida & Recarga de Energía', desc: 'Almuerzo para todos los participantes provisto por la organización para recargar pilas y comentar avances.' },
+      { time: '15:00 - 21:00', code: 'continuar_reto();', title: 'Jornada de Reto (Tarde)', desc: 'Sprint intensivo de desarrollo, pulido de visión artificial y validación de prototipos.' },
+      { time: '21:00', code: 'salida_cierre();', title: 'Cierre de Jornada (Salida)', desc: 'Cierre nocturno de instalaciones en la ETSIT UPM. Descanso hasta la recta final del domingo.' },
     ],
     domingo: [
-      { time: '09:00', code: 'fin_reto();', title: 'Fin del Reto (Code Freeze)', desc: 'Fin del tiempo de desarrollo. Entrega final de repositorios de código y documentación.' },
-      { time: '15:00', code: 'exposicion_soluciones();', title: 'Demos y Exposición', desc: 'Presentación de soluciones y demostraciones en directo ante el jurado de expertos.' },
-      { time: '17:30', code: 'anuncio_ganadores();', title: 'Anuncio de Ganadores y Clausura', desc: 'Ceremonia de entrega de premios (+1.500€), diplomas y clausura del hackathon.' },
+      { time: '09:00 - 14:00', code: 'sprint_final();', title: 'Reto: Sprint Final (Code Freeze)', desc: 'Último bloque de hacking. A las 14:00 se congelan repositorios y entrega obligatoria del código.' },
+      { time: '14:00 - 15:00', code: 'comida();', title: 'Comida de Clausura', desc: 'Almuerzo para participantes tras la entrega del reto antes de dar comienzo a las exposiciones.' },
+      { time: '15:00 - 17:30', code: 'exposicion_soluciones();', title: 'Exposición de Soluciones', desc: 'Demos en directo y presentaciones de cada equipo ante el tribunal del jurado evaluador.' },
+      { time: '17:30 - 18:00', code: 'anuncio_ganadores();', title: 'Anuncio de Ganadores & Premios', desc: 'Veredicto final del jurado, entrega de premios (+1.500€), diplomas y clausura oficial.' },
     ],
   };
 
@@ -454,13 +469,15 @@ export default function EurichallengeClient() {
               <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-black/20 rounded-bl-sm pointer-events-none" />
               <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/20 rounded-br-sm pointer-events-none" />
 
-              {/* Contenedor proporcional de la imagen */}
-              <div className="relative w-full aspect-[979/375] max-h-[260px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] flex items-center justify-center">
+              {/* Contenedor proporcional de la imagen a máxima nitidez */}
+              <div className="relative w-full aspect-[1019/370] max-h-[260px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] flex items-center justify-center">
                 <Image
                   src="/eurichallenge/logo-eurichallenge-white.png"
                   alt="EURIChallenge 2026 - Hackathon Madrid ETSIT UPM"
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 1020px"
+                  quality={100}
                   className="object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                 />
               </div>
@@ -764,7 +781,7 @@ export default function EurichallengeClient() {
                 className="py-6 flex flex-col md:flex-row md:items-center justify-between gap-4 group"
               >
                 <div className="flex items-start md:items-center gap-4">
-                  <div className="font-mono text-xl sm:text-2xl font-black text-[#FFA000] shrink-0">
+                  <div className="font-mono text-base sm:text-lg md:text-xl font-black text-[#FFA000] shrink-0 whitespace-nowrap min-w-[125px] sm:min-w-[155px]">
                     {item.time}
                   </div>
                   <div>
