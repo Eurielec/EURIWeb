@@ -436,14 +436,35 @@ export default function EurichallengeClient() {
           {/* Accessible hidden H1 for SEO */}
           <h1 className="sr-only">EURI.CHALLENGE 2026 - Hackathon Oficial de Tecnología e Innovación ETSIT UPM</h1>
 
-          <div className="relative w-full aspect-[939/345] max-h-[300px] sm:max-h-[380px] md:max-h-[440px] lg:max-h-[480px] flex items-center justify-center group">
-            <Image
-              src="/eurichallenge/logo-eurichallenge-hq.png"
-              alt="EURI.CHALLENGE Logo Hackathon 2026"
-              fill
-              priority
-              className="object-contain transition-all duration-700 filter group-hover:scale-[1.02] drop-shadow-[0_0_55px_rgba(232,22,27,0.55)]"
-            />
+          {/* ── LOGO OFICIAL DEL HACKATHON ENMARCADO CON FONDO BLANCO PULIDO ── */}
+          <div className="relative w-full group">
+            {/* Halo de resplandor ambiental detrás del marco */}
+            <div className={`absolute -inset-1.5 sm:-inset-2 rounded-2xl sm:rounded-3xl blur-2xl opacity-60 group-hover:opacity-85 transition-opacity duration-700 -z-10 ${
+              isHC 
+                ? 'bg-gradient-to-r from-[#FFC107]/40 via-[#FFA000]/30 to-[#FFC107]/40' 
+                : 'bg-gradient-to-r from-[#E8161B]/40 via-[#FF5722]/30 to-[#E8161B]/40'
+            }`} />
+
+            {/* Tarjeta con fondo blanco, bordes y esquinas técnicas */}
+            <div className="relative w-full bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/60 overflow-hidden flex items-center justify-center">
+              
+              {/* Sutil detalle técnico: esquinas HUD */}
+              <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-black/20 rounded-tl-sm pointer-events-none" />
+              <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-black/20 rounded-tr-sm pointer-events-none" />
+              <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-black/20 rounded-bl-sm pointer-events-none" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/20 rounded-br-sm pointer-events-none" />
+
+              {/* Contenedor proporcional de la imagen */}
+              <div className="relative w-full aspect-[979/375] max-h-[260px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] flex items-center justify-center">
+                <Image
+                  src="/eurichallenge/logo-eurichallenge-white.png"
+                  alt="EURI.CHALLENGE Logo Hackathon 2026"
+                  fill
+                  priority
+                  className="object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Subtítulo de Edición */}
@@ -1124,13 +1145,15 @@ export default function EurichallengeClient() {
           >
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="relative w-8 h-8 shrink-0 hidden sm:block">
-                  <Image
-                    src="/eurichallenge/logo-eurichallenge-hq.png"
-                    alt="EC Logo"
-                    fill
-                    className="object-contain"
-                  />
+                <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 hidden sm:flex items-center justify-center bg-white rounded-lg p-1 shadow-md border border-white/50 overflow-hidden">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/eurichallenge/logo-eurichallenge-white.png"
+                      alt="EC Logo"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
                 <span className="flex h-3 w-3 relative sm:hidden">
                   <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
