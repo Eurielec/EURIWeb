@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:fake": "npx tsx scripts/seed-fake-members.ts",
+    "clean:fake": "npx tsx scripts/clean-fake-members.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
