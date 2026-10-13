@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     "Eurielec", "EESTEC", "EESTEC LC Madrid", "eestec lc madrid", "ETSIT", "UPM", "ETSII", 
     "Ingeniería", "ingenieros", "Electrónica", "electronica etsit", "software libre", "software etsit", 
     "Asociación de estudiantes", "Madrid", "Tecnología", "clubes etsit", "clubes", "club", 
-    "patrocinio", "patrocinador", "euri"
+    "patrocinio", "patrocinador", "euri", "hackathon madrid", "hackaton madrid", "hackathones madrid",
+    "hackathon estudiantes madrid", "hackathon etsit", "EURIChallenge", "concurso de programacion madrid"
   ],
   metadataBase: new URL('https://eurielec.etsit.upm.es'),
   icons: {

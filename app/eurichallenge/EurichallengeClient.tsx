@@ -434,7 +434,7 @@ export default function EurichallengeClient() {
           className="relative max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl mx-auto flex flex-col items-center justify-center text-center mb-8"
         >
           {/* Accessible hidden H1 for SEO */}
-          <h1 className="sr-only">EURI.CHALLENGE 2026 - Hackathon Oficial de Tecnología e Innovación ETSIT UPM</h1>
+          <h1 className="sr-only">EURIChallenge 2026 | Hackathon Madrid — Hackathon de Tecnología, Programación e Inteligencia Artificial en ETSIT UPM</h1>
 
           {/* ── LOGO OFICIAL DEL HACKATHON ENMARCADO CON FONDO BLANCO PULIDO ── */}
           <div className="relative w-full group">
@@ -458,7 +458,7 @@ export default function EurichallengeClient() {
               <div className="relative w-full aspect-[979/375] max-h-[260px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] flex items-center justify-center">
                 <Image
                   src="/eurichallenge/logo-eurichallenge-white.png"
-                  alt="EURI.CHALLENGE Logo Hackathon 2026"
+                  alt="EURIChallenge 2026 - Hackathon Madrid ETSIT UPM"
                   fill
                   priority
                   className="object-contain transition-transform duration-500 group-hover:scale-[1.01]"
@@ -473,7 +473,7 @@ export default function EurichallengeClient() {
           }`}>
             <span className={`w-2 h-2 rounded-full animate-ping ${isHC ? 'bg-[#FFC107]' : 'bg-[#E8161B]'}`} />
             <span className="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase">
-              EDICIÓN OFICIAL 2026 &middot; ETSIT UPM
+              HACKATHON MADRID 2026 &middot; 13-15 NOVIEMBRE &middot; ETSIT UPM
             </span>
           </div>
         </motion.div>
@@ -486,9 +486,7 @@ export default function EurichallengeClient() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-lg sm:text-xl text-white/80 font-normal leading-relaxed max-w-3xl mx-auto"
           >
-            <strong>EURIChallenge</strong> toma el relevo de <em>EESTech Challenge</em> y comienza una nueva etapa en la ETSIT.
-            Un hackathon donde equipos de <strong className="text-white font-bold">3 participantes</strong> tendrán
-            un fin de semana para enfrentarse a un reto real y desarrollar soluciones originales.
+            <strong>EURIChallenge 2026</strong> es el <strong>hackathon presencial en Madrid</strong> organizado por <strong>Eurielec</strong> y <strong>EESTEC LC Madrid</strong> en la <strong>ETSIT UPM</strong>. Un fin de semana de programación, ingeniería e inteligencia artificial donde equipos de <strong className="text-white font-bold">3 participantes</strong> resolverán un reto técnico de impacto real con más de <strong className="text-white font-bold">1.500€ en premios</strong>.
           </motion.p>
 
           <motion.div
@@ -497,13 +495,13 @@ export default function EurichallengeClient() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="font-mono text-xs sm:text-sm text-white/50 tracking-widest uppercase flex flex-wrap items-center justify-center gap-3 pt-2"
           >
-            <span className={isHC ? 'text-[#FFC107]' : 'text-[#FF5722]'}>#HACKATHON</span>
+            <span className={isHC ? 'text-[#FFC107]' : 'text-[#FF5722]'}>#HACKATHON_MADRID</span>
             <span>•</span>
-            <span className={isHC ? 'text-[#FFD54F]' : 'text-[#FFA000]'}>#EESTEC</span>
+            <span className={isHC ? 'text-[#FFD54F]' : 'text-[#FFA000]'}>#ETSIT_UPM</span>
             <span>•</span>
-            <span className={isHC ? 'text-[#FFC107]' : 'text-[#E8161B]'}>#EURI</span>
+            <span className={isHC ? 'text-[#FFC107]' : 'text-[#E8161B]'}>#INTELIGENCIA_ARTIFICIAL</span>
             <span>•</span>
-            <span className="text-emerald-400">#CODING</span>
+            <span className="text-emerald-400">#CODING_CHALLENGE</span>
           </motion.div>
 
           {/* ── MEGA BOTÓN DE INSCRIPCIÓN (DESTACADO) ── */}
@@ -1003,8 +1001,16 @@ export default function EurichallengeClient() {
         <div className="space-y-4">
           {[
             {
-              q: '¿Quién puede participar en el EURIChallenge?',
-              a: 'Cualquier estudiante universitario (UPM u otras universidades) apasionado por la tecnología, el desarrollo de software, la electrónica o el diseño. ¡Todos los perfiles son bienvenidos!',
+              q: '¿Qué es EURIChallenge y qué tipo de hackathon es en Madrid?',
+              a: 'EURIChallenge 2026 es el hackathon universitario de referencia en Madrid, organizado conjuntamente por Eurielec y EESTEC LC Madrid en la ETSIT UPM. Durante 48 horas intensivas, equipos de 3 estudiantes y apasionados del software y la ingeniería compiten desarrollando una solución tecnológica innovadora aplicando Inteligencia Artificial y Visión Artificial.',
+            },
+            {
+              q: '¿Dónde se celebra este hackathon en Madrid y cómo llegar?',
+              a: 'El hackathon es 100% presencial y se celebra en la ETSI de Telecomunicación (ETSIT - UPM), situada en Av. Complutense 30, Ciudad Universitaria (28040 Madrid). Es muy accesible en Metro (Línea 6, estaciones Ciudad Universitaria o Vicente Aleixandre) y en varias líneas de autobús EMT (Líneas 82, 132, F, G, U).',
+            },
+            {
+              q: '¿Quién puede participar en el EURIChallenge Hackathon?',
+              a: 'Cualquier estudiante universitario o de formación superior (de la UPM o de cualquier otra universidad de Madrid y España) interesado en programación, inteligencia artificial, electrónica o diseño. ¡Todos los perfiles técnicos y creativos son bienvenidos!',
             },
             {
               q: '¿Qué pasa si no tengo equipo completo de 3 personas?',
@@ -1015,8 +1021,12 @@ export default function EurichallengeClient() {
               a: 'No. El reto está diseñado para aprender. Proveeremos plantillas de inicio, guías y mentores expertos durante todo el hackathon que te guiarán paso a paso con Python, TypeScript y visión por computador.',
             },
             {
-              q: '¿Cuánto cuesta la inscripción?',
-              a: 'La inscripción es 100% gratuita gracias al patrocinio de nuestras empresas colaboradoras y el apoyo de ETSIT UPM y Eurielec. Incluye comidas, bebidas, snacks y welcome pack.',
+              q: '¿Cuánto cuesta la inscripción en el hackathon Madrid?',
+              a: 'La inscripción es 100% gratuita gracias al patrocinio de nuestras empresas colaboradoras y el apoyo de ETSIT UPM y Eurielec. Incluye espacio, Wi-Fi, comidas, cenas, bebidas energéticas, snacks y welcome pack oficial.',
+            },
+            {
+              q: '¿Cuáles son los premios del hackathon?',
+              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en efectivo + 100€ en productos tecnológicos + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
             },
             {
               q: '¿Qué tengo que llevar?',

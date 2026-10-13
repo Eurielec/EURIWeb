@@ -81,6 +81,7 @@ export default function Navbar() {
               <Link
                 key={item.name}
                 href={item.path}
+                title={isChallenge ? 'EURIChallenge 2026 - Hackathon Madrid ETSIT UPM' : undefined}
                 className="relative px-2.5 2xl:px-3.5 py-2 text-[12.5px] 2xl:text-[13.5px] font-black uppercase transition-all hover:opacity-100 flex items-center gap-1.5"
                 style={{
                   color: isActive ? 'var(--navbar-active-text)' : (isChallenge ? '#FF6B35' : 'var(--navbar-text)'),
