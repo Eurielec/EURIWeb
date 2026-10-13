@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:fake": "npx tsx scripts/seed-fake-members.ts",
-    "clean:fake": "npx tsx scripts/clean-fake-members.ts"
+    "seed:fake": "node scripts/seed-fake-members.js",
+    "clean:fake": "node scripts/clean-fake-members.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
