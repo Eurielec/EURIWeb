@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed:fake": "node scripts/seed-fake-members.js",
-    "clean:fake": "node scripts/clean-fake-members.js"
+    "clean:fake": "node scripts/clean-fake-members.js",
+    "diag": "node scripts/diagnostico.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
