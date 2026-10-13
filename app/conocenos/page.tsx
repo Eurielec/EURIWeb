@@ -5,11 +5,13 @@ import About3DSections from '@/components/About3DSections';
 import EuropeMap from '@/components/EuropeMap';
 import { getDictionaryServer } from '@/lib/i18n-server';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ConocenosPage() {
   const t = await getDictionaryServer();
 
   const members = await prisma.user.findMany({
-    where: { role: { in: ['USER', 'ADMIN'] } },
+    where: { role: { in: ['USER', 'ADMIN', 'VOCAL', 'ALUMNI'] } },
     select: { province: true, city: true, latitude: true, longitude: true, university: true, academicYear: true }
   });
 

@@ -27,16 +27,17 @@ export function SpainMap({ members }: { members: any[] }) {
     return acc;
   }, {} as Record<string, number>);
 
-  // Agrupar miembros por mismas coordenadas para mostrar contadores si hay más de 1 en la misma ciudad
+  // Agrupar miembros por ciudad / coordenadas para contadores
   const membersByCoords = members.reduce((acc, m) => {
     if (!m.latitude || !m.longitude) return acc;
-    const key = `${m.latitude},${m.longitude}`;
+    // Normalizar clave por ciudad o coordenadas redondeadas
+    const key = `${m.city || ''}_${Number(m.latitude).toFixed(3)}_${Number(m.longitude).toFixed(3)}`;
     if (!acc[key]) {
       acc[key] = {
          city: m.city || m.province,
          province: m.province,
-         lat: m.latitude,
-         lon: m.longitude,
+         lat: Number(m.latitude),
+         lon: Number(m.longitude),
          count: 1
       };
     } else {
@@ -45,7 +46,15 @@ export function SpainMap({ members }: { members: any[] }) {
     return acc;
   }, {} as Record<string, any>);
 
-  const validPoints = Object.values(membersByCoords);
+  // Ordenar para que los puntos grandes (como Madrid) se dibujen primero (al fondo)
+  // y los pueblos/ciudades cercanos (Getafe, Leganés, etc.) queden encima sin quedar tapados
+  const validPoints = Object.values(membersByCoords).sort((a: any, b: any) => b.count - a.count);
+
+  // Escala compacta: radio base 4px, sube suavemente con log2 hasta un máximo de 7.5px
+  const getRadius = (count: number) => {
+    if (count <= 1) return 4;
+    return Math.min(7.5, 4 + Math.log2(count) * 0.55);
+  };
 
   return (
     <div className="relative w-full aspect-4/3 max-w-4xl mx-auto rounded-3xl overflow-hidden bg-white/5 border border-white/10 shadow-2xl flex items-center justify-center p-4">
@@ -111,20 +120,25 @@ export function SpainMap({ members }: { members: any[] }) {
         </Geographies>
 
         {/* Markers para cada ciudad */}
-        {validPoints.map((point: any, idx) => (
-          <Marker 
-            key={idx} 
-            coordinates={[point.lon, point.lat]}
-            onMouseEnter={() => setHoveredInfo({ type: 'city', title: point.city, subtitle: point.province, count: point.count })}
-            onMouseLeave={() => setHoveredInfo(null)}
-          >
-            <circle 
-              r={point.count > 1 ? 6 + (point.count * 0.5) : 5} 
-              fill="#fb923c" 
-              className="drop-shadow-[0_0_8px_rgba(251,146,60,0.8)] cursor-pointer hover:fill-orange-300 transition-colors"
-            />
-          </Marker>
-        ))}
+        {validPoints.map((point: any, idx) => {
+          const r = getRadius(point.count);
+          return (
+            <Marker 
+              key={idx} 
+              coordinates={[point.lon, point.lat]}
+              onMouseEnter={() => setHoveredInfo({ type: 'city', title: point.city, subtitle: point.province, count: point.count })}
+              onMouseLeave={() => setHoveredInfo(null)}
+            >
+              <circle 
+                r={r} 
+                fill="#fb923c" 
+                stroke="#18181b"
+                strokeWidth={1.2}
+                className="drop-shadow-[0_0_6px_rgba(251,146,60,0.75)] cursor-pointer hover:fill-orange-300 hover:scale-125 transition-all"
+              />
+            </Marker>
+          );
+        })}
       </ComposableMap>
 
       {/* Decorative glows */}

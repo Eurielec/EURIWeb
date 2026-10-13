@@ -7,21 +7,24 @@ const path = require('path');
 
 // Leer .env manualmente si no está cargado
 function loadEnv() {
-  const envPath = path.resolve(__dirname, '../.env');
-  if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, 'utf8');
-    for (const line of envContent.split('\n')) {
-      const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith('#')) {
-        const match = trimmed.match(/^([^=]+)=(.*)$/);
-        if (match) {
-          const key = match[1].trim();
-          let val = match[2].trim();
-          if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-            val = val.slice(1, -1);
-          }
-          if (!process.env[key]) {
-            process.env[key] = val;
+  const envFiles = ['.env', '.env.production', '.env.local'];
+  for (const file of envFiles) {
+    const envPath = path.resolve(__dirname, '..', file);
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, 'utf8');
+      for (const line of envContent.split('\n')) {
+        const trimmed = line.trim();
+        if (trimmed && !trimmed.startsWith('#')) {
+          const match = trimmed.match(/^([^=]+)=(.*)$/);
+          if (match) {
+            const key = match[1].trim();
+            let val = match[2].trim();
+            if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+              val = val.slice(1, -1);
+            }
+            if (!process.env[key]) {
+              process.env[key] = val;
+            }
           }
         }
       }
@@ -80,17 +83,17 @@ const LOCATIONS = [
   // 2 de segovia
   { city: 'Segovia', province: 'Segovia', latitude: 40.9429, longitude: -4.1088, count: 2 },
   // unas 4 de getafe
-  { city: 'Getafe', province: 'Madrid', latitude: 40.3083, longitude: -3.7328, count: 4 },
+  { city: 'Getafe', province: 'Madrid', latitude: 40.3000, longitude: -3.7150, count: 4 },
   // 2 de leganes
-  { city: 'Leganés', province: 'Madrid', latitude: 40.3282, longitude: -3.7635, count: 2 },
+  { city: 'Leganés', province: 'Madrid', latitude: 40.3350, longitude: -3.7750, count: 2 },
   // uno de humanes
-  { city: 'Humanes de Madrid', province: 'Madrid', latitude: 40.2526, longitude: -3.8273, count: 1 },
+  { city: 'Humanes de Madrid', province: 'Madrid', latitude: 40.2450, longitude: -3.8350, count: 1 },
   // uno del escorial de madrid
   { city: 'El Escorial', province: 'Madrid', latitude: 40.5828, longitude: -4.1283, count: 1 },
   // 1 de rivas
-  { city: 'Rivas-Vaciamadrid', province: 'Madrid', latitude: 40.3524, longitude: -3.5350, count: 1 },
-  // La gran mayoría en Madrid capital (68 restantes para completar los 86 miembros)
-  { city: 'Madrid', province: 'Madrid', latitude: 40.4168, longitude: -3.7038, count: 68 }
+  { city: 'Rivas-Vaciamadrid', province: 'Madrid', latitude: 40.3450, longitude: -3.5250, count: 1 },
+  // La gran mayoría en Madrid capital (68 restantes para completar los 86 miembros) - Ciudad Universitaria / ETSIT
+  { city: 'Madrid', province: 'Madrid', latitude: 40.4400, longitude: -3.6950, count: 68 }
 ];
 
 async function main() {
