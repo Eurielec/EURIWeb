@@ -451,36 +451,26 @@ export default function EurichallengeClient() {
           {/* Accessible hidden H1 for SEO */}
           <h1 className="sr-only">EURIChallenge 2026 | Hackathon Madrid — Hackathon de Tecnología, Programación e Inteligencia Artificial en ETSIT UPM</h1>
 
-          {/* ── LOGO OFICIAL DEL HACKATHON ENMARCADO CON FONDO BLANCO PULIDO ── */}
-          <div className="relative w-full group">
-            {/* Halo de resplandor ambiental detrás del marco */}
-            <div className={`absolute -inset-1.5 sm:-inset-2 rounded-2xl sm:rounded-3xl blur-2xl opacity-60 group-hover:opacity-85 transition-opacity duration-700 -z-10 ${
+          {/* ── LOGO OFICIAL DEL HACKATHON FLOTANTE TRANSPARENTE (OPCIÓN B) ── */}
+          <div className="relative w-full group py-2 sm:py-4 flex items-center justify-center">
+            {/* Resplandor ambiental cinemático detrás del logo */}
+            <div className={`absolute inset-x-4 sm:inset-x-12 inset-y-0 blur-3xl opacity-60 group-hover:opacity-85 transition-opacity duration-700 -z-10 pointer-events-none ${
               isHC 
-                ? 'bg-gradient-to-r from-[#FFC107]/40 via-[#FFA000]/30 to-[#FFC107]/40' 
-                : 'bg-gradient-to-r from-[#E8161B]/40 via-[#FF5722]/30 to-[#E8161B]/40'
+                ? 'bg-gradient-to-r from-[#FFC107]/25 via-[#FFA000]/35 to-[#FFC107]/25' 
+                : 'bg-gradient-to-r from-[#E8161B]/30 via-[#FF5722]/40 to-[#E8161B]/30'
             }`} />
 
-            {/* Tarjeta con fondo blanco, bordes y esquinas técnicas */}
-            <div className="relative w-full bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/60 overflow-hidden flex items-center justify-center">
-              
-              {/* Sutil detalle técnico: esquinas HUD */}
-              <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-black/20 rounded-tl-sm pointer-events-none" />
-              <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-black/20 rounded-tr-sm pointer-events-none" />
-              <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-black/20 rounded-bl-sm pointer-events-none" />
-              <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-black/20 rounded-br-sm pointer-events-none" />
-
-              {/* Contenedor proporcional de la imagen a máxima nitidez */}
-              <div className="relative w-full aspect-[1019/370] max-h-[260px] sm:max-h-[320px] md:max-h-[380px] lg:max-h-[420px] flex items-center justify-center">
-                <Image
-                  src="/eurichallenge/logo-eurichallenge-white.png"
-                  alt="EURIChallenge 2026 - Hackathon Madrid ETSIT UPM"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 1020px"
-                  quality={100}
-                  className="object-contain transition-transform duration-500 group-hover:scale-[1.01]"
-                />
-              </div>
+            {/* Contenedor proporcional del logo a máxima nitidez sin marco */}
+            <div className="relative w-full aspect-[1019/370] max-h-[260px] sm:max-h-[320px] md:max-h-[390px] lg:max-h-[440px] flex items-center justify-center drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)] filter">
+              <Image
+                src="/eurichallenge/logo-eurichallenge-dark.png"
+                alt="EURIChallenge 2026 - Hackathon Madrid ETSIT UPM"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 85vw, 1020px"
+                quality={100}
+                className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+              />
             </div>
           </div>
 
@@ -1172,12 +1162,13 @@ export default function EurichallengeClient() {
           >
             <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 hidden sm:flex items-center justify-center bg-white rounded-lg p-1 shadow-md border border-white/50 overflow-hidden">
+                <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 hidden sm:flex items-center justify-center bg-white/5 rounded-lg p-1 shadow-md border border-white/10 overflow-hidden">
                   <div className="relative w-full h-full">
                     <Image
-                      src="/eurichallenge/logo-eurichallenge-white.png"
+                      src="/eurichallenge/logo-eurichallenge-dark.png"
                       alt="EC Logo"
                       fill
+                      sizes="40px"
                       className="object-contain"
                     />
                   </div>
