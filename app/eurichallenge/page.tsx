@@ -178,7 +178,7 @@ const jsonLdFaq = {
       name: '¿Cuáles son los premios del hackathon?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Hay más de 1.500€ en el pool de recompensas: 1º Premio (150€ cash + 100€ tech products + trofeo), 2º Premio (+100€ tech products y periféricos), 3er Premio (merchandising oficial exclusivo) y diplomas acreditativos oficiales para todos los participantes.',
+        text: 'Hay más de 1.500€ en el pool de recompensas: 1º Premio (150€ en premios + trofeo), 2º Premio (+100€ tech products y periféricos), 3er Premio (merchandising oficial exclusivo) y diplomas acreditativos oficiales para todos los participantes.',
       },
     },
   ],

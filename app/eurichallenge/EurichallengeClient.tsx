@@ -224,10 +224,10 @@ const rewardsCodeTokens: CodeToken[][] = [
   [
     { text: 'const ', color: 'text-[#FF5722]', bold: true },
     { text: 'PRIZE_01', color: 'text-blue-300' },
-    { text: ' = { cash: ', color: 'text-white' },
+    { text: ' = { prize: ', color: 'text-white' },
     { text: '"150€"', color: 'text-emerald-400' },
-    { text: ', products: ', color: 'text-white' },
-    { text: '"+100€"', color: 'text-yellow-400' },
+    { text: ', trophy: ', color: 'text-white' },
+    { text: 'true', color: 'text-yellow-400' },
     { text: ', level: ', color: 'text-white' },
     { text: '"TOP"', color: 'text-[#FF5722]', bold: true },
     { text: ' };', color: 'text-white' }
@@ -269,17 +269,15 @@ const partnersCodeTokens: CodeToken[][] = [
   [{ text: '// POWERED BY', color: 'text-white/40' }],
   [
     { text: 'const ', color: 'text-[#FF5722]', bold: true },
-    { text: 'PARTNERS', color: 'text-blue-300', bold: true },
+    { text: 'SPONSORS', color: 'text-blue-300', bold: true },
     { text: ' = [', color: 'text-white' }
   ],
-  [{ text: '  "EURIELEC",', color: 'text-emerald-400' }],
-  [{ text: '  "EESTEC LC MADRID",', color: 'text-emerald-400' }],
-  [{ text: '  "ETSIT UPM",', color: 'text-emerald-400' }],
-  [{ text: '  "COLABORADORES_2026"', color: 'text-emerald-400' }],
+  [{ text: '  "UPM",', color: 'text-emerald-400' }],
+  [{ text: '  "ELGATO GAMING"', color: 'text-emerald-400' }],
   [{ text: '];', color: 'text-white' }],
   [{ text: '', color: 'text-white' }],
   [
-    { text: 'PARTNERS.forEach(partner => {', color: 'text-yellow-400' }
+    { text: 'SPONSORS.forEach(sponsor => {', color: 'text-yellow-400' }
   ],
   [
     { text: '  support(', color: 'text-white' },
@@ -341,23 +339,21 @@ const rewardsRunOutput: RunOutputConfig = {
   title: 'load_prizes() -> Pool de Recompensas',
   lines: [
     '> Consultando base de datos de recompensas...',
-    '🏆 1º Premio (TOP): 150€ cash + 100€ tech products + trofeo',
-    '🥈 2º Premio (PRO): +100€ tech products + periféricos y sorpresas',
-    '🥉 3er Premio (MERCH): Ropa y merchandising oficial "UNLOCKED"',
-    '🎁 Todos los equipos: Comidas, cenas, snacks, welcome pack y diploma ETSIT',
+    '1º Premio (TOP): 150€ en premios + trofeo',
+    '2º Premio (PRO): +100€ tech products + periféricos y sorpresas',
+    '3er Premio (MERCH): Ropa y merchandising oficial "UNLOCKED"',
+    'Todos los equipos: Comidas, cenas, snacks, welcome pack y diploma ETSIT',
     '> Valor total acumulado: +1.500€ [REWARDS UNLOCKED]'
   ],
   status: 'PRIZES_CLAIMABLE'
 };
 
 const partnersRunOutput: RunOutputConfig = {
-  title: 'PARTNERS.forEach(support) -> Alianzas',
+  title: 'SPONSORS.forEach(support) -> Patrocinadores',
   lines: [
-    '> Sincronizando entidades y patrocinadores...',
-    '✓ Eurielec ETSIT Madrid (Organizador técnico)',
-    '✓ EESTEC LC Madrid (Comité Local & Red Europea)',
-    '✓ ETSIT - Universidad Politécnica de Madrid (Sede y soporte)',
-    '✓ Colaboradores tecnológicos 2026',
+    '> Sincronizando entidades y patrocinadores oficiales...',
+    '✓ Universidad Politécnica de Madrid (UPM)',
+    '✓ Elgato Gaming (Hardware & Periféricos)',
     '> COLLABORATION MAKES IT POSSIBLE.'
   ],
   status: 'PARTNERS_ACTIVE'
@@ -808,7 +804,7 @@ export default function EurichallengeClient() {
             const PRIZE_POOL = <span className="text-[#FFA000]">&quot;+1500€&quot;;</span>
           </h2>
           <p className="text-white/70 text-base sm:text-lg">
-            Premiaremos las mejores soluciones con dinero en efectivo, hardware tecnológico, periféricos y merchandising exclusivo.
+            Premiaremos las mejores soluciones con premios tecnológicos, periféricos y merchandising exclusivo.
           </p>
         </div>
 
@@ -851,12 +847,12 @@ export default function EurichallengeClient() {
 
               <div className="space-y-3 font-mono text-sm text-white/80 my-6">
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                  <span className="text-white/50">cash:</span>
+                  <span className="text-white/50">prize:</span>
                   <span className="text-emerald-400 font-black text-lg">150€</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                  <span className="text-white/50">products:</span>
-                  <span className="text-yellow-400 font-bold">+100€</span>
+                  <span className="text-white/50">trophy:</span>
+                  <span className="text-yellow-400 font-bold">true</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
                   <span className="text-white/50">level:</span>
@@ -1033,7 +1029,7 @@ export default function EurichallengeClient() {
             },
             {
               q: '¿Cuáles son los premios del hackathon?',
-              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en efectivo + 100€ en productos tecnológicos + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
+              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en premios + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
             },
             {
               q: '¿Qué tengo que llevar?',
@@ -1063,10 +1059,10 @@ export default function EurichallengeClient() {
             isHC ? 'bg-[#FFC107]/10 border-[#FFC107]/30 text-[#FFC107]' : 'bg-[#FFA000]/10 border-[#FFA000]/30 text-[#FFA000]'
           }`}>
             <Share2 size={14} />
-            POWERED BY
+            PATROCINADORES OFICIALES
           </div>
           <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white">
-            // POWERED BY <span className={isHC ? 'text-[#FFC107]' : 'text-[#FF5722]'}>PARTNERS</span>
+            // POWERED BY <span className={isHC ? 'text-[#FFC107]' : 'text-[#FF5722]'}>SPONSORS</span>
           </h2>
           <p className="text-white/70 font-mono text-sm sm:text-base">
             &gt; COLLABORATION MAKES IT POSSIBLE.
@@ -1076,7 +1072,7 @@ export default function EurichallengeClient() {
         {/* Partners Code Terminal Typing Out */}
         <div className="max-w-3xl mx-auto mb-12">
           <TypewriterCodeBlock
-            fileName="partners_powered_by.ts"
+            fileName="sponsors_powered_by.ts"
             lines={partnersCodeTokens}
             tagText="SPONSORS UNLOCKED"
             speed={8}
@@ -1084,27 +1080,46 @@ export default function EurichallengeClient() {
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {[
-            { name: 'Eurielec', sub: 'ETSIT UPM Madrid' },
-            { name: 'EESTEC LC Madrid', sub: 'Red Internacional' },
-            { name: 'ETSIT UPM', sub: 'Escuela de Telecomunicación' },
-            { name: 'Sponsors & Tech Partners', sub: 'Colaboradores 2026' },
-          ].map((partner, i) => (
-            <div
+            {
+              name: 'Universidad Politécnica de Madrid',
+              sub: 'UPM · Sede y Apoyo Institucional',
+              logo: '/eurichallenge/logo-upm.png',
+              alt: 'Logo Universidad Politécnica de Madrid (UPM)',
+              href: 'https://www.upm.es',
+              imgClassName: 'h-24 w-auto max-w-[220px] object-contain',
+            },
+            {
+              name: 'Elgato Gaming',
+              sub: 'Elgato · Hardware y Periféricos',
+              logo: '/eurichallenge/logo-elgato-white.svg',
+              alt: 'Logo Elgato Gaming',
+              href: 'https://www.elgato.com',
+              imgClassName: 'h-16 w-auto max-w-[220px] object-contain',
+            },
+          ].map((sponsor, i) => (
+            <a
               key={i}
-              className={`p-6 rounded-2xl bg-black/60 border border-white/10 flex flex-col items-center justify-center text-center space-y-2 group transition-all ${
+              href={sponsor.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-8 rounded-2xl bg-black/60 border border-white/10 flex flex-col items-center justify-center text-center space-y-4 group transition-colors cursor-pointer ${
                 isHC ? 'hover:border-[#FFC107]/50' : 'hover:border-[#FFA000]/50'
               }`}
             >
-              <div className={`w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center font-black text-lg ${
-                isHC ? 'text-[#FFC107]' : 'text-[#FFA000]'
-              }`}>
-                EC
+              <div className="h-28 flex items-center justify-center w-full">
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.alt}
+                  className={sponsor.imgClassName}
+                />
               </div>
-              <div className="font-bold text-white text-sm">{partner.name}</div>
-              <div className="text-xs text-white/50 font-mono">{partner.sub}</div>
-            </div>
+              <div>
+                <div className="font-bold text-white text-base tracking-wide">{sponsor.name}</div>
+                <div className="text-xs text-white/50 font-mono mt-1">{sponsor.sub}</div>
+              </div>
+            </a>
           ))}
         </div>
       </section>
