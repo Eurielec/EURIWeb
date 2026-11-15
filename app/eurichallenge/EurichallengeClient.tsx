@@ -224,7 +224,7 @@ const rewardsCodeTokens: CodeToken[][] = [
   [
     { text: 'const ', color: 'text-[#FF5722]', bold: true },
     { text: 'PRIZE_01', color: 'text-blue-300' },
-    { text: ' = { prize: ', color: 'text-white' },
+    { text: ' = { products: ', color: 'text-white' },
     { text: '"150€"', color: 'text-emerald-400' },
     { text: ', trophy: ', color: 'text-white' },
     { text: 'true', color: 'text-yellow-400' },
@@ -339,7 +339,7 @@ const rewardsRunOutput: RunOutputConfig = {
   title: 'load_prizes() -> Pool de Recompensas',
   lines: [
     '> Consultando base de datos de recompensas...',
-    '1º Premio (TOP): 150€ en premios + trofeo',
+    '1º Premio (TOP): 150€ en productos tech + trofeo',
     '2º Premio (PRO): +100€ tech products + periféricos y sorpresas',
     '3er Premio (MERCH): Ropa y merchandising oficial "UNLOCKED"',
     'Todos los equipos: Comidas, cenas, snacks, welcome pack y diploma ETSIT',
@@ -847,7 +847,7 @@ export default function EurichallengeClient() {
 
               <div className="space-y-3 font-mono text-sm text-white/80 my-6">
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                  <span className="text-white/50">prize:</span>
+                  <span className="text-white/50">products:</span>
                   <span className="text-emerald-400 font-black text-lg">150€</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
@@ -1029,7 +1029,7 @@ export default function EurichallengeClient() {
             },
             {
               q: '¿Cuáles son los premios del hackathon?',
-              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en premios + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
+              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en productos tecnológicos + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
             },
             {
               q: '¿Qué tengo que llevar?',
