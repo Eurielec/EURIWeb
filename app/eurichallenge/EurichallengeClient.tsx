@@ -224,10 +224,10 @@ const rewardsCodeTokens: CodeToken[][] = [
   [
     { text: 'const ', color: 'text-[#FF5722]', bold: true },
     { text: 'PRIZE_01', color: 'text-blue-300' },
-    { text: ' = { products: ', color: 'text-white' },
+    { text: ' = { cash: ', color: 'text-white' },
     { text: '"150€"', color: 'text-emerald-400' },
-    { text: ', trophy: ', color: 'text-white' },
-    { text: 'true', color: 'text-yellow-400' },
+    { text: ', products: ', color: 'text-white' },
+    { text: '"+100€"', color: 'text-yellow-400' },
     { text: ', level: ', color: 'text-white' },
     { text: '"TOP"', color: 'text-[#FF5722]', bold: true },
     { text: ' };', color: 'text-white' }
@@ -339,7 +339,7 @@ const rewardsRunOutput: RunOutputConfig = {
   title: 'load_prizes() -> Pool de Recompensas',
   lines: [
     '> Consultando base de datos de recompensas...',
-    '1º Premio (TOP): 150€ en productos tech + trofeo',
+    '1º Premio (TOP): 150€ cash + 100€ tech products + trofeo',
     '2º Premio (PRO): +100€ tech products + periféricos y sorpresas',
     '3er Premio (MERCH): Ropa y merchandising oficial "UNLOCKED"',
     'Todos los equipos: Comidas, cenas, snacks, welcome pack y diploma ETSIT',
@@ -804,7 +804,7 @@ export default function EurichallengeClient() {
             const PRIZE_POOL = <span className="text-[#FFA000]">&quot;+1500€&quot;;</span>
           </h2>
           <p className="text-white/70 text-base sm:text-lg">
-            Premiaremos las mejores soluciones con premios tecnológicos, periféricos y merchandising exclusivo.
+            Premiaremos las mejores soluciones con dinero en efectivo, hardware tecnológico, periféricos y merchandising exclusivo.
           </p>
         </div>
 
@@ -847,12 +847,12 @@ export default function EurichallengeClient() {
 
               <div className="space-y-3 font-mono text-sm text-white/80 my-6">
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                  <span className="text-white/50">products:</span>
+                  <span className="text-white/50">cash:</span>
                   <span className="text-emerald-400 font-black text-lg">150€</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
-                  <span className="text-white/50">trophy:</span>
-                  <span className="text-yellow-400 font-bold">true</span>
+                  <span className="text-white/50">products:</span>
+                  <span className="text-yellow-400 font-bold">+100€</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-white/10">
                   <span className="text-white/50">level:</span>
@@ -1029,7 +1029,7 @@ export default function EurichallengeClient() {
             },
             {
               q: '¿Cuáles son los premios del hackathon?',
-              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en productos tecnológicos + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
+              a: 'Repartimos más de 1.500€ en recompensas: 1º Premio (150€ en efectivo + 100€ en productos tecnológicos + trofeo oficial), 2º Premio (+100€ en periféricos tech y sorpresas), 3er Premio (merchandising oficial UNLOCKED) y diploma acreditativo de la ETSIT UPM para todos los participantes.',
             },
             {
               q: '¿Qué tengo que llevar?',
