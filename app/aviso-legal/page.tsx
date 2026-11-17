@@ -38,6 +38,11 @@ export default async function AvisoLegal() {
             <p>{t.legal.s3Desc}</p>
           </section>
 
+          <section className="space-y-4">
+            <h2 className="text-2xl font-black uppercase italic tracking-tight">{t.legal.s4Title}</h2>
+            <p>{t.legal.s4Desc}</p>
+          </section>
+
           <section className="space-y-4 border-t border-black/5 pt-10">
             <p className="text-sm text-gray-500 italic">
               {t.legal.lastUpdate}

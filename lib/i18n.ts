@@ -205,6 +205,8 @@ export const dictionaries = {
       s2Desc: 'El acceso y/o uso de este portal de Eurielec atribuye la condición de USUARIO, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas.',
       s3Title: '3. Uso del Portal',
       s3Desc: 'La web proporciona acceso a multitud de informaciones, servicios, programas o datos en Internet pertenecientes a Eurielec. El USUARIO asume la responsabilidad del uso del portal. Dicha responsabilidad se extiende al registro que fuese necesario para acceder a determinados servicios o contenidos.',
+      s4Title: '4. Concursos, Promociones y Premios',
+      s4Desc: 'En la celebración de concursos, hackathones, torneos o actividades organizadas por Eurielec que contemplen la concesión de premios, recompensas o dotaciones económicas o en especie, salvo especificación expresa en contrario en las bases particulares de la convocatoria, la cuantía o dotación indicada en cualquier soporte de comunicación se considerará siempre global y asignada al equipo o grupo premiado en su conjunto, procediéndose a su reparto entre los integrantes del mismo, sin que en ningún caso deba entenderse como una dotación individual para cada uno de los miembros participantes.',
       lastUpdate: 'Última actualización: Abril de 2026.'
     },
     privacyPage: {
@@ -630,6 +632,8 @@ export const dictionaries = {
       s2Desc: 'Access and/or use of this Eurielec portal attributes the condition of USER, who accepts, from said access and/or use, the General Conditions of Use reflected here.',
       s3Title: '3. Use of the Portal',
       s3Desc: 'The website provides access to a multitude of information, services, programs or data on the Internet belonging to Eurielec. The USER assumes responsibility for the use of the portal. This responsibility extends to the registration that is necessary to access certain services or content.',
+      s4Title: '4. Contests, Promotions and Prizes',
+      s4Desc: 'In the event of contests, hackathons, tournaments, or activities organized by Eurielec that include prizes, rewards, or economic or in-kind endowments, unless expressly stated otherwise in the specific rules of the call, the amount or endowment stated on any communication medium shall always be considered global and allocated to the winning team or group as a whole, to be distributed among its members, and in no event shall be understood as an individual award for each participating member.',
       lastUpdate: 'Last updated: April 2026.'
     },
     privacyPage: {
