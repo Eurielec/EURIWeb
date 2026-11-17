@@ -194,11 +194,11 @@ export const dictionaries = {
       s1Title: '1. Datos Identificativos',
       s1Desc: 'En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:',
       s1Entity: 'Entidad:',
-      s1EntityVal: 'Asociación Eurielec',
+      s1EntityVal: 'EURIELEC ETSIT MADRID',
       s1HQ: 'Sede:',
-      s1HQVal: 'ETSI Industriales UPM, C/ José Gutiérrez Abascal, 2, 28006 Madrid',
+      s1HQVal: 'ETSI Telecomunicación (ETSIT UPM), Avda. Complutense, 30, 28040 Madrid',
       s1Email: 'Email:',
-      s1EmailVal: 'info@eurielec.etsit.upm.es',
+      s1EmailVal: 'eurielec.eestec@gmail.com',
       s1Scope: 'Ámbito:',
       s1ScopeVal: 'Asociación de Estudiantes sin ánimo de lucro.',
       s2Title: '2. Usuarios',
@@ -207,7 +207,7 @@ export const dictionaries = {
       s3Desc: 'La web proporciona acceso a multitud de informaciones, servicios, programas o datos en Internet pertenecientes a Eurielec. El USUARIO asume la responsabilidad del uso del portal. Dicha responsabilidad se extiende al registro que fuese necesario para acceder a determinados servicios o contenidos.',
       s4Title: '4. Concursos, Promociones y Premios',
       s4Desc: 'En la celebración de concursos, hackathones, torneos o actividades organizadas por Eurielec que contemplen la concesión de premios, recompensas o dotaciones económicas o en especie, salvo especificación expresa en contrario en las bases particulares de la convocatoria, la cuantía o dotación indicada en cualquier soporte de comunicación se considerará siempre global y asignada al equipo o grupo premiado en su conjunto, procediéndose a su reparto entre los integrantes del mismo, sin que en ningún caso deba entenderse como una dotación individual para cada uno de los miembros participantes.',
-      lastUpdate: 'Última actualización: Abril de 2026.'
+      lastUpdate: 'Última actualización: Septiembre de 2026.'
     },
     privacyPage: {
       titlePart1: 'Políticas de',
@@ -222,7 +222,7 @@ export const dictionaries = {
       s3Title: 'Información Adicional',
       s3Desc: 'Para consultar la información detallada y completa sobre nuestra política de protección de datos, puede acceder al siguiente documento oficial:',
       s3Link: 'Consultar Política de Privacidad Extendida (PDF)',
-      lastUpdate: 'Última actualización: Abril de 2026.'
+      lastUpdate: 'Última actualización: Septiembre de 2026.'
     },
     auth: {
       login: {
@@ -621,11 +621,11 @@ export const dictionaries = {
       s1Title: '1. Identification Data',
       s1Desc: 'In compliance with the duty of information contained in article 10 of Law 34/2002, of July 11, on Information Society Services and Electronic Commerce, the following data are reflected below:',
       s1Entity: 'Entity:',
-      s1EntityVal: 'Eurielec Association',
+      s1EntityVal: 'EURIELEC ETSIT MADRID',
       s1HQ: 'Headquarters:',
-      s1HQVal: 'ETSI Industriales UPM, C/ José Gutiérrez Abascal, 2, 28006 Madrid',
+      s1HQVal: 'ETSI Telecomunicación (ETSIT UPM), Avda. Complutense, 30, 28040 Madrid',
       s1Email: 'Email:',
-      s1EmailVal: 'info@eurielec.etsit.upm.es',
+      s1EmailVal: 'eurielec.eestec@gmail.com',
       s1Scope: 'Scope:',
       s1ScopeVal: 'Non-profit Student Association.',
       s2Title: '2. Users',
@@ -634,7 +634,7 @@ export const dictionaries = {
       s3Desc: 'The website provides access to a multitude of information, services, programs or data on the Internet belonging to Eurielec. The USER assumes responsibility for the use of the portal. This responsibility extends to the registration that is necessary to access certain services or content.',
       s4Title: '4. Contests, Promotions and Prizes',
       s4Desc: 'In the event of contests, hackathons, tournaments, or activities organized by Eurielec that include prizes, rewards, or economic or in-kind endowments, unless expressly stated otherwise in the specific rules of the call, the amount or endowment stated on any communication medium shall always be considered global and allocated to the winning team or group as a whole, to be distributed among its members, and in no event shall be understood as an individual award for each participating member.',
-      lastUpdate: 'Last updated: April 2026.'
+      lastUpdate: 'Last updated: September 2026.'
     },
     privacyPage: {
       titlePart1: 'Privacy',
@@ -649,7 +649,7 @@ export const dictionaries = {
       s3Title: 'Additional Information',
       s3Desc: 'To consult detailed and complete information about our data protection policy, you can access the following official document:',
       s3Link: 'View Extended Privacy Policy (PDF)',
-      lastUpdate: 'Last updated: April 2026.'
+      lastUpdate: 'Last updated: September 2026.'
     },
     auth: {
       login: {
